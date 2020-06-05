@@ -1,0 +1,9 @@
+html,body,span,h1 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 17px;
+}
+bibtex { display: none; }
+.searchbar { margin-left:0px;}
+#bibtex_errors { margin-top:10px; color: red;}
+h1.header {margin-left:8px;}
+h1.YEAR { font-size: 17px; font-weight: bold; display: inline; margin-left:8px;}
