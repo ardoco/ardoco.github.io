@@ -2,4 +2,4 @@
 
 ## Publications
 
-[publications page].(./publications.html)
+[publications page](./publications.html).
