@@ -2,4 +2,4 @@
 
 ## Publications
 
-[publications page](./publications.html).
+See our [publications page](./publications.html).
