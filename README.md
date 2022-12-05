@@ -6,8 +6,8 @@ Documenting the architecture of a software system is important, especially to ca
 ArDoCo is actively developed by researchers of the _[Modelling for Continuous Software Engineering (MCSE) group](https://mcse.kastel.kit.edu)_ of _[KASTEL - Institute of Information Security and Dependability](https://kastel.kit.edu)_ at the [KIT](https://www.kit.edu).
 
 ## Important Links
-- [Project website](https://mcse.kastel.kit.edu/Projects_564.php) at the research group's website
-- [Publications](https://mcse.kastel.kit.edu/Projects_564.php?tab=%5B577%5D#tabpanel-577) at the project website
+- [Project website](https://mcse.kastel.kit.edu/Projects_ArDoCo.php) at the research group's website
+- [Publications](https://mcse.kastel.kit.edu/Projects_ArDoCo.php?tab=%5B577%5D#tabpanel-577) at the project website
 - [GitHub organization](https://github.com/ArDoCo)
 - Central code repository [ArDoCo/Core](https://github.com/ArDoCo/Core)
 - Related project [InFormALin](https://mcse.kastel.kit.edu/Projects_573.php) ([GitHub](https://github.com/InFormALin))
