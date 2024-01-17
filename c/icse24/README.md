@@ -7,10 +7,9 @@ by Jan Keim, Sophie Corallo, Dominik Fuchß, Tobias Hey, Tobias Telge, and Anne 
 
 Published at the [46th International Conference on Software Engineering (ICSE 2024), April 14-20 2024](https://conf.researchr.org/home/icse-2024)
 
-## Links
-- Paper on [KITopen](https://doi.org/10.5445/IR/1000165692)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.10411853) and the corresponding [GitHub repository](https://github.com/ArDoCo/Replication-Package-ICSE24_Recovering-Trace-Links-Between-Software-Documentation-And-Code)
-
+<p align="center">
+	<img src="./approach_overview.svg" alt="Approach Overview"/>
+</p>
 
 ## Abstract
 *Introduction* 
@@ -30,3 +29,9 @@ The model-to-code TLR approach achieves an average F1-score of 0.98, while the d
 *Conclusion* 
 Combining two specialized approaches with an intermediate artifact shows promise for bridging the semantic gap. 
 In future research, we will explore further possibilities for such transitive approaches.
+
+## Links
+- Paper on [KITopen](https://doi.org/10.5445/IR/1000165692)
+- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.10411853) and the corresponding [GitHub repository](https://github.com/ArDoCo/Replication-Package-ICSE24_Recovering-Trace-Links-Between-Software-Documentation-And-Code)
+
+
