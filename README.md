@@ -1,3 +1,7 @@
+<p align="center"> 
+	<img alt="ArDoCo" src="logo.png" height="210"/>
+</p>
+
 # [ArDoCo - Architecture Documentation Consistency](https://github.com/ArDoCo)
 In this research project, we aim to provide consistency analyses between different kind of documentation, namely formal models and informal (textual) documentation.
 
@@ -10,9 +14,13 @@ ArDoCo is actively developed by researchers of the _[Modelling for Continuous So
 - [Publications](https://mcse.kastel.kit.edu/Projects_ArDoCo.php?tab=%5B577%5D#tabpanel-577) at the project website
 - [GitHub organization](https://github.com/ArDoCo)
 - Central code repository [ArDoCo/Core](https://github.com/ArDoCo/Core)
-- Related project [InFormALin](https://mcse.kastel.kit.edu/Projects_573.php) ([GitHub](https://github.com/InFormALin))
+- [Poster with the initial idea](./InitialPoster.md) from the ICSA2019 NEMI track.
 
+## Relevant and Recent Publications
+- [Paper at ICSE 2024](./c/icse24): "Recovering Trace Links Between Software Documentation And Code" by Jan Keim, Sophie Corallo, Dominik Fuchß, Tobias Hey, Tobias Telge, and Anne Koziolek
+- [Paper at ICSA 2023](./c/icsa23): "Detecting Inconsistencies in Software Architecture Documentation Using Traceability Link Recovery" by Jan Keim, Sophie Corallo, Dominik Fuchß, and Anne Koziolek
+- [Paper at ICSA 2021](./c/icsa21): "Trace Link Recovery for Software Architecture Documentation" by Jan Keim, Sophie Corallo, Dominik Fuchß, Claudius Kocher, Janek Speit and Anne Koziolek
 
-## Initial Poster
+## Initial Idea Poster (2019)
 Although slightly outdated, the poster below from the [ICSA2019 NEMI track](https://swk-www.informatik.uni-hamburg.de/~icsa2019/index.html) underlines our main goals for checking consistency between formal architecture artefacts like [Palladio Component Models](https://www.palladio-simulator.com/science/palladio_component_model/) and informal software architecture artefacts in the form of textual software architecture documentation. For more details, check the [paper](http://sdqweb.ipd.kit.edu/publications/pdfs/keim2019nemi.pdf) as well as the [publications page](https://mcse.kastel.kit.edu/Projects_564.php).
 ![Poster](./icsa2019_poster.png "Poster")
