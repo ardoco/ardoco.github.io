@@ -3,7 +3,7 @@
 </p>
 
 # Recovering Trace Links Between Software Documentation And Code 
-by Jan Keim, Sophie Corallo, Dominik Fuchß, Tobias Hey, Tobias Telge, and Anne Koziolek
+by [Jan Keim](https://orcid.org/0000-0002-8899-7081), [Sophie Corallo](https://orcid.org/0000-0002-1531-2977), [Dominik Fuchß](https://orcid.org/0000-0001-6410-6769), [Tobias Hey](https://orcid.org/0000-0003-0381-1020), [Tobias Telge](https://orcid.org/0009-0002-6700-6426), and [Anne Koziolek](https://orcid.org/0000-0002-1593-3394)
 
 Published at the [46th International Conference on Software Engineering (ICSE 2024), April 14-20 2024](https://conf.researchr.org/home/icse-2024)
 

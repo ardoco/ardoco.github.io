@@ -3,7 +3,7 @@
 </p>
 
 # Trace Link Recovery for Software Architecture Documentation
-by Jan Keim, Sophie Corallo, Dominik Fuchß, Claudius Kocker, Janek Speit, and Anne Koziolek
+by [Jan Keim](https://orcid.org/0000-0002-8899-7081), [Sophie Corallo](https://orcid.org/0000-0002-1531-2977), [Dominik Fuchß](https://orcid.org/0000-0001-6410-6769), Claudius Kocker, Janek Speit, and [Anne Koziolek](https://orcid.org/0000-0002-1593-3394)
 
 Published at the [15th European Conference on Software Architecture (ECSA 2021), September 13-17 2021](https://conf.researchr.org/home/ecsa-2021)
 
