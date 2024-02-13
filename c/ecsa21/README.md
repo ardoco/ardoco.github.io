@@ -23,3 +23,4 @@ Moreover, our approach outperforms the baseline approaches on non-weighted avera
 ## Links
 - Paper on [Springer Link](https://doi.org/10.1007/978-3-030-86044-8_7 ) and on [KITopen](https://doi.org/10.5445/IR/1000138399)
 - Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.4730621) and the corresponding [GitHub repository](https://github.com/ArDoCo/SWATTR)
+- [Slides](presentation_21_ecsa_TLR.pdf)
