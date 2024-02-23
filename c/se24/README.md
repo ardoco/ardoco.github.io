@@ -1,1 +1,1 @@
-<meta http-equiv="Refresh" content="0; url='../c/icsa23'" />
+<meta http-equiv="Refresh" content="0; url='../icsa23'" />
