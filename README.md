@@ -18,6 +18,7 @@ ArDoCo is actively developed by researchers of the _[Modelling for Continuous So
 
 ## Relevant and Recent Publications
 <sub> The links will lead you to pages that contain details about the corresponding papers </sub>
+- (German) [Präsentation auf der Jahrestagung der GI-FG Architekturen 2024](./c/fg-arch24/): "**LLM-gestützte Softwarearchitektur: Eine neue Ära?**" von Jan Keim, Tobias Hey
 - [Paper at ICSE 2024](./c/icse24): "**Recovering Trace Links Between Software Documentation And Code**" by Jan Keim, Sophie Corallo, Dominik Fuchß, Tobias Hey, Tobias Telge, and Anne Koziolek
 - [Paper at ICSA 2023 with additional presentation at SE24](./c/icsa23): "**Detecting Inconsistencies in Software Architecture Documentation Using Traceability Link Recovery**" by Jan Keim, Sophie Corallo, Dominik Fuchß, and Anne Koziolek
 - [Paper at ECSA 2021](./c/ecsa21): "**Trace Link Recovery for Software Architecture Documentation**" by Jan Keim, Sophie Corallo, Dominik Fuchß, Claudius Kocher, Janek Speit and Anne Koziolek
