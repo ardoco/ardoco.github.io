@@ -1,5 +1,5 @@
 <p align="center"> 
-	<img alt="ArDoCo" src="../../logo.png" height="210"/>
+	<img alt="ArDoCo" src="titleslide.png" height="420"/>
 </p>
 
 # LLM-gestützte Softwarearchitektur: Eine neue Ära? 
