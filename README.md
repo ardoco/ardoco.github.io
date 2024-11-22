@@ -12,9 +12,13 @@ ArDoCo is actively developed by researchers of the _[Modelling for Continuous So
 ## Important Links
 - [Project website](https://mcse.kastel.kit.edu/Projects_ArDoCo.php) at the research group's website
 - [Publications](https://mcse.kastel.kit.edu/Projects_ArDoCo.php?tab=%5B577%5D#tabpanel-577) at the project website
+
+- [Open student theses](https://sdq.kastel.kit.edu/wiki/Ausschreibungen/ArDoCo)
+- [People](./p/people.md)
+
 - [GitHub organization](https://github.com/ArDoCo)
 - Central code repository [ArDoCo/Core](https://github.com/ArDoCo/Core)
-- [Poster with the initial idea](./InitialPoster.md) from the ICSA2019 NEMI track.
+
 
 ## Relevant and Recent Publications
 <sub> The links will lead you to pages that contain details about the corresponding publications </sub>
@@ -22,4 +26,5 @@ ArDoCo is actively developed by researchers of the _[Modelling for Continuous So
 - [Paper at ICSE 2024](./c/icse24): "**Recovering Trace Links Between Software Documentation And Code**" by Jan Keim, Sophie Corallo, Dominik Fuchß, Tobias Hey, Tobias Telge, and Anne Koziolek
 - [Paper at ICSA 2023 with additional presentation at SE24](./c/icsa23): "**Detecting Inconsistencies in Software Architecture Documentation Using Traceability Link Recovery**" by Jan Keim, Sophie Corallo, Dominik Fuchß, and Anne Koziolek
 - [Paper at ECSA 2021](./c/ecsa21): "**Trace Link Recovery for Software Architecture Documentation**" by Jan Keim, Sophie Corallo, Dominik Fuchß, Claudius Kocher, Janek Speit and Anne Koziolek
+- [Poster with the initial idea](./InitialPoster.md) from the ICSA2019 NEMI track.
 
