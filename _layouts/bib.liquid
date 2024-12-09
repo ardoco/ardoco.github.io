@@ -189,9 +189,11 @@
           {%- if entry.award_name %}{{ entry.award_name }}{% else %}Awarded{% endif -%}
         </a>
       {% endif %}
-      {% if entry.abstract %}
-        <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
-      {% endif %}
+      <!--
+        {% if entry.abstract %}
+          <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
+        {% endif %}
+      -->
       {% if entry.doi %}
         <a href="https://doi.org/{{ entry.doi }}" class="btn btn-sm z-depth-0" role="button">DOI</a>
       {% endif %}
@@ -203,9 +205,9 @@
       {% endif %}
       {% if entry.html %}
         {% if entry.html contains '://' %}
-          <a href="{{ entry.html }}" class="btn btn-sm z-depth-0" role="button">HTML</a>
+          <a href="{{ entry.html }}" class="btn btn-sm z-depth-0" role="button">INFO</a>
         {% else %}
-          <a href="{{ entry.html | prepend: '/assets/html/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">HTML</a>
+          <a href="{{ entry.html | relative_url }}" class="btn btn-sm z-depth-0" role="button">INFO</a>
         {% endif %}
       {% endif %}
       {% if entry.pdf %}

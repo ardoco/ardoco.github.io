@@ -1,9 +1,11 @@
-"AJP":
-  url: https://aapt.scitation.org/journal/ajp
-  color: "#00369f"
+"ICSA":
+  url: https://conf.researchr.org/series/icsa
+  color: "#23a1e0"
 
-"PhysRev":
-  url: https://journals.aps.org/
+"ECSA":
+  url: https://conf.researchr.org/series/ecsa
+  color: "#df9b1b"
 
-"Vision":
-  color: "#009f36"
+"ICSE":
+  url: https://conf.researchr.org/series/icse
+  color: "#a3107c"
