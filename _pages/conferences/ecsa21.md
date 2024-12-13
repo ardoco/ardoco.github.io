@@ -3,6 +3,7 @@ layout: page
 permalink: /c/ecsa21
 title: Trace Link Recovery for Software Architecture Documentation
 description:
+publication: keim_tracelink_2021
 ---
 
 by Jan Keim <a href="https://orcid.org/0000-0002-8899-7081"><i class="fa-brands fa-orcid"></i></a>, Sophie Corallo <a href="https://orcid.org/0000-0002-1531-2977"><i class="fa-brands fa-orcid"></i></a>, Dominik Fuchß <a href="https://orcid.org/0000-0001-6410-6769"><i class="fa-brands fa-orcid"></i></a>, Claudius Kocker, Janek Speit, and Anne Koziolek <a href="https://orcid.org/0000-0002-1593-3394"><i class="fa-brands fa-orcid"></i></a>
@@ -28,21 +29,3 @@ Moreover, our approach outperforms the baseline approaches on non-weighted avera
 - Paper on [Springer Link](https://doi.org/10.1007/978-3-030-86044-8_7) and on [KITopen](https://doi.org/10.5445/IR/1000138399)
 - Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.4730621) and the corresponding [GitHub repository](https://github.com/ArDoCo/SWATTR)
 - [Slides](/assets/pdf/presentation_21_ecsa_TLR.pdf)
-
-## Cite this paper
-
-```bibtex
-@inproceedings{keim_tracelink_2021,
-  abbr              = {ECSA},
-  author            = {Keim, Jan and Schulz, Sophie and Fuch{\ss}, Dominik and Kocher, Claudius and Speit, Janek and Koziolek, Anne},
-  title             = {Trace Link Recovery for Software Architecture Documentation},
-  booktitle         = {Software Architecture},
-  editor            = {Biffl, Stefan and Navarro, Elena and L{\"o}we, Welf	and Sirjani, Marjan	and Mirandola, Raffaela	and Weyns, Danny},
-  year              = {2021},
-  publisher         = {Springer International Publishing},
-  address           = {Cham},
-  pages             = {101--116},
-  doi               = {10.1007/978-3-030-86044-8_7},
-  isbn              = {978-3-030-86044-8}
-}
-```

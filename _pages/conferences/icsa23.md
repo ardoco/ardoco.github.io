@@ -3,6 +3,7 @@ layout: page
 permalink: /c/icsa23
 title: Detecting Inconsistencies in Software Architecture Documentation Using Traceability Link Recovery
 description:
+publication: keim_detecting_2023
 ---
 
 by Jan Keim <a href="https://orcid.org/0000-0002-8899-7081"><i class="fa-brands fa-orcid"></i></a>, Sophie Corallo <a href="https://orcid.org/0000-0002-1531-2977"><i class="fa-brands fa-orcid"></i></a>, Dominik Fuchß <a href="https://orcid.org/0000-0001-6410-6769"><i class="fa-brands fa-orcid"></i></a>, and Anne Koziolek <a href="https://orcid.org/0000-0002-1593-3394"><i class="fa-brands fa-orcid"></i></a>
@@ -23,19 +24,3 @@ Documenting software architecture is important for a system’s success. Softwar
 - Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.7555194) and the corresponding [GitHub repository](https://github.com/ArDoCo/DetectingInconsistenciesInSoftwareArchitectureDocumentationUsingTraceabilityLinkRecovery)
 - [Slides (ICSA23)](/assets/pdf/presentation_23_ICSA_InconsistencyDetection.pdf)
 - [Slides (SE24)](/assets/pdf/presentation_24_SE_InconsistencyDetection.pdf)
-
-## Cite this paper
-
-```bibtex
-@inproceedings{keim_detecting_2023,
-  abbr              = {ICSA},
-  author            = {Keim, Jan and Corallo, Sophie and Fuchß, Dominik and Koziolek, Anne},
-  booktitle         = {2023 IEEE 20th International Conference on Software Architecture (ICSA)},
-  title             = {Detecting Inconsistencies in Software Architecture Documentation Using Traceability Link Recovery},
-  year              = {2023},
-  volume            = {},
-  number            = {},
-  pages             = {141-152},
-  doi               = {10.1109/ICSA56044.2023.00021}
-}
-```

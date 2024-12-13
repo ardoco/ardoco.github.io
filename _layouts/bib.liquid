@@ -45,7 +45,10 @@
   {% endif %}
 
   <!-- Entry bib key -->
-  <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-sm-8{% else %}col-sm-10{% endif %}">
+  <div
+    id="{{ entry.key }}"
+    class="{% if page.publication %}col-sm-12{% elsif site.enable_publication_thumbnails %}col-sm-8{% else %}col-sm-10{% endif %}"
+  >
     <!-- Title -->
     <div class="title">{{ entry.title }}</div>
     <!-- Author -->
@@ -200,10 +203,10 @@
       {% if entry.arxiv %}
         <a href="http://arxiv.org/abs/{{ entry.arxiv }}" class="btn btn-sm z-depth-0" role="button">arXiv</a>
       {% endif %}
-      {% if entry.bibtex_show %}
+      {% if entry.bibtex_show and page.publication == blank %}
         <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
       {% endif %}
-      {% if entry.html %}
+      {% if entry.html and page.publication == blank %}
         {% if entry.html contains '://' %}
           <a href="{{ entry.html }}" class="btn btn-sm z-depth-0" role="button">INFO</a>
         {% else %}
@@ -354,10 +357,14 @@
 
     {% if entry.bibtex_show %}
       <!-- Hidden bibtex block -->
-      <div class="bibtex hidden">
-        {% highlight bibtex %}
-        {{- entry.bibtex | hideCustomBibtex -}}
-        {% endhighlight %}
+      {% if page.publication %}
+        <div class="bibtex">
+      {% else %}
+        <div class="bibtex hidden">
+      {% endif %}
+      {% highlight bibtex %}
+      {{- entry.bibtex | hideCustomBibtex -}}
+      {% endhighlight %}
       </div>
     {% endif %}
 

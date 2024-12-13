@@ -25,6 +25,18 @@ layout: default
     </div>
   {% endif %}
 
+  {% if page.publication %}
+    <style>
+      .publications {
+        margin-top: 0px !important;
+      }
+    </style>
+    <h2>Cite this paper</h2>
+    <div class="publications">
+      {% bibliography -q @*[key ^= {{page.publication}}] --group_by none %}
+    </div>
+  {% endif %}
+
   {% if site.giscus and page.giscus_comments %}
     {% include giscus.liquid %}
   {% endif %}
