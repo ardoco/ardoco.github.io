@@ -5,7 +5,7 @@ title: "LLM-gestützte Softwarearchitektur: Eine neue Ära?"
 description:
 ---
 
-von Jan Keim ([ORCID](https://orcid.org/0000-0002-8899-7081), [Webseite](https://mcse.kastel.kit.edu/staff_Keim_Jan.php), [Mail](mailto:jan.keim@kit.edu)) und Tobias Hey ([ORCID](https://orcid.org/0000-0003-0381-1020), [Webseite](https://mcse.kastel.kit.edu/staff_tobias_hey.php), [Mail](mailto:hey@kit.edu))
+von Jan Keim <a href="https://orcid.org/0000-0002-8899-7081"><i class="fa-brands fa-orcid"></i></a> ([Webseite](https://mcse.kastel.kit.edu/staff_Keim_Jan.php), [Mail](mailto:jan.keim@kit.edu)) und Tobias Hey <a href="https://orcid.org/0000-0003-0381-1020"><i class="fa-brands fa-orcid"></i></a> ([Webseite](https://mcse.kastel.kit.edu/staff_tobias_hey.php), [Mail](mailto:hey@kit.edu))
 
 <p align="center"> 
 	<img alt="ArDoCo" src="/assets/img/titleslide-fg-arch24.png" width="100%"/>
