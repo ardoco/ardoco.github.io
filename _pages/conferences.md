@@ -5,6 +5,8 @@ nav: true
 nav_order: 1
 dropdown: true
 children:
+  - title: ICSA 2025
+    permalink: /c/icsa25
   - title: SE 2024
     permalink: /c/se24
   - title: "GI-Fachgruppe Architekturen 2024"
