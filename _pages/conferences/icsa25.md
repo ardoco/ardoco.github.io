@@ -13,6 +13,7 @@ To be published at the [22nd IEEE International Conference on Software Architect
 ![Approach Overview](/assets/img/icsa25-approach.svg){:width="100%"}
 
 ## Abstract
+
 Traceability Link Recovery (TLR) is an enabler for various software engineering tasks.
 One important task is the recovery of trace links between Software Architecture Documentation (SAD) and source code.
 Here, the main challenge is the semantic gap between the two artifact types.
