@@ -1,4 +1,1 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://ardoco.de/sitemap.xml
+User-agent: * Disallow: Sitemap: https://ardoco.de/sitemap.xml
