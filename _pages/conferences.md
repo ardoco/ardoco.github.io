@@ -5,6 +5,8 @@ nav: true
 nav_order: 1
 dropdown: true
 children:
+  - title: ICSE 2025
+    permalink: /c/icse25
   - title: ICSA 2025
     permalink: /c/icsa25
   - title: SE 2024
