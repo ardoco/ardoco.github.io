@@ -7,6 +7,8 @@ dropdown: true
 children:
   - title: ICSE 2025
     permalink: /c/icse25
+  - title: REFSQ 2025
+    permalink: /c/refsq25
   - title: ICSA 2025
     permalink: /c/icsa25
   - title: SE 2024
