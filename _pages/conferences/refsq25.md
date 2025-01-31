@@ -24,7 +24,7 @@ Automation could enhance the development and maintenance efficiency.
 Current methods for automatically recovering traceability links between different types of requirements do not achieve the necessary performance to be applied in practice, or require pre-existing links for machine learning.
 
 **[Principal Ideas and Results]**
-We propose to address this limitation by \method{leveraging large language models (LLMs) with retrieval-augmented generation (RAG) for inter-requirements traceability link recovery.}
+We propose to address this limitation by leveraging large language models (LLMs) with retrieval-augmented generation (RAG) for inter-requirements traceability link recovery.
 In an empirical evaluation on six benchmark datasets, we show that chain-of-thought prompting can be beneficial, open-source models perform comparably to proprietary ones, and that the approach can outperform state-of-the-art and baseline approaches.
 
 **[Contribution]** This work presents an approach for inter-requirements traceability link recovery using RAG and provides the first empirical evidence of its performance.
