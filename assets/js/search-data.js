@@ -16,6 +16,13 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
+            },{id: "dropdown-refsq-2025",
+              title: "REFSQ 2025",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "";
+              },
             },{id: "dropdown-icsa-2025",
               title: "ICSA 2025",
               description: "",
