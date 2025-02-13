@@ -1,12 +1,17 @@
 ---
-layout: page
+layout: publication
 permalink: /c/icse24
 title: Recovering Trace Links Between Software Documentation And Code
 description:
 publication: keim_recovering_2024
+authors:
+  - jan_keim
+  - sophie_corallo
+  - dominik_fuchss
+  - tobias_hey
+  - tobias_telge
+  - anne_koziolek
 ---
-
-by Jan Keim <a href="https://orcid.org/0000-0002-8899-7081"><i class="fa-brands fa-orcid"></i></a>, Sophie Corallo <a href="https://orcid.org/0000-0002-1531-2977"><i class="fa-brands fa-orcid"></i></a>, Dominik Fuchß <a href="https://orcid.org/0000-0001-6410-6769"><i class="fa-brands fa-orcid"></i></a>, Tobias Hey <a href="https://orcid.org/0000-0003-0381-1020"><i class="fa-brands fa-orcid"></i></a>, Tobias Telge <a href="https://orcid.org/0009-0002-6700-6426"><i class="fa-brands fa-orcid"></i></a>, and Anne Koziolek <a href="https://orcid.org/0000-0002-1593-3394"><i class="fa-brands fa-orcid"></i></a>
 
 Published at the [46th International Conference on Software Engineering (ICSE 2024), April 14-20 2024](https://conf.researchr.org/home/icse-2024)
 

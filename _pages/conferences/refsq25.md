@@ -1,12 +1,15 @@
 ---
-layout: page
+layout: publication
 permalink: /c/refsq25
 title: "Requirements Traceability Link Recovery via Retrieval-Augmented Generation"
 description:
-publication: # hey_requirements_2025
+publication: hey_requirements_2025
+authors:
+  - tobias_hey
+  - dominik_fuchss
+  - jan_keim
+  - anne_koziolek
 ---
-
-by Tobias Hey <a href="https://orcid.org/0000-0003-0381-1020"><i class="fa-brands fa-orcid"></i></a>, Dominik Fuchß <a href="https://orcid.org/0000-0001-6410-6769"><i class="fa-brands fa-orcid"></i></a>, Jan Keim <a href="https://orcid.org/0000-0002-8899-7081"><i class="fa-brands fa-orcid"></i></a>, and Anne Koziolek <a href="https://orcid.org/0000-0002-1593-3394"><i class="fa-brands fa-orcid"></i></a>
 
 To be published at the [31st International Working Conference on Requirements Engineering: Foundation for Software Quality](https://2025.refsq.org/).
 

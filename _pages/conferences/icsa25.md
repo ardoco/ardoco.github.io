@@ -1,12 +1,16 @@
 ---
-layout: page
+layout: publication
 permalink: /c/icsa25
 title: Enabling Architecture Traceability by LLM-based Architecture Component Name Extraction
 description:
 publication: fuchss_enabling_2025
+authors:
+  - dominik_fuchss
+  - haoyu_liu
+  - tobias_hey
+  - jan_keim
+  - anne_koziolek
 ---
-
-by Dominik Fuchß <a href="https://orcid.org/0000-0001-6410-6769"><i class="fa-brands fa-orcid"></i></a>, Haoyu Liu <a href="https://orcid.org/0009-0002-7676-5010"><i class="fa-brands fa-orcid"></i></a>, Tobias Hey <a href="https://orcid.org/0000-0003-0381-1020"><i class="fa-brands fa-orcid"></i></a>, Jan Keim <a href="https://orcid.org/0000-0002-8899-7081"><i class="fa-brands fa-orcid"></i></a>, and Anne Koziolek <a href="https://orcid.org/0000-0002-1593-3394"><i class="fa-brands fa-orcid"></i></a>
 
 To be published at the [22nd IEEE International Conference on Software Architecture (ICSA 2025), March 31 - April 04 2025](https://conf.researchr.org/home/icsa-2025/).
 

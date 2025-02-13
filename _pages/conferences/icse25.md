@@ -1,12 +1,18 @@
 ---
-layout: page
+layout: publication
 permalink: /c/icse25
 title: "LiSSA: Toward Generic Traceability Link Recovery through Retrieval-Augmented Generation"
 description:
 publication: fuchss_lissa_2025
+authors:
+  - dominik_fuchss
+  - tobias_hey
+  - jan_keim
+  - haoyu_liu
+  - niklas_ewald
+  - tobias_thirolf
+  - anne_koziolek
 ---
-
-by Dominik Fuchß <a href="https://orcid.org/0000-0001-6410-6769"><i class="fa-brands fa-orcid"></i></a>, Tobias Hey <a href="https://orcid.org/0000-0003-0381-1020"><i class="fa-brands fa-orcid"></i></a>, Jan Keim <a href="https://orcid.org/0000-0002-8899-7081"><i class="fa-brands fa-orcid"></i></a>, Haoyu Liu <a href="https://orcid.org/0009-0002-7676-5010"><i class="fa-brands fa-orcid"></i></a>, Niklas Ewald <a href="https://orcid.org/0009-0000-8868-0562"><i class="fa-brands fa-orcid"></i></a>, Tobias Thirolf <a href="https://orcid.org/0009-0006-7052-4020"><i class="fa-brands fa-orcid"></i></a>, and Anne Koziolek <a href="https://orcid.org/0000-0002-1593-3394"><i class="fa-brands fa-orcid"></i></a>
 
 To be published at the [47th IEEE/ACM International Conference on Software Engineering (ICSE 2025), April 27 - May 03 2025](https://conf.researchr.org/home/icse-2025/).
 
