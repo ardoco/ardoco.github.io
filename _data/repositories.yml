@@ -4,7 +4,7 @@ repo_description_lines_max: 2
 
 github_repos:
   - ArDoCo/ArDoCo
-  - ArDoCo/Core
   - ArDoCo/TLR
   - ArDoCo/InconsistencyDetection
   - ArDoCo/Metrics
+  - ArDoCo/LiSSA-RATLR
