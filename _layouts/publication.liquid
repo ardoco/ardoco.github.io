@@ -20,17 +20,17 @@ layout: default
       <p>
         by
         {% assign author_count = page.authors.size %}
-        {% assign last_index = author_count | minus: 1 %}
+        {% assign before_last_author = author_count | minus: 1 %}
         {% for author_id in page.authors %}
           {% assign author = authors[author_id] %}
           {{- author.name -}}
           {% if author.orcid %}
             <a href="https://orcid.org/{{ author.orcid }}"><i class="fa-brands fa-orcid"></i></a>
           {%- endif -%}
-          {% if forloop.index0 < last_index and author_count > 2 -%}
+          {% if forloop.index0 < before_last_author and author_count > 2 -%}
             ,
           {% endif %}
-          {% if forloop.index == last_index and author_count > 1 -%}
+          {% if forloop.index == before_last_author and author_count > 1 -%}
             and
           {% endif %}
         {% endfor %}
