@@ -35,7 +35,7 @@ ArDoCo is actively developed by researchers of the _[Modelling for Continuous So
 - [Paper at REFSQ 2025](/c/refsq25): "**Requirements Traceability Link Recovery via Retrieval-Augmented Generation**" by Tobias Hey, Dominik Fuchß, Jan Keim, and Anne Koziolek
 - [Paper at ICSA 2025](/c/icsa25): "**Enabling Architecture Traceability by LLM-based Architecture Component Name Extraction**" by Dominik Fuchß, Haoyu Liu, Tobias Hey, Jan Keim, and Anne Koziolek
 - 🇩🇪 [Präsentation auf der Jahrestagung der GI-FG Architekturen 2024](/c/fg-arch24): "**LLM-gestützte Softwarearchitektur: Eine neue Ära?**" von Jan Keim, Tobias Hey
-- [Paper at ICSE 2024](/c/icse24): "**Recovering Trace Links Between Software Documentation And Code**" by Jan Keim, Sophie Corallo, Dominik Fuchß, Tobias Hey, Tobias Telge, and Anne Koziolek
+- [Paper at ICSE 2024 with additional presentation at SE25](/c/icse24): "**Recovering Trace Links Between Software Documentation And Code**" by Jan Keim, Sophie Corallo, Dominik Fuchß, Tobias Hey, Tobias Telge, and Anne Koziolek
 - [Paper at ICSA 2023 with additional presentation at SE24](/c/icsa23): "**Detecting Inconsistencies in Software Architecture Documentation Using Traceability Link Recovery**" by Jan Keim, Sophie Corallo, Dominik Fuchß, and Anne Koziolek
 - [Paper at ECSA 2021](/c/ecsa21): "**Trace Link Recovery for Software Architecture Documentation**" by Jan Keim, Sophie Corallo, Dominik Fuchß, Claudius Kocher, Janek Speit and Anne Koziolek
 - [Poster with the initial idea](/initial-poster-2019/) from the ICSA2019 NEMI track.
