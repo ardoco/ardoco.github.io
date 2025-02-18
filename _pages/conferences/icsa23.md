@@ -13,7 +13,7 @@ authors:
 
 Published at the [20th IEEE International Conference on Software Architecture (ICSA 2023), March 13-17 2023](https://icsa-conferences.org/2023/).
 
-Additional presentation at the [Software Engineering 2024 (SE24)](https://se2024.se.jku.at/), the symposium of the German Computer Science Societiy (Gesellschaft für Informatik (GI)) together with the Austrian Computer Society.
+Additional presentation at the [Software Engineering 2024 (SE24)](https://se2024.se.jku.at/), the symposium of the German Computer Science Society (Gesellschaft für Informatik (GI)) together with the Austrian Computer Society.
 
 ![Approach Overview](/assets/img/approach_overview_icsa23.svg){:width="100%"}
 
