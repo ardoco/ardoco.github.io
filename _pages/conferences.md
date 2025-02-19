@@ -11,6 +11,8 @@ children:
     permalink: /c/refsq25
   - title: ICSA 2025
     permalink: /c/icsa25
+  - title: SE 2025
+    permalink: /c/se25
   - title: SE 2024
     permalink: /c/se24
   - title: "GI-Fachgruppe Architekturen 2024"
