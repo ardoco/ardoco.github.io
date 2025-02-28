@@ -14,63 +14,63 @@ ninja.data = [{
               description: "",
               section: "Dropdown",
               handler: () => {
-                window.location.href = "";
+                window.location.href = "/c/icse25";
               },
             },{id: "dropdown-refsq-2025",
               title: "REFSQ 2025",
               description: "",
               section: "Dropdown",
               handler: () => {
-                window.location.href = "";
+                window.location.href = "/c/refsq25";
               },
             },{id: "dropdown-icsa-2025",
               title: "ICSA 2025",
               description: "",
               section: "Dropdown",
               handler: () => {
-                window.location.href = "";
+                window.location.href = "/c/icsa25";
               },
             },{id: "dropdown-se-2025",
               title: "SE 2025",
               description: "",
               section: "Dropdown",
               handler: () => {
-                window.location.href = "";
+                window.location.href = "/c/se25";
               },
             },{id: "dropdown-se-2024",
               title: "SE 2024",
               description: "",
               section: "Dropdown",
               handler: () => {
-                window.location.href = "";
+                window.location.href = "/c/se24";
               },
             },{id: "dropdown-gi-fachgruppe-architekturen-2024",
               title: "GI-Fachgruppe Architekturen 2024",
               description: "",
               section: "Dropdown",
               handler: () => {
-                window.location.href = "";
+                window.location.href = "/c/fg-arch24";
               },
             },{id: "dropdown-icse-2024",
               title: "ICSE 2024",
               description: "",
               section: "Dropdown",
               handler: () => {
-                window.location.href = "";
+                window.location.href = "/c/icse24";
               },
             },{id: "dropdown-icsa-2023",
               title: "ICSA 2023",
               description: "",
               section: "Dropdown",
               handler: () => {
-                window.location.href = "";
+                window.location.href = "/c/icsa23";
               },
             },{id: "dropdown-ecsa-2021",
               title: "ECSA 2021",
               description: "",
               section: "Dropdown",
               handler: () => {
-                window.location.href = "";
+                window.location.href = "/c/ecsa21";
               },
             },{id: "nav-publications",
           title: "publications",
