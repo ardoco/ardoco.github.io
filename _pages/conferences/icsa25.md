@@ -33,5 +33,5 @@ In summary, our approach shows that LLMs can be used to make TLR between SAD and
 
 ## Links
 
-- Paper on [KITopen](https://publikationen.bibliothek.kit.edu/1000177521)
+- Paper on [KITopen](https://publikationen.bibliothek.kit.edu/1000179830)
 - Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.14506935) and the corresponding [GitHub repository](https://github.com/ArDoCo/ReplicationPackage-EnablingArchitectureTraceabilitybyLLM-basedArchitectureComponentNameExtraction)

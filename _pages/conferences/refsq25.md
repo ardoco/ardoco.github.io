@@ -34,5 +34,5 @@ In an empirical evaluation on six benchmark datasets, we show that chain-of-thou
 
 ## Links
 
-- Paper on [KITopen](https://publikationen.bibliothek.kit.edu/1000178589)
+- Paper on [KITopen](https://publikationen.bibliothek.kit.edu/1000179817)
 - Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.14779457) and the corresponding [GitHub repository](https://github.com/ArDoCo/ReplicationPackage-REFSQ25_Requirements-TLR-via-RAG)
