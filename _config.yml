@@ -146,6 +146,8 @@ collections:
     output: true
   projects:
     output: true
+  approaches:
+    output: true
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
