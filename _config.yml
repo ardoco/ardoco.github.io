@@ -148,6 +148,8 @@ collections:
     output: true
   approaches:
     output: true
+  conferences:
+    output: true
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
