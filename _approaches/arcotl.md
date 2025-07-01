@@ -13,4 +13,5 @@ layout: page
 🚧 This page is work in progress.
 
 ## References
-- [ICSE 2024 publication page](/c/icse24) 
+
+- [ICSE 2024 publication page](/c/icse24)
