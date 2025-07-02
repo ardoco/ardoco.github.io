@@ -222,7 +222,7 @@ defaults:
       sitemap: true
 
 sass:
-  style: compressed
+  style: expanded
 
 # -----------------------------------------------------------------------------
 # Jekyll Minifier
