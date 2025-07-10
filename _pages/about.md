@@ -31,6 +31,7 @@ ArDoCo is actively developed by researchers of the _[Modelling for Continuous So
 
 <sub> The links will lead you to pages that contain details about the corresponding publications </sub>
 
+- [Paper at AIRE 2025](/c/aire25): "**Beyond Retrieval: A Study of Using LLM Ensembles for Candidate Filtering in Requirements Traceability**" by Dominik Fuchß, Stefan Schwedt, Jan Keim, and Tobias Hey
 - [Paper at ICSE 2025](/c/icse25): "**LiSSA: Toward Generic Traceability Link Recovery through Retrieval-Augmented Generation**" by Dominik Fuchß, Tobias Hey, Jan Keim, Haoyu Liu, Niklas Ewald, Tobias Thirolf, and Anne Koziolek
 - [Paper at REFSQ 2025](/c/refsq25): "**Requirements Traceability Link Recovery via Retrieval-Augmented Generation**" by Tobias Hey, Dominik Fuchß, Jan Keim, and Anne Koziolek
 - [Paper at ICSA 2025](/c/icsa25): "**Enabling Architecture Traceability by LLM-based Architecture Component Name Extraction**" by Dominik Fuchß, Haoyu Liu, Tobias Hey, Jan Keim, and Anne Koziolek
