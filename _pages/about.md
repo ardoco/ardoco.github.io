@@ -20,9 +20,9 @@ ArDoCo is actively developed by researchers of the _[Modelling for Continuous So
 
 ## Important Links
 
-- [Project website](https://mcse.kastel.kit.edu/Projects_ArDoCo.php) at the research group's website
-- [Publications](https://mcse.kastel.kit.edu/Projects_ArDoCo.php?tab=%5B577%5D#tabpanel-577) at the project website
-- [Open student theses](https://sdq.kastel.kit.edu/wiki/Ausschreibungen/ArDoCo)
+- [Project website](https://mcse.kastel.kit.edu/projects_ardoco.php) at the research group's website
+- [Publications](https://mcse.kastel.kit.edu/projects_ardoco.php?tab=%5B577%5D#tabpanel-577) at the project website
+- [Open student theses](https://mcse.kastel.kit.edu/projects_ardoco.php?tab=%5B661%5D#tabpanel-661)
 - [People](/people/)
 - [GitHub organization](https://github.com/ArDoCo)
 - Central code repository [ArDoCo/Core](https://github.com/ArDoCo/Core)
@@ -31,6 +31,7 @@ ArDoCo is actively developed by researchers of the _[Modelling for Continuous So
 
 <sub> The links will lead you to pages that contain details about the corresponding publications </sub>
 
+- [Paper at AIRE 2025](/c/aire25): "**Beyond Retrieval: A Study of Using LLM Ensembles for Candidate Filtering in Requirements Traceability**" by Dominik Fuchß, Stefan Schwedt, Jan Keim, and Tobias Hey
 - [Paper at ICSE 2025](/c/icse25): "**LiSSA: Toward Generic Traceability Link Recovery through Retrieval-Augmented Generation**" by Dominik Fuchß, Tobias Hey, Jan Keim, Haoyu Liu, Niklas Ewald, Tobias Thirolf, and Anne Koziolek
 - [Paper at REFSQ 2025](/c/refsq25): "**Requirements Traceability Link Recovery via Retrieval-Augmented Generation**" by Tobias Hey, Dominik Fuchß, Jan Keim, and Anne Koziolek
 - [Paper at ICSA 2025](/c/icsa25): "**Enabling Architecture Traceability by LLM-based Architecture Component Name Extraction**" by Dominik Fuchß, Haoyu Liu, Tobias Hey, Jan Keim, and Anne Koziolek

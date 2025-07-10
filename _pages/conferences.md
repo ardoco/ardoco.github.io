@@ -5,6 +5,8 @@ nav: true
 nav_order: 1
 dropdown: true
 children:
+  - title: AIRE 2025
+    permalink: /c/aire25
   - title: ICSE 2025
     permalink: /c/icse25
   - title: REFSQ 2025
