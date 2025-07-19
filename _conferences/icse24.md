@@ -17,9 +17,7 @@ Published at the [46th International Conference on Software Engineering (ICSE 20
 
 Additional presentation at the [Software Engineering 2025 (SE25)](https://se2025.sdq.kastel.kit.edu/), the symposium of the German Computer Science Society (Gesellschaft für Informatik (GI)).
 
-<p align="center">
-	<img src="/assets/img/approach_overview_icse24.svg" alt="Approach Overview"/>
-</p>
+![TransArC Overview](/assets/img/approaches/icse24-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
 ## Abstract
 

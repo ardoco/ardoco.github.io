@@ -13,7 +13,7 @@ authors:
 
 Published at the [31st International Working Conference on Requirements Engineering: Foundation for Software Quality](https://2025.refsq.org/).
 
-![Approach Overview](/assets/img/refsq25-approach.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
+![REFSQ25 Overview](/assets/img/approaches/refsq25-refsq.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
 ## Abstract
 

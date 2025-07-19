@@ -15,7 +15,7 @@ Published at the [20th IEEE International Conference on Software Architecture (I
 
 Additional presentation at the [Software Engineering 2024 (SE24)](https://se2024.se.jku.at/), the symposium of the German Computer Science Society (Gesellschaft für Informatik (GI)) together with the Austrian Computer Society.
 
-![Approach Overview](/assets/img/approach_overview_icsa23.svg){:width="100%"}
+![Inconsistency Detection Overview](/assets/img/approaches/icsa23-inconsistency.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
 ## Abstract
 

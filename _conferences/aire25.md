@@ -13,7 +13,7 @@ authors:
 
 To be published at the [33rd International Requirements Engineering Conference Workshops (REW)](https://aire-ws.github.io/aire25/).
 
-![Approach Overview](/assets/img/aire-approach.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
+![AIRE25 Overview](/assets/img/approaches/aire25-aire.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
 ## Abstract
 

@@ -15,6 +15,8 @@ authors:
 
 Published at the [15th European Conference on Software Architecture (ECSA 2021), September 13-17 2021](https://conf.researchr.org/home/ecsa-2021)
 
+![SWATTR Overview](/assets/img/approaches/ecsa21-swattr.svg){:width="100%" style="border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
+
 ## Abstract
 
 Software Architecture Documentation often consists of different artifacts.
