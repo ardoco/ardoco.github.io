@@ -15,6 +15,7 @@ approaches:
   - TransArC
   - ArCoTL
   - SWATTR
+  - ArDoCode
 ---
 
 Published at the [46th International Conference on Software Engineering (ICSE 2024), April 14-20 2024](https://conf.researchr.org/home/icse-2024).
