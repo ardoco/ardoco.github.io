@@ -8,7 +8,7 @@ no_title: true
 
 ![ARDoCo Logo](/assets/img/logo.png){:height="210" style="display: block; margin: 0 auto;"}
 
-# [ARDoCo - Automating Requirements and Documentation Comprehension](https://github.com/ARDoCo)
+# [ARDoCo - Automating Requirements and Documentation Comprehension](https://github.com/ardoco)
 
 In this research project, we aim to provide traceability link recovery and consistency analyses between different kinds of software artifacts.
 You can find our different approaches on the [approaches](/approaches/) page or you can read more about our approaches using the info button on the [publications](/publications/) page.
@@ -23,7 +23,7 @@ ARDoCo is actively developed by researchers of the _[Modelling for Continuous So
 
 - [Open student theses](https://mcse.kastel.kit.edu/projects_ardoco.php?tab=%5B661%5D#tabpanel-661)
 - [People](/people/) who are involved in the project
-- Central code repository [ARDoCo/ARDoCo](https://github.com/ARDoCo/ARDoCo)
+- Central code repository [ARDoCo/ARDoCo](https://github.com/ardoco/ARDoCo)
 
 ## Relevant and Recent Publications
 
