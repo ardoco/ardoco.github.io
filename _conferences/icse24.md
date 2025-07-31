@@ -46,6 +46,6 @@ In future research, we will explore further possibilities for such transitive ap
 ## Links
 
 - Paper (Open Access) on [ACM](https://doi.org/10.1145/3597503.3639130) or [KITopen](https://doi.org/10.5445/IR/1000165692)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.10411853) and the corresponding [GitHub repository](https://github.com/ArDoCo/Replication-Package-ICSE24_Recovering-Trace-Links-Between-Software-Documentation-And-Code)
+- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.10411853) and the corresponding [GitHub repository](https://github.com/ARDoCo/Replication-Package-ICSE24_Recovering-Trace-Links-Between-Software-Documentation-And-Code)
 - Slides as [pptx](/assets/pdf/presentation_icse24.pptx) or [pdf](/assets/pdf/presentation_icse24.pdf)
 - [Slides (SE25)](/assets/pdf/presentation_25_SE_TransArC.pdf)

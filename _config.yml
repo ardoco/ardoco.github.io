@@ -5,7 +5,7 @@
 title: blank # the website title (if blank, full name will be used instead)
 first_name:
 middle_name:
-last_name: ArDoCo
+last_name: ARDoCo
 contact_note: >
   If you have any questions, feel free to contact me at <a href="mailto:{{ site.email }}">{{ site.email }}</a>.
 

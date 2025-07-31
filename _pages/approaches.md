@@ -2,7 +2,7 @@
 layout: page
 title: approaches
 permalink: /approaches/
-description: Approaches within ArDoCo
+description: Approaches within ARDoCo
 nav: true
 nav_order: 0.25
 horizontal: false

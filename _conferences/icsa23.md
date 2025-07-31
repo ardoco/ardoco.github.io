@@ -27,6 +27,6 @@ Documenting software architecture is important for a system’s success. Softwar
 ## Links
 
 - Paper on [IEEE Xplore](https://doi.org/10.1109/ICSA56044.2023.00021) and on [KITopen](https://doi.org/10.5445/IR/1000158208)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.7555194) and the corresponding [GitHub repository](https://github.com/ArDoCo/DetectingInconsistenciesInSoftwareArchitectureDocumentationUsingTraceabilityLinkRecovery)
+- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.7555194) and the corresponding [GitHub repository](https://github.com/ARDoCo/DetectingInconsistenciesInSoftwareArchitectureDocumentationUsingTraceabilityLinkRecovery)
 - [Slides (ICSA23)](/assets/pdf/presentation_23_ICSA_InconsistencyDetection.pdf)
 - [Slides (SE24)](/assets/pdf/presentation_24_SE_InconsistencyDetection.pdf)
