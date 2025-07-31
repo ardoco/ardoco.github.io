@@ -1,7 +1,7 @@
 ---
 title: "TransArC-AI"
 description: "TransArC-AI – LLM-based TLR between Software Architecture Documentation, Models, and Code."
-permalink: /approaches/transarcai/
+permalink: /approaches/transarc-ai/
 importance: 4
 layout: page
 ---
