@@ -12,6 +12,8 @@ authors:
   - niklas_ewald
   - tobias_thirolf
   - anne_koziolek
+approaches:
+  - LiSSA
 ---
 
 Published at the [47th IEEE/ACM International Conference on Software Engineering (ICSE 2025), April 27 - May 03 2025](https://conf.researchr.org/home/icse-2025/).

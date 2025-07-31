@@ -10,6 +10,9 @@ authors:
   - tobias_hey
   - jan_keim
   - anne_koziolek
+approaches:
+  - TransArC-AI
+  - TransArC
 ---
 
 Published at the [22nd IEEE International Conference on Software Architecture (ICSA 2025), March 31 - April 04 2025](https://conf.researchr.org/home/icsa-2025/).

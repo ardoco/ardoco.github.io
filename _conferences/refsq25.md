@@ -9,6 +9,8 @@ authors:
   - dominik_fuchss
   - jan_keim
   - anne_koziolek
+approaches:
+  - LiSSA
 ---
 
 Published at the [31st International Working Conference on Requirements Engineering: Foundation for Software Quality](https://2025.refsq.org/).

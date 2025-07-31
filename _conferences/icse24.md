@@ -11,6 +11,10 @@ authors:
   - tobias_hey
   - tobias_telge
   - anne_koziolek
+approaches:
+  - TransArC
+  - ArCoTL
+  - SWATTR
 ---
 
 Published at the [46th International Conference on Software Engineering (ICSE 2024), April 14-20 2024](https://conf.researchr.org/home/icse-2024).

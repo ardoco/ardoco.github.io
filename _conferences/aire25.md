@@ -9,6 +9,8 @@ authors:
   - stefan_schwedt
   - jan_keim
   - tobias_hey
+approaches:
+  - LiSSA
 ---
 
 To be published at the [33rd International Requirements Engineering Conference Workshops (REW)](https://aire-ws.github.io/aire25/).

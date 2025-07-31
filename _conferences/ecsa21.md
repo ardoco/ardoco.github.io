@@ -11,6 +11,8 @@ authors:
   - claudius_kocher
   - janek_speit
   - anne_koziolek
+approaches:
+  - SWATTR
 ---
 
 Published at the [15th European Conference on Software Architecture (ECSA 2021), September 13-17 2021](https://conf.researchr.org/home/ecsa-2021)

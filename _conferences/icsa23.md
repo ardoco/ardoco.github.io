@@ -9,6 +9,9 @@ authors:
   - sophie_corallo
   - dominik_fuchss
   - anne_koziolek
+approaches:
+  - SWATTR
+  - "Inconsistency Detection"
 ---
 
 Published at the [20th IEEE International Conference on Software Architecture (ICSA 2023), March 13-17 2023](https://icsa-conferences.org/2023/).
