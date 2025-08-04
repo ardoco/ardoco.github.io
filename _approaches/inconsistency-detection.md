@@ -18,5 +18,3 @@ The method runs a TLR procedure (namely SWATTR) and then flags any model element
 
 - Detection strategy: Use the TLR results as a bridge. After linking as many sentences to model elements as possible, any "orphan" model nodes or text mentions indicate a consistency gap. For example, if the model has a "Cache" component with no sentence linked, that is an UME; if the doc talks about "Common" but the model lacks it, that is an MME.
 - Results: The approach achieved an excellent F1 (0.81) for the underlying trace recovery. For inconsistency detection, it attained ~93% accuracy in identifying UMEs and ~75% for MMEs, significantly better than naive baselines. These results suggest that using trace links is a promising way to find documentation-model mismatches.
-
-See our [ICSA 2023 publication page](/c/icsa23) for details, links, and resources.

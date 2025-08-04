@@ -16,5 +16,3 @@ The goal is to bridge the SAD–code gap without manual modeling.
 
 - How it works: Given the software architecture text and the codebase, the system asks the LLM to list likely component names. That list of names forms a "Simple Software Architecture Model" (SSAM). Finally, code elements with matching names or descriptions are linked to the documentation. This pipeline avoids needing an explicit UML model.
 - Effectiveness: TransArC-AI achieved very competitive results. Using GPT-4o, it obtained a weighted F1 of about 0.86, nearly as good as the original TransArC with a hand-made model (F1 0.87). It also substantially outperformed the ArDoCode baseline (which scored ~0.62). This shows that LLMs can automatically infer the key architectural components.
-
-See our [ICSA 2025 publication page](/c/icsa25) for details, links, and resources.

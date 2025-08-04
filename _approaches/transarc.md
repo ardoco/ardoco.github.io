@@ -15,5 +15,3 @@ This two-step strategy helps bridge the semantic gap between informal text and c
 
 - How it works: TransArC extracts combines the two link sets of trace links, namely SWATTR and ArCoTL, to produce trace links transitively from documentation to code.
 - Results: In experiments on five systems, TransArC achieved a high average F1 score (~0.82) for recovering documentation-to-code links, significantly outperforming baseline methods. This shows that combining the two specialized steps yields much more accurate links than simpler approaches.
-
-See our [ICSE 2024 publication page](/c/icse24) for details, links, and resources.
