@@ -3,8 +3,8 @@ github_users: null
 repo_description_lines_max: 2
 
 github_repos:
-  - ARDoCo/ARDoCo
-  - ARDoCo/TLR
-  - ARDoCo/InconsistencyDetection
-  - ARDoCo/Metrics
-  - ARDoCo/LiSSA-RATLR
+  - ardoco/ardoco
+  - ardoco/tlr
+  - ardoco/inconsistency-detection
+  - ardoco/metrics
+  - ardoco/lissa-ratlr

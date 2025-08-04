@@ -23,7 +23,7 @@ ARDoCo is actively developed by researchers of the _[Modelling for Continuous So
 
 - [Open student theses](https://mcse.kastel.kit.edu/projects_ardoco.php?tab=%5B661%5D#tabpanel-661)
 - [People](/people/) who are involved in the project
-- Central code repository [ARDoCo/ARDoCo](https://github.com/ardoco/ARDoCo)
+- Central code repository [ardoco/ardoco](https://github.com/ardoco/ardoco)
 
 ## Relevant and Recent Publications
 
