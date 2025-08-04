@@ -3,7 +3,7 @@ title: SWATTR
 description: SWATTR – TLR between Software Architecture Documentation and Software Architecture Models.
 permalink: /approaches/swattr/
 importance: 1
-layout: page
+layout: approach
 ---
 
 ![SWATTR Overview](/assets/img/approaches/ecsa21-swattr.svg){:width="100%" style="border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}

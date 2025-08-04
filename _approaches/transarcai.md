@@ -3,7 +3,7 @@ title: "TransArC-AI"
 description: "TransArC-AI – LLM-based TLR between Software Architecture Documentation, Models, and Code."
 permalink: /approaches/transarc-ai/
 importance: 4
-layout: page
+layout: approach
 ---
 
 ![TransArC-AI Overview](/assets/img/approaches/icsa25-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}

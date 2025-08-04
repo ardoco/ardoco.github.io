@@ -3,7 +3,7 @@ title: ArCoTL
 description: ArCoTL – TLR between Software Architecture Models and Code.
 permalink: /approaches/arcotl/
 importance: 2
-layout: page
+layout: approach
 ---
 
 ![ArCoTL Overview](/assets/img/approaches/icse24-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
@@ -15,7 +15,3 @@ These heuristics include standalone rules and dependent rules (which consider re
 
 - How it works: Starting from a SAM and the codebase, ArCoTL builds simplified model and code representations. It then uses text similarity, naming conventions, and dependency heuristics to propose links between each model component and code artifact.
 - Effectiveness: ArCoTL turned out to be very effective on its own. In experiments, the model-to-code step (ArCoTL) achieved an average F1 of ~0.98.
-
-## References
-
-- [ICSE 2024 publication page](/c/icse24)

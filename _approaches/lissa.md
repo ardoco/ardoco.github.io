@@ -3,7 +3,7 @@ title: LiSSA
 description: LiSSA – LLM/RAG-based TLR.
 permalink: /approaches/lissa/
 importance: 6
-layout: page
+layout: approach
 ---
 
 ![LiSSA Overview](/assets/img/approaches/icse25-lissa.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}

@@ -3,7 +3,7 @@ title: TransArC
 description: TransArC – TLR between Software Architecture Documentation, Models, and Code.
 permalink: /approaches/transarc/
 importance: 3
-layout: page
+layout: approach
 ---
 
 ![TransArC Overview](/assets/img/approaches/icse24-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}

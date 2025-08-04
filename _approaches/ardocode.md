@@ -3,7 +3,7 @@ title: ArDoCode
 description: ArDoCode – TLR between Software Architecture Documentation and Code.
 permalink: /approaches/ardocode/
 importance: 5
-layout: page
+layout: approach
 ---
 
 ![ArCoTL Overview](/assets/img/approaches/icse24-ardocode.svg){:width="100%" style="border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}

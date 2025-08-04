@@ -3,7 +3,7 @@ title: Inconsistency Detection
 description: Documentation-Model-Inconsistency-Analysis pipeline.
 permalink: /approaches/inconsistency-detection/
 importance: 8
-layout: page
+layout: approach
 ---
 
 ![Approach Overview](/assets/img/approaches/icsa23-inconsistency.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
