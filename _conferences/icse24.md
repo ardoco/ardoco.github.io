@@ -11,15 +11,18 @@ authors:
   - tobias_hey
   - tobias_telge
   - anne_koziolek
+approaches:
+  - TransArC
+  - ArCoTL
+  - SWATTR
+  - ArDoCode
 ---
 
 Published at the [46th International Conference on Software Engineering (ICSE 2024), April 14-20 2024](https://conf.researchr.org/home/icse-2024).
 
 Additional presentation at the [Software Engineering 2025 (SE25)](https://se2025.sdq.kastel.kit.edu/), the symposium of the German Computer Science Society (Gesellschaft für Informatik (GI)).
 
-<p align="center">
-	<img src="/assets/img/approach_overview_icse24.svg" alt="Approach Overview"/>
-</p>
+![TransArC Overview](/assets/img/approaches/icse24-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
 ## Abstract
 
@@ -44,6 +47,6 @@ In future research, we will explore further possibilities for such transitive ap
 ## Links
 
 - Paper (Open Access) on [ACM](https://doi.org/10.1145/3597503.3639130) or [KITopen](https://doi.org/10.5445/IR/1000165692)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.10411853) and the corresponding [GitHub repository](https://github.com/ArDoCo/Replication-Package-ICSE24_Recovering-Trace-Links-Between-Software-Documentation-And-Code)
+- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.10411853) and the corresponding [GitHub repository](https://github.com/ardoco/Replication-Package-ICSE24_Recovering-Trace-Links-Between-Software-Documentation-And-Code)
 - Slides as [pptx](/assets/pdf/presentation_icse24.pptx) or [pdf](/assets/pdf/presentation_icse24.pdf)
 - [Slides (SE25)](/assets/pdf/presentation_25_SE_TransArC.pdf)

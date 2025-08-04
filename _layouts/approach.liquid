@@ -1,0 +1,36 @@
+---
+layout: page
+---
+<article>
+  {{ content }}
+</article>
+
+{% assign project_title = page.title %}
+{% assign related = site.conferences | where_exp: 'conf', 'conf.approaches contains project_title' %}
+{% if related.size > 1 %}
+  <section>
+    <h2>Related Publications</h2>
+    <ul>
+      {% for conf in related %}
+        <li>
+          <a href="{{ conf.url | relative_url }}">{{ conf.title }}</a>
+          {% if conf.description -%}
+            <br>
+            <small>{{ conf.description }}</small>
+          {%- endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% elsif related.size == 1 %}
+  <section>
+    <h2>Related Publication</h2>
+    <p>
+      <a href="{{ related[0].url | relative_url }}">{{ related[0].title }}</a>
+      {% if related[0].description -%}
+        <br>
+        <small>{{ related[0].description }}</small>
+      {%- endif %}
+    </p>
+  </section>
+{% endif %}

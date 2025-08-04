@@ -36,6 +36,25 @@ layout: default
         {% endfor %}
       </p>
     {% endif %}
+    <!-- Info Box regarding approaches. Use page.approaches -->
+    {% if page.approaches %}
+      <div class="alert alert-warning" style="background: none;">
+        {% if page.approaches.size > 1 %}
+          <strong>This publication is related to the following approaches:</strong>
+          <ul style="margin-bottom: 0;">
+            {% for approach in page.approaches %}
+              <li>
+                <a href="/approaches/{{ approach | slugify }}">{{ approach }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <strong>This publication is related to the following approach:</strong>
+          {% assign approach = page.approaches[0] %}
+          <a href="/approaches/{{ approach | slugify }}">{{ approach }}</a>
+        {% endif %}
+      </div>
+    {% endif %}
     {{ content }}
   </article>
 

@@ -9,11 +9,13 @@ authors:
   - stefan_schwedt
   - jan_keim
   - tobias_hey
+approaches:
+  - LiSSA
 ---
 
 To be published at the [33rd International Requirements Engineering Conference Workshops (REW)](https://aire-ws.github.io/aire25/).
 
-![Approach Overview](/assets/img/aire-approach.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
+![AIRE25 Overview](/assets/img/approaches/aire25-aire.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
 ## Abstract
 
@@ -39,4 +41,4 @@ Moreover, it provides insights into the performance of traditional IR techniques
 ## Links
 
 - Paper on [KITopen](https://publikationen.bibliothek.kit.edu/1000183058)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.15837231) and the corresponding [GitHub repository](https://github.com/ArDoCo/Replication-Package-AIRE25_Beyond-Retrieval-Using-LLM-Ensembles-for-Candidate-Filtering-in-Req-TLR)
+- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.15837231) and the corresponding [GitHub repository](https://github.com/ardoco/Replication-Package-AIRE25_Beyond-Retrieval-Using-LLM-Ensembles-for-Candidate-Filtering-in-Req-TLR)

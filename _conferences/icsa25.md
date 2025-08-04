@@ -10,11 +10,14 @@ authors:
   - tobias_hey
   - jan_keim
   - anne_koziolek
+approaches:
+  - TransArC-AI
+  - TransArC
 ---
 
 Published at the [22nd IEEE International Conference on Software Architecture (ICSA 2025), March 31 - April 04 2025](https://conf.researchr.org/home/icsa-2025/).
 
-![Approach Overview](/assets/img/icsa25-approach.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
+![TransArC-AI Overview](/assets/img/approaches/icsa25-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
 ## Abstract
 
@@ -34,5 +37,5 @@ In summary, our approach shows that LLMs can be used to make TLR between SAD and
 ## Links
 
 - Paper on [KITopen](https://publikationen.bibliothek.kit.edu/1000179830)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.14506935) and the corresponding [GitHub repository](https://github.com/ArDoCo/ReplicationPackage-EnablingArchitectureTraceabilitybyLLM-basedArchitectureComponentNameExtraction)
+- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.14506935) and the corresponding [GitHub repository](https://github.com/ardoco/ReplicationPackage-EnablingArchitectureTraceabilitybyLLM-basedArchitectureComponentNameExtraction)
 - Slides as [pptx](/assets/pdf/presentation_icsa25.pptx) or [pdf](/assets/pdf/presentation_icsa25.pdf)

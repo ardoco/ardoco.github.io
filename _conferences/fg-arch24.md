@@ -8,9 +8,7 @@ authors:
   - tobias_hey
 ---
 
-<p align="center"> 
-	<img alt="ArDoCo" src="/assets/img/titleslide-fg-arch24.png" width="100%"/>
-</p>
+![FGARCH24 Titleslide](/assets/img/approaches/fgarch24-titleslide.png){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
 Vortrag bei der Jahrestagung der GI-Fachgruppe "Architekturen" am 24. und 25. Oktober 2024 in Paderborn.
 

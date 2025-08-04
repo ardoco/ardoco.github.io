@@ -2,7 +2,7 @@
 layout: page
 permalink: /publications/
 title: publications
-description: publications that are related to ArDoCo
+description: publications that are related to ARDoCo
 nav: true
 nav_order: 2
 ---

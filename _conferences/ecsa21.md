@@ -11,9 +11,13 @@ authors:
   - claudius_kocher
   - janek_speit
   - anne_koziolek
+approaches:
+  - SWATTR
 ---
 
 Published at the [15th European Conference on Software Architecture (ECSA 2021), September 13-17 2021](https://conf.researchr.org/home/ecsa-2021)
+
+![SWATTR Overview](/assets/img/approaches/ecsa21-swattr.svg){:width="100%" style="border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
 ## Abstract
 
@@ -32,5 +36,5 @@ Moreover, our approach outperforms the baseline approaches on non-weighted avera
 ## Links
 
 - Paper on [Springer Link](https://doi.org/10.1007/978-3-030-86044-8_7) and on [KITopen](https://doi.org/10.5445/IR/1000138399)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.4730621) and the corresponding [GitHub repository](https://github.com/ArDoCo/SWATTR)
+- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.4730621) and the corresponding [GitHub repository](https://github.com/ardoco/SWATTR)
 - [Slides](/assets/pdf/presentation_21_ecsa_TLR.pdf)

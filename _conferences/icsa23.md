@@ -9,13 +9,16 @@ authors:
   - sophie_corallo
   - dominik_fuchss
   - anne_koziolek
+approaches:
+  - SWATTR
+  - "Inconsistency Detection"
 ---
 
 Published at the [20th IEEE International Conference on Software Architecture (ICSA 2023), March 13-17 2023](https://icsa-conferences.org/2023/).
 
 Additional presentation at the [Software Engineering 2024 (SE24)](https://se2024.se.jku.at/), the symposium of the German Computer Science Society (Gesellschaft für Informatik (GI)) together with the Austrian Computer Society.
 
-![Approach Overview](/assets/img/approach_overview_icsa23.svg){:width="100%"}
+![Inconsistency Detection Overview](/assets/img/approaches/icsa23-inconsistency.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
 ## Abstract
 
@@ -24,6 +27,6 @@ Documenting software architecture is important for a system’s success. Softwar
 ## Links
 
 - Paper on [IEEE Xplore](https://doi.org/10.1109/ICSA56044.2023.00021) and on [KITopen](https://doi.org/10.5445/IR/1000158208)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.7555194) and the corresponding [GitHub repository](https://github.com/ArDoCo/DetectingInconsistenciesInSoftwareArchitectureDocumentationUsingTraceabilityLinkRecovery)
+- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.7555194) and the corresponding [GitHub repository](https://github.com/ardoco/DetectingInconsistenciesInSoftwareArchitectureDocumentationUsingTraceabilityLinkRecovery)
 - [Slides (ICSA23)](/assets/pdf/presentation_23_ICSA_InconsistencyDetection.pdf)
 - [Slides (SE24)](/assets/pdf/presentation_24_SE_InconsistencyDetection.pdf)

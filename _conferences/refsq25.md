@@ -9,11 +9,13 @@ authors:
   - dominik_fuchss
   - jan_keim
   - anne_koziolek
+approaches:
+  - LiSSA
 ---
 
 Published at the [31st International Working Conference on Requirements Engineering: Foundation for Software Quality](https://2025.refsq.org/).
 
-![Approach Overview](/assets/img/refsq25-approach.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
+![REFSQ25 Overview](/assets/img/approaches/refsq25-refsq.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
 ## Abstract
 
@@ -35,4 +37,4 @@ In an empirical evaluation on six benchmark datasets, we show that chain-of-thou
 ## Links
 
 - Paper on [KITopen](https://publikationen.bibliothek.kit.edu/1000179817) or [Springer Nature](https://doi.org/10.1007/978-3-031-88531-0_27)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.14779457) and the corresponding [GitHub repository](https://github.com/ArDoCo/ReplicationPackage-REFSQ25_Requirements-TLR-via-RAG)
+- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.14779457) and the corresponding [GitHub repository](https://github.com/ardoco/ReplicationPackage-REFSQ25_Requirements-TLR-via-RAG)
