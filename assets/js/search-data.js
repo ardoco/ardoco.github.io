@@ -127,11 +127,11 @@ ninja.data = [{
           description: "LiSSA – LLM/RAG-based TLR.",
           section: "Approaches",handler: () => {
               window.location.href = "/approaches/lissa/";
-            },},{id: "approaches-secdragon",
-          title: 'SecDragon',
-          description: "SecDragon – TLR for Security Requirements.",
+            },},{id: "approaches-secdreqan",
+          title: 'SecDReqAn',
+          description: "SecDReqAn – TLR for Security Requirements.",
           section: "Approaches",handler: () => {
-              window.location.href = "/approaches/secdragon/";
+              window.location.href = "/approaches/secdreqan/";
             },},{id: "approaches-swattr",
           title: 'SWATTR',
           description: "SWATTR – TLR between Software Architecture Documentation and Software Architecture Models.",
