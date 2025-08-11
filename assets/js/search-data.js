@@ -117,6 +117,11 @@ ninja.data = [{
           description: "ArDoCode – TLR between Software Architecture Documentation and Code.",
           section: "Approaches",handler: () => {
               window.location.href = "/approaches/ardocode/";
+            },},{id: "approaches-exarch",
+          title: 'ExArch',
+          description: "ExArch – LLM-based Architecture Component Name Extraction for TLR between Software Architecture Documentation and Code.",
+          section: "Approaches",handler: () => {
+              window.location.href = "/approaches/exarch/";
             },},{id: "approaches-inconsistency-detection",
           title: 'Inconsistency Detection',
           description: "Documentation-Model-Inconsistency-Analysis pipeline.",
@@ -142,11 +147,6 @@ ninja.data = [{
           description: "TransArC – TLR between Software Architecture Documentation, Models, and Code.",
           section: "Approaches",handler: () => {
               window.location.href = "/approaches/transarc/";
-            },},{id: "approaches-transarc-ai",
-          title: 'TransArC-AI',
-          description: "TransArC-AI – LLM-based TLR between Software Architecture Documentation, Models, and Code.",
-          section: "Approaches",handler: () => {
-              window.location.href = "/approaches/transarc-ai/";
             },},{id: "approaches-ardoco-tv",
           title: 'ARDoCo-TV',
           description: "Trace View: a viewer for trace links.",
