@@ -8,7 +8,7 @@ layout: approach
 
 ![SWATTR Overview](/assets/img/approaches/ecsa21-swattr.svg){:width="100%" style="border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
-SWATTR (SoftWare Architecture TexT TRace link recovery) is an agent-based framework for linking textual architecture documentation (SAD) and formal models (SAM).
+SWATTR (SoftWare Architecture Text Trace link Recovery) is an agent-based framework for linking textual architecture documentation (SAD) and formal models (SAM).
 Rather than focusing on a single algorithm, SWATTR defines a pipeline with multiple stages where different "agents" can operate.
 First it extracts and preprocesses text from the SAD and components from the architecture model.
 Next, it uses NLP and heuristics to identify architecture elements (like component names) mentioned in the text.
