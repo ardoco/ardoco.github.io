@@ -13,5 +13,5 @@ It first uses an existing method (SWATTR) to connect the textual architecture do
 In other words, TransArC builds a bridge: document ⟶ model ⟶ code.
 This two-step strategy helps bridge the semantic gap between informal text and code.
 
-- How it works: TransArC extracts combines the two link sets of trace links, namely SWATTR and ArCoTL, to produce trace links transitively from documentation to code.
+- How it works: TransArC combines the two link sets of trace links, namely SWATTR and ArCoTL, to produce trace links transitively from documentation to code.
 - Results: In experiments on five systems, TransArC achieved a high average F1 score (~0.82) for recovering documentation-to-code links, significantly outperforming baseline methods. This shows that combining the two specialized steps yields much more accurate links than simpler approaches.

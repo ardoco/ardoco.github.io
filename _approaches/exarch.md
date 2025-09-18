@@ -8,7 +8,7 @@ layout: approach
 
 ![ExArch Overview](/assets/img/approaches/icsa25-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
-ExArch extends the TransArC idea by using an LLM to generate a simple architecture mode (SAM).
+ExArch extends the TransArC idea by using an LLM to generate a simple architecture model (SAM).
 In this approach, instead of requiring a hand-made SAM, a large language model (such as GPT-4) is prompted to extract or invent the main component names from the SAD (and optionally from code).
 These names serve as a minimal architecture model (i.e. a list of components).
 Then, as in TransArC, these LLM-derived components are matched to code.
