@@ -40,6 +40,6 @@ Moreover, it provides insights into the performance of traditional IR techniques
 
 ## Links
 
-- Paper on [KITopen](https://publikationen.bibliothek.kit.edu/1000183058)
+- Paper on [KITopen](https://publikationen.bibliothek.kit.edu/1000183058) and [IEEE Xplore](https://ieeexplore.ieee.org/document/11190238)
 - Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.15837231) and the corresponding [GitHub repository](https://github.com/ardoco/Replication-Package-AIRE25_Beyond-Retrieval-Using-LLM-Ensembles-for-Candidate-Filtering-in-Req-TLR)
 - Slides as [pptx](/assets/pdf/presentation_aire25.pptx) or [pdf](/assets/pdf/presentation_aire25.pdf)
