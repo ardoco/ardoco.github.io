@@ -11,6 +11,19 @@ authors:
   - tobias_hey
 approaches:
   - LiSSA
+links:
+  - name: Paper (KITopen)
+    url: https://publikationen.bibliothek.kit.edu/1000183058
+  - name: Paper (IEEE Xplore)
+    url: https://ieeexplore.ieee.org/document/11190238
+  - name: Replication Package (Zenodo)
+    url: https://doi.org/10.5281/zenodo.15837231
+  - name: Replication Package (GitHub)
+    url: https://github.com/ardoco/Replication-Package-AIRE25_Beyond-Retrieval-Using-LLM-Ensembles-for-Candidate-Filtering-in-Req-TLR
+  - name: Slides (PPTX)
+    url: /assets/pdf/presentation_aire25.pptx
+  - name: Slides (PDF)
+    url: /assets/pdf/presentation_aire25.pdf
 ---
 
 Published at the [33rd International Requirements Engineering Conference Workshops (REW)](https://aire-ws.github.io/aire25/).
@@ -37,9 +50,3 @@ While our LLM-based ensemble approach achieves comparable F2-scores to IR method
 **[Conclusion]**
 This work provides insights into the capabilities of small LLMs as a filter in inter-requirements TLR.
 Moreover, it provides insights into the performance of traditional IR techniques for TLR and their dependency on hyperparameters.
-
-## Links
-
-- Paper on [KITopen](https://publikationen.bibliothek.kit.edu/1000183058) and [IEEE Xplore](https://ieeexplore.ieee.org/document/11190238)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.15837231) and the corresponding [GitHub repository](https://github.com/ardoco/Replication-Package-AIRE25_Beyond-Retrieval-Using-LLM-Ensembles-for-Candidate-Filtering-in-Req-TLR)
-- Slides as [pptx](/assets/pdf/presentation_aire25.pptx) or [pdf](/assets/pdf/presentation_aire25.pdf)

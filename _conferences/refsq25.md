@@ -11,6 +11,15 @@ authors:
   - anne_koziolek
 approaches:
   - LiSSA
+links:
+  - name: Paper (KITopen)
+    url: https://publikationen.bibliothek.kit.edu/1000179817
+  - name: Paper (Springer Nature)
+    url: https://doi.org/10.1007/978-3-031-88531-0_27
+  - name: Replication Package (Zenodo)
+    url: https://doi.org/10.5281/zenodo.14779457
+  - name: Replication Package (GitHub)
+    url: https://github.com/ardoco/ReplicationPackage-REFSQ25_Requirements-TLR-via-RAG
 ---
 
 Published at the [31st International Working Conference on Requirements Engineering: Foundation for Software Quality](https://2025.refsq.org/).
@@ -33,8 +42,3 @@ We propose to address this limitation by leveraging large language models (LLMs)
 In an empirical evaluation on six benchmark datasets, we show that chain-of-thought prompting can be beneficial, open-source models perform comparably to proprietary ones, and that the approach can outperform state-of-the-art and baseline approaches.
 
 **[Contribution]** This work presents an approach for inter-requirements traceability link recovery using RAG and provides the first empirical evidence of its performance.
-
-## Links
-
-- Paper on [KITopen](https://publikationen.bibliothek.kit.edu/1000179817) or [Springer Nature](https://doi.org/10.1007/978-3-031-88531-0_27)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.14779457) and the corresponding [GitHub repository](https://github.com/ardoco/ReplicationPackage-REFSQ25_Requirements-TLR-via-RAG)

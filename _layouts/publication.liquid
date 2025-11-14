@@ -56,6 +56,42 @@ layout: default
       </div>
     {% endif %}
     {{ content }}
+    
+    {% if page.links %}
+      <h2>Links</h2>
+      
+      {% comment %} Group links by type (extracted from name before parenthesis) {% endcomment %}
+      {% assign grouped_links = page.links | group_by_exp: "link", "link.name | split: ' (' | first" %}
+      
+      <ul>
+      {% for group in grouped_links %}
+        {% assign group_name = group.name %}
+        {% assign links = group.items %}
+        
+        {% if links.size > 1 %}
+          {% comment %} Multiple links of same type {% endcomment %}
+          {% if group_name == "Slides" %}
+            {% comment %} Generic slides without conference prefix {% endcomment %}
+            <li>{{ group_name }} as {% for link in links %}{% assign link_label = link.name | split: '(' | last | split: ')' | first %}<a href="{{ link.url }}">{{ link_label }}</a>{% unless forloop.last %} or {% endunless %}{% endfor %}</li>
+          {% elsif group_name contains "Slides" %}
+            {% comment %} Conference-specific slides like "Slides ICSE24" {% endcomment %}
+            <li>{{ group_name }} as {% for link in links %}{% assign link_label = link.name | split: '(' | last | split: ')' | first %}<a href="{{ link.url }}">{{ link_label }}</a>{% unless forloop.last %} or {% endunless %}{% endfor %}</li>
+          {% else %}
+            <li>{{ group_name }} on {% for link in links %}{% assign link_label = link.name | split: '(' | last | split: ')' | first %}<a href="{{ link.url }}">{{ link_label }}</a>{% unless forloop.last %} and {% endunless %}{% endfor %}</li>
+          {% endif %}
+        {% else %}
+          {% comment %} Single link {% endcomment %}
+          {% assign link = links[0] %}
+          {% if link.name contains "Slides" %}
+            {% comment %} For single slide links, just display the full name as-is {% endcomment %}
+            <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+          {% else %}
+            <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      </ul>
+    {% endif %}
   </article>
 
   {% if page.related_publications %}

@@ -14,6 +14,19 @@ authors:
   - anne_koziolek
 approaches:
   - LiSSA
+links:
+  - name: Paper (IEEE Xplore)
+    url: https://doi.org/10.1109/ICSE55347.2025.00186
+  - name: Paper (KITopen)
+    url: https://publikationen.bibliothek.kit.edu/1000179816
+  - name: Replication Package (Zenodo)
+    url: https://doi.org/10.5281/zenodo.14714706
+  - name: Replication Package (GitHub)
+    url: https://github.com/ardoco/ReplicationPackage-ICSE25_LiSSA-Toward-Generic-Traceability-Link-Recovery-through-RAG/tree/main
+  - name: Slides (PPTX)
+    url: /assets/pdf/presentation_icse25.pptx
+  - name: Slides (PDF)
+    url: /assets/pdf/presentation_icse25.pdf
 ---
 
 Published at the [47th IEEE/ACM International Conference on Software Engineering (ICSE 2025), April 27 - May 03 2025](https://conf.researchr.org/home/icse-2025/).
@@ -34,9 +47,3 @@ We empirically evaluate LiSSA on three different TLR tasks, requirements to code
 
 Our results show that the RAG-based approach can significantly outperform the state-of-the-art on the code-related tasks.
 However, further research is required to improve the performance of RAG-based approaches to be applicable in practice.
-
-## Links
-
-- Paper on [IEEE Xplore](https://doi.org/10.1109/ICSE55347.2025.00186) or [KITopen](https://publikationen.bibliothek.kit.edu/1000179816)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.14714706) and the corresponding [GitHub repository](https://github.com/ardoco/ReplicationPackage-ICSE25_LiSSA-Toward-Generic-Traceability-Link-Recovery-through-RAG/tree/main)
-- Slides as [pptx](/assets/pdf/presentation_icse25.pptx) or [pdf](/assets/pdf/presentation_icse25.pdf)
