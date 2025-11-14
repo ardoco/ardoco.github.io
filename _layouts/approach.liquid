@@ -5,6 +5,20 @@ layout: page
   {{ content }}
 </article>
 
+{% if page.repositories %}
+  <section>
+    <h2>Links</h2>
+    <ul>
+      {% for repo in page.repositories %}
+        <li>
+          <i class="fa-brands fa-github"></i>
+          <a href="{{ repo.url }}" target="_blank" rel="noopener noreferrer">{{ repo.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}
+
 {% assign project_title = page.title %}
 {% assign related = site.conferences | where_exp: 'conf', 'conf.approaches contains project_title' %}
 {% if related.size > 1 %}

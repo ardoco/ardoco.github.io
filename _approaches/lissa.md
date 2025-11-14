@@ -4,6 +4,11 @@ description: LiSSA – LLM/RAG-based TLR.
 permalink: /approaches/lissa/
 importance: 6
 layout: approach
+repositories:
+  - name: Implementation
+    url: https://github.com/ardoco/lissa-ratlr
+  - name: Replication Package (ICSE 2025)
+    url: https://github.com/ardoco/Replication-Package-ICSE25_LiSSA-Toward-Generic-Traceability-Link-Recovery-through-RAG
 ---
 
 ![LiSSA Overview](/assets/img/approaches/icse25-lissa.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}

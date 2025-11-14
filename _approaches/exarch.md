@@ -4,6 +4,11 @@ description: "ExArch – LLM-based Architecture Component Name Extraction for TL
 permalink: /approaches/exarch/
 importance: 4
 layout: approach
+repositories:
+  - name: Implementation
+    url: https://github.com/ardoco/tlr
+  - name: Replication Package (ICSA 2025)
+    url: https://github.com/ardoco/Replication-Package-ICSA25_Enabling-Arch-Traceability-by-LLM-based-Arch-Component-Name-Extraction
 ---
 
 ![ExArch Overview](/assets/img/approaches/icsa25-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
