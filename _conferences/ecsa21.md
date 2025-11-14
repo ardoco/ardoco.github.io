@@ -13,6 +13,15 @@ authors:
   - anne_koziolek
 approaches:
   - SWATTR
+links:
+  - name: Paper (Springer Link)
+    url: https://doi.org/10.1007/978-3-030-86044-8_7
+  - name: Paper (KITopen)
+    url: https://doi.org/10.5445/IR/1000138399
+  - name: Replication Package (Zenodo)
+    url: https://doi.org/10.5281/zenodo.4730621
+  - name: Replication Package (GitHub)
+    url: https://github.com/ardoco/SWATTR
 ---
 
 Published at the [15th European Conference on Software Architecture (ECSA 2021), September 13-17 2021](https://conf.researchr.org/home/ecsa-2021)
@@ -32,9 +41,3 @@ In each stage, multiple agents can be used to capture necessary information to a
 We evaluate the performance of our approach with three case studies and compare our results to baseline approaches.
 The results for our approach are good to excellent with a weighted average F1-Score of 0.72 over all case studies.
 Moreover, our approach outperforms the baseline approaches on non-weighted average by at least 0.24 (weighted 0.31).
-
-## Links
-
-- Paper on [Springer Link](https://doi.org/10.1007/978-3-030-86044-8_7) and on [KITopen](https://doi.org/10.5445/IR/1000138399)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.4730621) and the corresponding [GitHub repository](https://github.com/ardoco/SWATTR)
-<!-- - [Slides](/assets/pdf/presentation_21_ecsa_TLR.pdf) -->

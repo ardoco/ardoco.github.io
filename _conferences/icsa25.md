@@ -13,6 +13,19 @@ authors:
 approaches:
   - ExArch
   - TransArC
+links:
+  - name: Paper (IEEE Xplore)
+    url: https://doi.org/10.1109/ICSA65012.2025.00011
+  - name: Paper (KITopen)
+    url: https://publikationen.bibliothek.kit.edu/1000179830
+  - name: Replication Package (Zenodo)
+    url: https://doi.org/10.5281/zenodo.14506935
+  - name: Replication Package (GitHub)
+    url: https://github.com/ardoco/ReplicationPackage-EnablingArchitectureTraceabilitybyLLM-basedArchitectureComponentNameExtraction
+  - name: Slides (PPTX)
+    url: /assets/pdf/presentation_icsa25.pptx
+  - name: Slides (PDF)
+    url: /assets/pdf/presentation_icsa25.pdf
 ---
 
 Published at the [22nd IEEE International Conference on Software Architecture (ICSA 2025), March 31 - April 04 2025](https://conf.researchr.org/home/icsa-2025/).
@@ -33,9 +46,3 @@ TransArC is the currently best-performing approach for TLR between SAD and sourc
 Our evaluation shows that our approach performs comparable to TransArC (weighted average F1 with GPT-4o: 0.86 vs. TransArC's 0.87), while only needing the SAD and source code.
 Moreover, our approach significantly outperforms the best baseline that does not need SAMs (weighted average F1 with GPT-4o: 0.86 vs. ArDoCode's 0.62).
 In summary, our approach shows that LLMs can be used to make TLR between SAD and source code more applicable by extracting component names and omitting the need for manually created SAMs.
-
-## Links
-
-- Paper on [IEEE Xplore](https://doi.org/10.1109/ICSA65012.2025.00011) or [KITopen](https://publikationen.bibliothek.kit.edu/1000179830)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.14506935) and the corresponding [GitHub repository](https://github.com/ardoco/ReplicationPackage-EnablingArchitectureTraceabilitybyLLM-basedArchitectureComponentNameExtraction)
-- Slides as [pptx](/assets/pdf/presentation_icsa25.pptx) or [pdf](/assets/pdf/presentation_icsa25.pdf)

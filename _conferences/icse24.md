@@ -16,6 +16,21 @@ approaches:
   - ArCoTL
   - SWATTR
   - ArDoCode
+links:
+  - name: Paper (ACM Open Access)
+    url: https://doi.org/10.1145/3597503.3639130
+  - name: Paper (KITopen)
+    url: https://doi.org/10.5445/IR/1000165692
+  - name: Replication Package (Zenodo)
+    url: https://doi.org/10.5281/zenodo.10411853
+  - name: Replication Package (GitHub)
+    url: https://github.com/ardoco/Replication-Package-ICSE24_Recovering-Trace-Links-Between-Software-Documentation-And-Code
+  - name: Slides ICSE24 (PPTX)
+    url: /assets/pdf/presentation_icse24.pptx
+  - name: Slides ICSE24 (PDF)
+    url: /assets/pdf/presentation_icse24.pdf
+  - name: Slides SE25 (PDF)
+    url: /assets/pdf/presentation_25_SE_TransArC.pdf
 ---
 
 Published at the [46th International Conference on Software Engineering (ICSE 2024), April 14-20 2024](https://conf.researchr.org/home/icse-2024).
@@ -43,10 +58,3 @@ The model-to-code TLR approach achieves an average F1-score of 0.98, while the d
 _Conclusion_
 Combining two specialized approaches with an intermediate artifact shows promise for bridging the semantic gap.
 In future research, we will explore further possibilities for such transitive approaches.
-
-## Links
-
-- Paper (Open Access) on [ACM](https://doi.org/10.1145/3597503.3639130) or [KITopen](https://doi.org/10.5445/IR/1000165692)
-- Replication Package on [Zenodo](https://doi.org/10.5281/zenodo.10411853) and the corresponding [GitHub repository](https://github.com/ardoco/Replication-Package-ICSE24_Recovering-Trace-Links-Between-Software-Documentation-And-Code)
-- Slides as [pptx](/assets/pdf/presentation_icse24.pptx) or [pdf](/assets/pdf/presentation_icse24.pdf)
-- [Slides (SE25)](/assets/pdf/presentation_25_SE_TransArC.pdf)
