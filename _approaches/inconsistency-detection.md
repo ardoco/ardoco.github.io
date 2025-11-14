@@ -4,6 +4,11 @@ description: Documentation-Model-Inconsistency-Analysis pipeline.
 permalink: /approaches/inconsistency-detection/
 importance: 8
 layout: approach
+repositories:
+  - name: Implementation
+    url: https://github.com/ardoco/inconsistency-detection
+  - name: Replication Package (ICSA 2023)
+    url: https://github.com/ardoco/DetectingInconsistenciesInSoftwareArchitectureDocumentationUsingTraceabilityLinkRecovery
 ---
 
 ![Approach Overview](/assets/img/approaches/icsa23-inconsistency.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}

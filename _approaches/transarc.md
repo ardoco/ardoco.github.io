@@ -4,6 +4,13 @@ description: TransArC – TLR between Software Architecture Documentation, Model
 permalink: /approaches/transarc/
 importance: 3
 layout: approach
+repositories:
+  - name: Implementation
+    url: https://github.com/ardoco/tlr
+  - name: Replication Package (ICSE 2024)
+    url: https://github.com/ardoco/Replication-Package-ICSE24_Recovering-Trace-Links-Between-Software-Documentation-And-Code
+  - name: Replication Package (ICSA 2025)
+    url: https://github.com/ardoco/Replication-Package-ICSA25_Enabling-Arch-Traceability-by-LLM-based-Arch-Component-Name-Extraction
 ---
 
 ![TransArC Overview](/assets/img/approaches/icse24-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}

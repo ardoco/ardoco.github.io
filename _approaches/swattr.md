@@ -4,6 +4,11 @@ description: SWATTR – TLR between Software Architecture Documentation and Soft
 permalink: /approaches/swattr/
 importance: 1
 layout: approach
+repositories:
+  - name: Implementation
+    url: https://github.com/ardoco/tlr
+  - name: Replication Package (ECSA 2021)
+    url: https://github.com/ardoco/SWATTR
 ---
 
 ![SWATTR Overview](/assets/img/approaches/ecsa21-swattr.svg){:width="100%" style="border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}

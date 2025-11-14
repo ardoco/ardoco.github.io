@@ -4,6 +4,11 @@ description: ArCoTL – TLR between Software Architecture Models and Code.
 permalink: /approaches/arcotl/
 importance: 2
 layout: approach
+repositories:
+  - name: Implementation
+    url: https://github.com/ardoco/tlr
+  - name: Replication Package (ICSE 2024)
+    url: https://github.com/ardoco/Replication-Package-ICSE24_Recovering-Trace-Links-Between-Software-Documentation-And-Code
 ---
 
 ![ArCoTL Overview](/assets/img/approaches/icse24-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
