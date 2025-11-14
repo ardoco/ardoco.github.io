@@ -103,16 +103,9 @@ layout: default
           {% else %}
             {% comment %} Single link {% endcomment %}
             {% assign link = links[0] %}
-            {% if link.name contains 'Slides' %}
-              {% comment %} For single slide links, just display the full name as-is {% endcomment %}
-              <li>
-                <a href="{{ link.url }}">{{ link.name }}</a>
-              </li>
-            {% else %}
-              <li>
-                <a href="{{ link.url }}">{{ link.name }}</a>
-              </li>
-            {% endif %}
+            <li>
+              <a href="{{ link.url }}">{{ link.name }}</a>
+            </li>
           {% endif %}
         {% endfor %}
       </ul>
