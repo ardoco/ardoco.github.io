@@ -70,18 +70,7 @@ layout: default
 
           {% if links.size > 1 %}
             {% comment %} Multiple links of same type {% endcomment %}
-            {% if group_name == 'Slides' %}
-              {% comment %} Generic slides without conference prefix {% endcomment %}
-              <li>
-                {{ group_name }} as
-                {% for link in links -%}
-                  {%- assign link_label = link.name | split: '(' | last | split: ')' | first -%}
-                  <a href="{{ link.url }}">{{ link_label }}</a>
-                  {%- unless forloop.last %} or {% endunless -%}
-                {%- endfor %}
-              </li>
-            {% elsif group_name contains 'Slides' %}
-              {% comment %} Conference-specific slides like "Slides ICSE24" {% endcomment %}
+            {% if group_name contains 'Slides' %}
               <li>
                 {{ group_name }} as
                 {% for link in links -%}
