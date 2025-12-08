@@ -51,13 +51,6 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/c/se25";
               },
-            },{id: "dropdown-se-2024",
-              title: "SE 2024",
-              description: "",
-              section: "Dropdown",
-              handler: () => {
-                window.location.href = "/c/se24";
-              },
             },{id: "dropdown-gi-fachgruppe-architekturen-2024",
               title: "GI-Fachgruppe Architekturen 2024",
               description: "",
@@ -71,6 +64,13 @@ ninja.data = [{
               section: "Dropdown",
               handler: () => {
                 window.location.href = "/c/icse24";
+              },
+            },{id: "dropdown-se-2024",
+              title: "SE 2024",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/c/se24";
               },
             },{id: "dropdown-icsa-2023",
               title: "ICSA 2023",
