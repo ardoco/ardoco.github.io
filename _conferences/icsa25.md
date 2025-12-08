@@ -13,22 +13,20 @@ authors:
 approaches:
   - ExArch
   - TransArC
+conference_name: "22nd IEEE International Conference on Software Architecture (ICSA 2025)"
+conference_url: https://conf.researchr.org/home/icsa-2025/
+published: true
 links:
-  - name: Paper (IEEE Xplore)
-    url: https://doi.org/10.1109/ICSA65012.2025.00011
-  - name: Paper (KITopen)
-    url: https://publikationen.bibliothek.kit.edu/1000179830
-  - name: Replication Package (Zenodo)
-    url: https://doi.org/10.5281/zenodo.14506935
-  - name: Replication Package (GitHub)
-    url: https://github.com/ardoco/ReplicationPackage-EnablingArchitectureTraceabilitybyLLM-basedArchitectureComponentNameExtraction
-  - name: Slides (PPTX)
-    url: /assets/pdf/presentation_icsa25.pptx
-  - name: Slides (PDF)
-    url: /assets/pdf/presentation_icsa25.pdf
+  paper:
+    ieee: https://doi.org/10.1109/ICSA65012.2025.00011
+    kitopen: https://publikationen.bibliothek.kit.edu/1000179830
+  replication:
+    zenodo: https://doi.org/10.5281/zenodo.14506935
+    repo: https://github.com/ardoco/ReplicationPackage-EnablingArchitectureTraceabilitybyLLM-basedArchitectureComponentNameExtraction
+  slides:
+    pptx: /assets/pdf/presentation_icsa25.pptx
+    pdf: /assets/pdf/presentation_icsa25.pdf
 ---
-
-Published at the [22nd IEEE International Conference on Software Architecture (ICSA 2025), March 31 - April 04 2025](https://conf.researchr.org/home/icsa-2025/).
 
 ![ExArch Overview](/assets/img/approaches/icsa25-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 

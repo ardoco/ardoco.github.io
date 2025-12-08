@@ -16,26 +16,24 @@ approaches:
   - ArCoTL
   - SWATTR
   - ArDoCode
+conference_name: "46th International Conference on Software Engineering (ICSE 2024)"
+conference_url: https://conf.researchr.org/home/icse-2024
+published: true
 links:
-  - name: Paper (ACM Open Access)
-    url: https://doi.org/10.1145/3597503.3639130
-  - name: Paper (KITopen)
-    url: https://doi.org/10.5445/IR/1000165692
-  - name: Replication Package (Zenodo)
-    url: https://doi.org/10.5281/zenodo.10411853
-  - name: Replication Package (GitHub)
-    url: https://github.com/ardoco/Replication-Package-ICSE24_Recovering-Trace-Links-Between-Software-Documentation-And-Code
-  - name: Slides ICSE24 (PPTX)
-    url: /assets/pdf/presentation_icse24.pptx
-  - name: Slides ICSE24 (PDF)
-    url: /assets/pdf/presentation_icse24.pdf
-  - name: Slides SE25 (PDF)
-    url: /assets/pdf/presentation_25_SE_TransArC.pdf
+  paper:
+    acm: https://doi.org/10.1145/3597503.3639130
+    kitopen: https://doi.org/10.5445/IR/1000165692
+  replication:
+    zenodo: https://doi.org/10.5281/zenodo.10411853
+    repo: https://github.com/ardoco/Replication-Package-ICSE24_Recovering-Trace-Links-Between-Software-Documentation-And-Code
+  slides:
+    pptx: /assets/pdf/presentation_icse24.pptx
+    pdf: /assets/pdf/presentation_icse24.pdf
+    se25_pdf: /assets/pdf/presentation_25_SE_TransArC.pdf
+additional_presentations:
+  - name: Software Engineering 2025 (SE25)
+    url: https://se2025.sdq.kastel.kit.edu/
 ---
-
-Published at the [46th International Conference on Software Engineering (ICSE 2024), April 14-20 2024](https://conf.researchr.org/home/icse-2024).
-
-Additional presentation at the [Software Engineering 2025 (SE25)](https://se2025.sdq.kastel.kit.edu/), the symposium of the German Computer Science Society (Gesellschaft für Informatik (GI)).
 
 ![TransArC Overview](/assets/img/approaches/icse24-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 

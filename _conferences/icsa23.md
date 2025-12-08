@@ -12,24 +12,23 @@ authors:
 approaches:
   - SWATTR
   - "Inconsistency Detection"
+conference_name: "20th IEEE International Conference on Software Architecture (ICSA 2023)"
+conference_url: https://icsa-conferences.org/2023/
+published: true
 links:
-  - name: Paper (IEEE Xplore)
-    url: https://doi.org/10.1109/ICSA56044.2023.00021
-  - name: Paper (KITopen)
-    url: https://doi.org/10.5445/IR/1000158208
-  - name: Replication Package (Zenodo)
-    url: https://doi.org/10.5281/zenodo.7555194
-  - name: Replication Package (GitHub)
-    url: https://github.com/ardoco/DetectingInconsistenciesInSoftwareArchitectureDocumentationUsingTraceabilityLinkRecovery
-  - name: Slides ICSA23 (PDF)
-    url: /assets/pdf/presentation_23_ICSA_InconsistencyDetection.pdf
-  - name: Slides SE24 (PDF)
-    url: /assets/pdf/presentation_24_SE_InconsistencyDetection.pdf
+  paper:
+    ieee: https://doi.org/10.1109/ICSA56044.2023.00021
+    kitopen: https://doi.org/10.5445/IR/1000158208
+  replication:
+    zenodo: https://doi.org/10.5281/zenodo.7555194
+    repo: https://github.com/ardoco/DetectingInconsistenciesInSoftwareArchitectureDocumentationUsingTraceabilityLinkRecovery
+  slides:
+    icsa23_pdf: /assets/pdf/presentation_23_ICSA_InconsistencyDetection.pdf
+    se24_pdf: /assets/pdf/presentation_24_SE_InconsistencyDetection.pdf
+additional_presentations:
+  - name: Software Engineering 2024 (SE24)
+    url: https://se2024.se.jku.at/
 ---
-
-Published at the [20th IEEE International Conference on Software Architecture (ICSA 2023), March 13-17 2023](https://icsa-conferences.org/2023/).
-
-Additional presentation at the [Software Engineering 2024 (SE24)](https://se2024.se.jku.at/), the symposium of the German Computer Science Society (Gesellschaft für Informatik (GI)) together with the Austrian Computer Society.
 
 ![Inconsistency Detection Overview](/assets/img/approaches/icsa23-inconsistency.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 

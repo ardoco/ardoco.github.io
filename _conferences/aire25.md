@@ -11,22 +11,20 @@ authors:
   - tobias_hey
 approaches:
   - LiSSA
+conference_name: "33rd International Requirements Engineering Conference Workshops (REW)"
+conference_url: https://aire-ws.github.io/aire25/
+published: true
 links:
-  - name: Paper (KITopen)
-    url: https://publikationen.bibliothek.kit.edu/1000183058
-  - name: Paper (IEEE Xplore)
-    url: https://ieeexplore.ieee.org/document/11190238
-  - name: Replication Package (Zenodo)
-    url: https://doi.org/10.5281/zenodo.15837231
-  - name: Replication Package (GitHub)
-    url: https://github.com/ardoco/Replication-Package-AIRE25_Beyond-Retrieval-Using-LLM-Ensembles-for-Candidate-Filtering-in-Req-TLR
-  - name: Slides (PPTX)
-    url: /assets/pdf/presentation_aire25.pptx
-  - name: Slides (PDF)
-    url: /assets/pdf/presentation_aire25.pdf
+  paper:
+    kitopen: https://publikationen.bibliothek.kit.edu/1000183058
+    ieee: https://ieeexplore.ieee.org/document/11190238
+  replication:
+    zenodo: https://doi.org/10.5281/zenodo.15837231
+    repo: https://github.com/ardoco/Replication-Package-AIRE25_Beyond-Retrieval-Using-LLM-Ensembles-for-Candidate-Filtering-in-Req-TLR
+  slides:
+    pptx: /assets/pdf/presentation_aire25.pptx
+    pdf: /assets/pdf/presentation_aire25.pdf
 ---
-
-Published at the [33rd International Requirements Engineering Conference Workshops (REW)](https://aire-ws.github.io/aire25/).
 
 ![AIRE25 Overview](/assets/img/approaches/aire25-aire.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 

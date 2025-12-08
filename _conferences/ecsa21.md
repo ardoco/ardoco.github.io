@@ -13,18 +13,17 @@ authors:
   - anne_koziolek
 approaches:
   - SWATTR
+conference_name: "15th European Conference on Software Architecture (ECSA 2021)"
+conference_url: https://conf.researchr.org/home/ecsa-2021
+published: true
 links:
-  - name: Paper (Springer Link)
-    url: https://doi.org/10.1007/978-3-030-86044-8_7
-  - name: Paper (KITopen)
-    url: https://doi.org/10.5445/IR/1000138399
-  - name: Replication Package (Zenodo)
-    url: https://doi.org/10.5281/zenodo.4730621
-  - name: Replication Package (GitHub)
-    url: https://github.com/ardoco/SWATTR
+  paper:
+    springer: https://doi.org/10.1007/978-3-030-86044-8_7
+    kitopen: https://doi.org/10.5445/IR/1000138399
+  replication:
+    zenodo: https://doi.org/10.5281/zenodo.4730621
+    repo: https://github.com/ardoco/SWATTR
 ---
-
-Published at the [15th European Conference on Software Architecture (ECSA 2021), September 13-17 2021](https://conf.researchr.org/home/ecsa-2021)
 
 ![SWATTR Overview](/assets/img/approaches/ecsa21-swattr.svg){:width="100%" style="border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 

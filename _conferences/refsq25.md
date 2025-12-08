@@ -11,18 +11,17 @@ authors:
   - anne_koziolek
 approaches:
   - LiSSA
+conference_name: "31st International Working Conference on Requirements Engineering: Foundation for Software Quality (REFSQ 2025)"
+conference_url: https://2025.refsq.org/
+published: true
 links:
-  - name: Paper (KITopen)
-    url: https://publikationen.bibliothek.kit.edu/1000179817
-  - name: Paper (Springer Nature)
-    url: https://doi.org/10.1007/978-3-031-88531-0_27
-  - name: Replication Package (Zenodo)
-    url: https://doi.org/10.5281/zenodo.14779457
-  - name: Replication Package (GitHub)
-    url: https://github.com/ardoco/ReplicationPackage-REFSQ25_Requirements-TLR-via-RAG
+  paper:
+    kitopen: https://publikationen.bibliothek.kit.edu/1000179817
+    springer: https://doi.org/10.1007/978-3-031-88531-0_27
+  replication:
+    zenodo: https://doi.org/10.5281/zenodo.14779457
+    repo: https://github.com/ardoco/ReplicationPackage-REFSQ25_Requirements-TLR-via-RAG
 ---
-
-Published at the [31st International Working Conference on Requirements Engineering: Foundation for Software Quality](https://2025.refsq.org/).
 
 ![REFSQ25 Overview](/assets/img/approaches/refsq25-refsq.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 

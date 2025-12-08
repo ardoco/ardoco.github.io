@@ -14,22 +14,20 @@ authors:
   - anne_koziolek
 approaches:
   - LiSSA
+conference_name: "47th IEEE/ACM International Conference on Software Engineering (ICSE 2025)"
+conference_url: https://conf.researchr.org/home/icse-2025/
+published: true
 links:
-  - name: Paper (IEEE Xplore)
-    url: https://doi.org/10.1109/ICSE55347.2025.00186
-  - name: Paper (KITopen)
-    url: https://publikationen.bibliothek.kit.edu/1000179816
-  - name: Replication Package (Zenodo)
-    url: https://doi.org/10.5281/zenodo.14714706
-  - name: Replication Package (GitHub)
-    url: https://github.com/ardoco/ReplicationPackage-ICSE25_LiSSA-Toward-Generic-Traceability-Link-Recovery-through-RAG/tree/main
-  - name: Slides (PPTX)
-    url: /assets/pdf/presentation_icse25.pptx
-  - name: Slides (PDF)
-    url: /assets/pdf/presentation_icse25.pdf
+  paper:
+    ieee: https://doi.org/10.1109/ICSE55347.2025.00186
+    kitopen: https://publikationen.bibliothek.kit.edu/1000179816
+  replication:
+    zenodo: https://doi.org/10.5281/zenodo.14714706
+    repo: https://github.com/ardoco/ReplicationPackage-ICSE25_LiSSA-Toward-Generic-Traceability-Link-Recovery-through-RAG/tree/main
+  slides:
+    pptx: /assets/pdf/presentation_icse25.pptx
+    pdf: /assets/pdf/presentation_icse25.pdf
 ---
-
-Published at the [47th IEEE/ACM International Conference on Software Engineering (ICSE 2025), April 27 - May 03 2025](https://conf.researchr.org/home/icse-2025/).
 
 ![LiSSA Overview](/assets/img/approaches/icse25-lissa.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
 
