@@ -10,7 +10,7 @@ no_title: true
 
 # [ARDoCo - Automating Requirements and Documentation Comprehension](https://github.com/ardoco)
 
-<!-- NEVER CHANGE THE LINE ABOVE. It is used as delimiter for the page at mcse.kastel.kit.edu -->
+<!-- NEVER CHANGE THIS LINE B. It is used as delimiter for the page at mcse.kastel.kit.edu -->
 
 ARDoCo (Automating Requirements and Documentation Comprehension) is a research project focused on traceability link recovery and consistency analysis between software artifacts. The project connects architecture documentation and models while identifying missing or deviating elements (inconsistencies). An element can be any representable item of the model, like a component or a relation.
 
@@ -18,7 +18,7 @@ Our recent approaches, such as [LiSSA](/approaches/lissa/), leverage Large Langu
 
 Documenting the architecture of a software system is important, especially to capture reasoning and design decisions. However, documentation is often incomplete, outdated, or missing, leading to loss of crucial knowledge and increased risks. Our long-term vision is to persist information from various sources, such as whiteboard discussions, to avoid losing essential system knowledge. A key challenge is ensuring consistency between formal artifacts (e.g., models) and informal documentation. We address this by applying natural language understanding and knowledge bases to analyze consistency and create traceability links between models and textual artifacts.
 
-<!-- NEVER CHANGE THE LINE BELOW. It is used as delimiter for the page at mcse.kastel.kit.edu -->
+<!-- NEVER CHANGE THIS LINE E. It is used as delimiter for the page at mcse.kastel.kit.edu -->
 
 ARDoCo is actively developed by researchers of the _[Modelling for Continuous Software Engineering (MCSE) group](https://mcse.kastel.kit.edu)_ of _[KASTEL - Institute of Information Security and Dependability](https://kastel.kit.edu)_ at the [KIT](https://www.kit.edu).
 
