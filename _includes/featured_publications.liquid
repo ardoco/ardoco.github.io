@@ -1,0 +1,44 @@
+{% assign menu_page = site.pages | where: 'title', 'conferences' | first %}
+{% assign sorted_conferences = '' | split: '' %}
+{% for child in menu_page.children %}
+  {% assign conf = site.conferences | where: 'permalink', child.permalink | where: 'featured', true | first %}
+  {% if conf %}
+    {% assign sorted_conferences = sorted_conferences | push: conf %}
+  {% endif %}
+{% endfor %}
+
+<sub> The links will lead you to pages that contain details about the corresponding publications </sub>
+
+<ul>
+  {% for conf in sorted_conferences %}
+    {% if conf.publication or conf.authors %}
+      {% assign prefix_text = conf.pub_prefix_text | default: 'Paper at' %}
+      {% assign byline_connector = conf.pub_byline_connector | default: 'by' %}
+      <li>
+        {% if conf.pub_emoji %}{{ conf.pub_emoji }} {% endif -%}
+        <a href="{{ conf.url | relative_url }}">
+          {{- prefix_text -}}
+          {%- if conf.pub_short_name %} {{ conf.pub_short_name }}{% endif -%}
+        </a>
+        {%- if conf.additional_presentations %}
+          with additional presentation{% if conf.additional_presentations.size > 1 %}s{% endif %} at
+          {% for pres in conf.additional_presentations -%}
+            <a href="{{ pres.url }}" target="_blank" rel="noopener noreferrer">{{ pres.short_name | default: pres.name }}</a>
+            {%- unless forloop.last %}, {% endunless -%}
+          {%- endfor -%}
+        {%- endif -%}
+        : "<strong>{{ conf.title }}</strong>"
+        {% if conf.authors %}
+          {{ byline_connector }}
+          {% for author_id in conf.authors -%}
+            {%- assign author = site.data.authors[author_id] -%}
+            {{- author.name -}}
+            {%- unless forloop.last %}, {% endunless -%}
+          {%- endfor -%}
+        {%- endif %}
+      </li>
+    {% endif %}
+  {% endfor %}
+
+  <li><a href="/initial-poster-2019/">Poster</a> with the initial idea from the ICSA2019 NEMI track.</li>
+</ul>

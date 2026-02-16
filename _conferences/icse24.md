@@ -4,6 +4,9 @@ permalink: /c/icse24
 title: Recovering Trace Links Between Software Documentation And Code
 description:
 publication: keim_recovering_2024
+featured: true
+year: 2024
+pub_short_name: "ICSE 2024"
 authors:
   - jan_keim
   - sophie_corallo
@@ -32,6 +35,7 @@ links:
     se25_pdf: /assets/pdf/presentation_25_SE_TransArC.pdf
 additional_presentations:
   - name: Software Engineering 2025 (SE25)
+    short_name: SE25
     url: https://se2025.sdq.kastel.kit.edu/
 ---
 

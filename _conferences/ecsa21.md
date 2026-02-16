@@ -4,6 +4,9 @@ permalink: /c/ecsa21
 title: Trace Link Recovery for Software Architecture Documentation
 description:
 publication: keim_tracelink_2021
+featured: true
+year: 2021
+pub_short_name: "ECSA 2021"
 authors:
   - jan_keim
   - sophie_corallo

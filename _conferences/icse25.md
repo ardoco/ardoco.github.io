@@ -4,6 +4,9 @@ permalink: /c/icse25
 title: "LiSSA: Toward Generic Traceability Link Recovery through Retrieval-Augmented Generation"
 description:
 publication: fuchss_lissa_2025
+featured: true
+year: 2025
+pub_short_name: "ICSE 2025"
 authors:
   - dominik_fuchss
   - tobias_hey
@@ -29,6 +32,7 @@ links:
     pdf: /assets/pdf/presentation_icse25.pdf
 additional_presentations:
   - name: Software Engineering 2026 (SE26)
+    short_name: SE26
     url: https://se2026.inf.unibe.ch/en/
 ---
 

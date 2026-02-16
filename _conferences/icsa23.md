@@ -4,6 +4,9 @@ permalink: /c/icsa23
 title: Detecting Inconsistencies in Software Architecture Documentation Using Traceability Link Recovery
 description:
 publication: keim_detecting_2023
+featured: true
+year: 2023
+pub_short_name: "ICSA 2023"
 authors:
   - jan_keim
   - sophie_corallo
@@ -27,6 +30,7 @@ links:
     se24_pdf: /assets/pdf/presentation_24_SE_InconsistencyDetection.pdf
 additional_presentations:
   - name: Software Engineering 2024 (SE24)
+    short_name: SE24
     url: https://se2024.se.jku.at/
 ---
 

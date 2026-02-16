@@ -4,6 +4,9 @@ permalink: /c/refsq25
 title: "Requirements Traceability Link Recovery via Retrieval-Augmented Generation"
 description:
 publication: hey_requirements_2025
+featured: true
+year: 2025
+pub_short_name: "REFSQ 2025"
 authors:
   - tobias_hey
   - dominik_fuchss

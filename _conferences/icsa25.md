@@ -4,6 +4,9 @@ permalink: /c/icsa25
 title: Enabling Architecture Traceability by LLM-based Architecture Component Name Extraction
 description:
 publication: fuchss_enabling_2025
+featured: true
+year: 2025
+pub_short_name: "ICSA 2025"
 authors:
   - dominik_fuchss
   - haoyu_liu
@@ -28,6 +31,7 @@ links:
     pdf: /assets/pdf/presentation_icsa25.pdf
 additional_presentations:
   - name: Software Engineering 2026 (SE26)
+    short_name: SE26
     url: https://se2026.inf.unibe.ch/en/
 ---
 

@@ -4,6 +4,9 @@ permalink: /c/aire25
 title: "Beyond Retrieval: A Study of Using LLM Ensembles for Candidate Filtering in Requirements Traceability"
 description:
 publication: fuchss_beyond_2025
+featured: true
+year: 2025
+pub_short_name: "AIRE 2025"
 authors:
   - dominik_fuchss
   - stefan_schwedt

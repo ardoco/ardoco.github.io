@@ -6,6 +6,11 @@ description:
 authors:
   - jan_keim
   - tobias_hey
+featured: true
+year: 2024
+pub_emoji: "🇩🇪"
+pub_prefix_text: "Präsentation auf der Jahrestagung der GI-FG Architekturen 2024"
+pub_byline_connector: "von"
 ---
 
 ![FGARCH24 Titleslide](/assets/img/approaches/fgarch24-titleslide.png){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
