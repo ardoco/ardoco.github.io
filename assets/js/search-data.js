@@ -23,8 +23,8 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/c/aire25";
               },
-            },{id: "dropdown-icse-2025",
-              title: "ICSE 2025",
+            },{id: "dropdown-icse-2025-se-2026",
+              title: "ICSE 2025 / SE 2026",
               description: "",
               section: "Dropdown",
               handler: () => {
@@ -37,19 +37,12 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/c/refsq25";
               },
-            },{id: "dropdown-icsa-2025",
-              title: "ICSA 2025",
+            },{id: "dropdown-icsa-2025-se-2026",
+              title: "ICSA 2025 / SE 2026",
               description: "",
               section: "Dropdown",
               handler: () => {
                 window.location.href = "/c/icsa25";
-              },
-            },{id: "dropdown-se-2025",
-              title: "SE 2025",
-              description: "",
-              section: "Dropdown",
-              handler: () => {
-                window.location.href = "/c/se25";
               },
             },{id: "dropdown-gi-fachgruppe-architekturen-2024",
               title: "GI-Fachgruppe Architekturen 2024",
@@ -58,22 +51,15 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/c/fg-arch24";
               },
-            },{id: "dropdown-icse-2024",
-              title: "ICSE 2024",
+            },{id: "dropdown-icse-2024-se-2025",
+              title: "ICSE 2024 / SE 2025",
               description: "",
               section: "Dropdown",
               handler: () => {
                 window.location.href = "/c/icse24";
               },
-            },{id: "dropdown-se-2024",
-              title: "SE 2024",
-              description: "",
-              section: "Dropdown",
-              handler: () => {
-                window.location.href = "/c/se24";
-              },
-            },{id: "dropdown-icsa-2023",
-              title: "ICSA 2023",
+            },{id: "dropdown-icsa-2023-se-2024",
+              title: "ICSA 2023 / SE 2024",
               description: "",
               section: "Dropdown",
               handler: () => {
@@ -197,6 +183,16 @@ ninja.data = [{
           description: "",
           section: "Conferences",handler: () => {
               window.location.href = "/c/se25";
+            },},{id: "conferences-exarch-enabling-architecture-traceability-by-llm-based-architecture-component-name-extraction",
+          title: 'ExArch: Enabling Architecture Traceability by LLM-based Architecture Component Name Extraction',
+          description: "",
+          section: "Conferences",handler: () => {
+              window.location.href = "/c/se26-exarch";
+            },},{id: "conferences-linking-software-system-artifacts-toward-generic-traceability-link-recovery-through-retrieval-augmented-generation",
+          title: 'Linking Software System Artifacts: Toward Generic Traceability Link Recovery through Retrieval-Augmented Generation',
+          description: "",
+          section: "Conferences",handler: () => {
+              window.location.href = "/c/se26-lissa";
             },},{
       id: 'light-theme',
       title: 'Change theme to light',
