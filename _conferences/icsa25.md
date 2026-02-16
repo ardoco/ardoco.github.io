@@ -26,6 +26,9 @@ links:
   slides:
     pptx: /assets/pdf/presentation_icsa25.pptx
     pdf: /assets/pdf/presentation_icsa25.pdf
+additional_presentations:
+  - name: Software Engineering 2026 (SE26)
+    url: https://se2026.inf.unibe.ch/en/
 ---
 
 ![ExArch Overview](/assets/img/approaches/icsa25-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
