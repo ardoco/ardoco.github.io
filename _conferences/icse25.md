@@ -30,6 +30,7 @@ links:
   slides:
     pptx: /assets/pdf/presentation_icse25.pptx
     pdf: /assets/pdf/presentation_icse25.pdf
+    se26_pdf: /assets/pdf/presentation_se26-lissa.pdf
 additional_presentations:
   - name: Software Engineering 2026 (SE26)
     short_name: SE26

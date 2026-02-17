@@ -29,6 +29,7 @@ links:
   slides:
     pptx: /assets/pdf/presentation_icsa25.pptx
     pdf: /assets/pdf/presentation_icsa25.pdf
+    se26_pdf: /assets/pdf/presentation_se26-exarch.pdf
 additional_presentations:
   - name: Software Engineering 2026 (SE26)
     short_name: SE26
