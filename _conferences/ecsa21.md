@@ -18,7 +18,6 @@ approaches:
   - SWATTR
 conference_name: "15th European Conference on Software Architecture (ECSA 2021)"
 conference_url: https://conf.researchr.org/home/ecsa-2021
-published: true
 links:
   paper:
     springer: https://doi.org/10.1007/978-3-030-86044-8_7

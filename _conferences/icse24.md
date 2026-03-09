@@ -21,7 +21,6 @@ approaches:
   - ArDoCode
 conference_name: "46th International Conference on Software Engineering (ICSE 2024)"
 conference_url: https://conf.researchr.org/home/icse-2024
-published: true
 links:
   paper:
     acm: https://doi.org/10.1145/3597503.3639130

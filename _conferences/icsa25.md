@@ -18,7 +18,6 @@ approaches:
   - TransArC
 conference_name: "22nd IEEE International Conference on Software Architecture (ICSA 2025)"
 conference_url: https://conf.researchr.org/home/icsa-2025/
-published: true
 links:
   paper:
     ieee: https://doi.org/10.1109/ICSA65012.2025.00011

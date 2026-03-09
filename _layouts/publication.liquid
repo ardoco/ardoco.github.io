@@ -38,9 +38,9 @@ layout: default
     {% endif %}
 
     {% if page.conference_name %}
-      {% assign is_published = page.published | default: true %}
+      {% assign in_press = page.in_press | default: false %}
       <p>
-        {% if is_published == false %}
+        {% if in_press %}
           To be published at the
         {% else %}
           Published at the

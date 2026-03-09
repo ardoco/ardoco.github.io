@@ -16,7 +16,6 @@ approaches:
   - LiSSA
 conference_name: "31st International Working Conference on Requirements Engineering: Foundation for Software Quality (REFSQ 2025)"
 conference_url: https://2025.refsq.org/
-published: true
 links:
   paper:
     kitopen: https://publikationen.bibliothek.kit.edu/1000179817

@@ -17,7 +17,6 @@ approaches:
   - "Inconsistency Detection"
 conference_name: "20th IEEE International Conference on Software Architecture (ICSA 2023)"
 conference_url: https://icsa-conferences.org/2023/
-published: true
 links:
   paper:
     ieee: https://doi.org/10.1109/ICSA56044.2023.00021

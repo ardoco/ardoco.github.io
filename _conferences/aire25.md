@@ -16,7 +16,6 @@ approaches:
   - LiSSA
 conference_name: "33rd International Requirements Engineering Conference Workshops (REW)"
 conference_url: https://aire-ws.github.io/aire25/
-published: true
 links:
   paper:
     kitopen: https://publikationen.bibliothek.kit.edu/1000183058

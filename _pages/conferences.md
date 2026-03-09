@@ -5,6 +5,8 @@ nav: true
 nav_order: 1
 dropdown: true
 children:
+  - title: ICSA 2026
+    permalink: /c/icsa26
   - title: AIRE 2025
     permalink: /c/aire25
   - title: ICSE 2025 / SE 2026
