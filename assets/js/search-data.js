@@ -16,7 +16,14 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/approaches/";
           },
-        },{id: "dropdown-aire-2025",
+        },{id: "dropdown-icsa-2026",
+              title: "ICSA 2026",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/c/icsa26";
+              },
+            },{id: "dropdown-aire-2025",
               title: "AIRE 2025",
               description: "",
               section: "Dropdown",
@@ -151,6 +158,11 @@ ninja.data = [{
           description: "",
           section: "Conferences",handler: () => {
               window.location.href = "/c/icsa25";
+            },},{id: "conferences-architecture-in-the-cradle-early-warning-of-architectural-decay-with-archguard",
+          title: 'Architecture in the Cradle: Early Warning of Architectural Decay with ArchGuard',
+          description: "",
+          section: "Conferences",handler: () => {
+              window.location.href = "/c/icsa26";
             },},{id: "conferences-recovering-trace-links-between-software-documentation-and-code",
           title: 'Recovering Trace Links Between Software Documentation And Code',
           description: "",
