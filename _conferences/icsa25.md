@@ -33,6 +33,9 @@ additional_presentations:
   - name: Software Engineering 2026 (SE26)
     short_name: SE26
     url: https://se2026.inf.unibe.ch/en/
+  - name: Extension in Transactions on Autonomous and Adaptive Systems (TAAS)
+    short_name: TAAS
+    url: https://doi.org/10.1145/3807453
 ---
 
 ![ExArch Overview](/assets/img/approaches/icsa25-transarc.svg){:width="100%" style="background-color: white; border-radius: 8px; padding: 10px; display: block; margin: 0 auto;"}
