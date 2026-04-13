@@ -198,6 +198,11 @@ ninja.data = [{
           description: "",
           section: "Conferences",handler: () => {
               window.location.href = "/c/se26-lissa";
+            },},{id: "conferences-who-39-s-who-llm-assisted-software-traceability-with-architecture-entity-recognition",
+          title: 'Who&amp;#39;s Who? LLM-assisted Software Traceability with Architecture Entity Recognition',
+          description: "",
+          section: "Conferences",handler: () => {
+              window.location.href = "/c/taas26";
             },},{
       id: 'light-theme',
       title: 'Change theme to light',
