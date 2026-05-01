@@ -6,9 +6,18 @@ subtitle:
 no_title: true
 ---
 
-![ARDoCo Logo](/assets/img/logo.png){:height="210" style="display: block; margin: 0 auto;"}
-
-# [ARDoCo - Automating Requirements and Documentation Comprehension](https://github.com/ardoco)
+<div class="ardoco-hero">
+  <img src="/assets/img/logo.png" alt="ARDoCo Logo" class="ardoco-hero-logo">
+  <h1 class="ardoco-hero-title">
+    <a href="https://github.com/ardoco">ARDoCo</a>
+  </h1>
+  <p class="ardoco-hero-subtitle">Automating Requirements and Documentation Comprehension</p>
+  <div class="ardoco-hero-actions">
+    <a href="/approaches/" class="btn ardoco-btn-primary">Explore Approaches</a>
+    <a href="/publications/" class="btn">Publications</a>
+    <a href="https://github.com/ardoco" class="btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i>&nbsp;GitHub</a>
+  </div>
+</div>
 
 <!-- NEVER CHANGE THIS LINE B. It is used as delimiter for the page at mcse.kastel.kit.edu -->
 

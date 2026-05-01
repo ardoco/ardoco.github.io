@@ -86,15 +86,35 @@
     border: 1px solid var(--global-divider-color);
     border-radius: 0.5rem;
     overflow: hidden;
-    transition: box-shadow 150ms ease;
+    transition:
+      box-shadow 200ms ease,
+      transform 200ms ease,
+      border-color 200ms ease;
     height: 100%;
+    position: relative;
+
+    // Colored top accent bar
+    &::before {
+      content: "";
+      display: block;
+      height: 3px;
+      background: var(--global-theme-color);
+      opacity: 0;
+      transition: opacity 200ms ease;
+    }
 
     img {
       transition: opacity 200ms ease;
     }
 
     &:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+      border-color: rgba(var(--global-theme-color-rgb), 0.3);
+
+      &::before {
+        opacity: 1;
+      }
 
       img {
         opacity: 0.8;
@@ -103,17 +123,24 @@
       .card-title {
         color: var(--global-theme-color);
       }
+
+      .ardoco-card-arrow {
+        opacity: 1;
+        transform: translateX(3px);
+      }
     }
 
     .card-body {
       padding: 1rem;
+      display: flex;
+      flex-direction: column;
     }
 
     .card-title {
       font-weight: 600;
       margin-bottom: 0.5rem;
       transition: color 150ms ease;
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -123,15 +150,36 @@
     }
 
     .card-text {
-      font-size: 0.9rem;
-      line-height: 1.5;
+      font-size: 0.875rem;
+      line-height: 1.55;
       color: var(--global-text-color-light);
       overflow: hidden;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
-      line-clamp: 2;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
       -webkit-box-orient: vertical;
       text-overflow: ellipsis;
+      flex: 1;
+    }
+
+    .ardoco-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-top: 0.6rem;
+      margin-top: 0.5rem;
+      border-top: 1px solid var(--global-divider-color);
+      font-size: 0.8rem;
+      color: var(--global-theme-color);
+      font-weight: 500;
+    }
+
+    .ardoco-card-arrow {
+      opacity: 0.4;
+      transition:
+        opacity 200ms ease,
+        transform 200ms ease;
+      display: inline-block;
     }
   }
 }
