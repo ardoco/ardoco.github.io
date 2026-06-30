@@ -10,6 +10,9 @@ haoyu_liu:
 jan_keim:
   name: Jan Keim
   orcid: "0000-0002-8899-7081"
+kevin_feichtinger:
+  name: Kevin Feichtinger
+  orcid: "0000-0003-1182-5377"
 sophie_corallo:
   name: Sophie Corallo
   orcid: "0000-0002-1531-2977"
@@ -39,3 +42,6 @@ tobias_thirolf:
 stefan_schwedt:
   name: Stefan Schwedt
   orcid: "0009-0003-8202-3811"
+julian_winter:
+  name: Julian Winter
+  orcid: null

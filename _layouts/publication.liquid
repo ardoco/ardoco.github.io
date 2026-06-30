@@ -118,6 +118,15 @@ layout: default
             {% if page.links.paper %}
               {% assign paper_links = '' %}
               {% assign paper_sep = '' %}
+              {% if page.links.paper.arxiv %}
+                {% assign paper_links = paper_links
+                  | append: paper_sep
+                  | append: '<a href="'
+                  | append: page.links.paper.arxiv
+                  | append: '">arXiv</a>'
+                %}
+                {% assign paper_sep = ' · ' %}
+              {% endif %}
               {% if page.links.paper.ieee %}
                 {% assign paper_links = paper_links
                   | append: paper_sep
