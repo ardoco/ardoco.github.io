@@ -16,12 +16,19 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/approaches/";
           },
-        },{id: "dropdown-ase-2026",
-              title: "ASE 2026",
+        },{id: "dropdown-ardoco-tools-ase-2026",
+              title: "ArDoCo Tools @ASE 2026",
               description: "",
               section: "Dropdown",
               handler: () => {
-                window.location.href = "/c/ase26";
+                window.location.href = "/c/ase26-tools";
+              },
+            },{id: "dropdown-everest-dataset-ase-2026",
+              title: "EVerest Dataset @ASE 2026",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/c/ase26-everest";
               },
             },{id: "dropdown-icsa-2026",
               title: "ICSA 2026",
@@ -145,11 +152,16 @@ ninja.data = [{
           description: "",
           section: "Conferences",handler: () => {
               window.location.href = "/c/aire25";
+            },},{id: "conferences-the-everest-dataset-for-secure-software-engineering",
+          title: 'The EVerest Dataset for Secure Software Engineering',
+          description: "",
+          section: "Conferences",handler: () => {
+              window.location.href = "/c/ase26-everest";
             },},{id: "conferences-the-ardoco-tool-landscape-rest-api-traceview-and-traceviz-for-architecture-traceability",
           title: 'The ARDoCo Tool Landscape: REST API, TraceView, and TraceViz for Architecture Traceability',
           description: "",
           section: "Conferences",handler: () => {
-              window.location.href = "/c/ase26";
+              window.location.href = "/c/ase26-tools";
             },},{id: "conferences-trace-link-recovery-for-software-architecture-documentation",
           title: 'Trace Link Recovery for Software Architecture Documentation',
           description: "",
