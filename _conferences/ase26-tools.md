@@ -1,6 +1,6 @@
 ---
 layout: publication
-permalink: /c/ase26
+permalink: /c/ase26-tools
 title: "The ARDoCo Tool Landscape: REST API, TraceView, and TraceViz for Architecture Traceability"
 description:
 publication: keim_ardoco_2026

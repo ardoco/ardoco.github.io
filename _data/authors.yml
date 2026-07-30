@@ -1,9 +1,15 @@
 anne_koziolek:
   name: Anne Koziolek
   orcid: "0000-0002-1593-3394"
+debora_grupp:
+  name: Debora Grupp
+  orcid: null
 dominik_fuchss:
   name: Dominik Fuchß
   orcid: "0000-0001-6410-6769"
+frederik_reiche:
+  name: Frederik Reiche
+  orcid: null
 haoyu_liu:
   name: Haoyu Liu
   orcid: "0009-0002-7676-5010"

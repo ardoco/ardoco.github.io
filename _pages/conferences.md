@@ -5,8 +5,10 @@ nav: true
 nav_order: 1
 dropdown: true
 children:
-  - title: ASE 2026
-    permalink: /c/ase26
+  - title: "ArDoCo Tools @ASE 2026"
+    permalink: /c/ase26-tools
+  - title: "EVerest Dataset @ASE 2026"
+    permalink: /c/ase26-everest
   - title: ICSA 2026
     permalink: /c/icsa26
   - title: AIRE 2025
