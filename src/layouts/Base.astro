@@ -1,0 +1,74 @@
+---
+import '@fontsource-variable/ibm-plex-sans';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '../styles/tokens.css';
+import '../styles/base.css';
+
+import BaseHead from '../components/BaseHead.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import type { Section } from '../consts';
+
+interface Props {
+  title?: string;
+  description?: string;
+  section?: Section;
+}
+
+const { title, description, section } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <slot name="head" />
+  </head>
+  <body data-section={section}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Nav section={section} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Mark that JS is available, so `.reveal` may start hidden. Without this
+      // the class is a no-op (html:not(.js) .reveal in base.css) and nothing
+      // can get stuck invisible.
+      document.documentElement.classList.add('js');
+
+      const items = document.querySelectorAll<HTMLElement>('.reveal');
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduced || !('IntersectionObserver' in window)) {
+        items.forEach((el) => el.classList.add('is-in'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (!e.isIntersecting) continue;
+              e.target.classList.add('is-in');
+              io.unobserve(e.target);
+            }
+          },
+          { rootMargin: '0px 0px -10% 0px' },
+        );
+        items.forEach((el) => io.observe(el));
+
+        // An anchor jump, an End keypress or a restored scroll position can put
+        // an element past the viewport without it ever intersecting, leaving it
+        // at opacity 0 permanently. Reveal anything already above the fold.
+        requestAnimationFrame(() => {
+          items.forEach((el) => {
+            if (el.getBoundingClientRect().top < window.innerHeight) {
+              el.classList.add('is-in');
+              io.unobserve(el);
+            }
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

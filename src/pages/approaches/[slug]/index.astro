@@ -1,0 +1,141 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Prose from '../../../components/Prose.astro';
+import Figure from '../../../components/Figure.astro';
+import VenueBadge from '../../../components/pub/VenueBadge.astro';
+import { conferencePath } from '../../../lib/urls';
+
+export async function getStaticPaths() {
+  const all = await getCollection('approaches');
+  return all.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+
+/*
+ * Reverse index: every conference page that names this approach.
+ *
+ * The Jekyll version compared `conf.approaches` against `page.title` as
+ * strings, so a renamed approach quietly emptied this list. The collection
+ * stores references, so the join is by id and the build fails instead.
+ */
+const conferences = (await getCollection('conferences'))
+  .filter((c) => c.data.redirectTo === undefined)
+  .filter((c) => c.data.approaches.some((ref) => ref.id === entry.id))
+  .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+
+const related = await Promise.all(
+  conferences.map(async (c) => ({
+    conference: c,
+    pub: c.data.publication ? await getEntry(c.data.publication) : undefined,
+  })),
+);
+---
+
+<Base title={d.title} description={d.description} section="approaches">
+  <article class="wrap approach">
+    <header>
+      <p class="kicker" data-sigil="##">approach</p>
+      <h1>{d.title}</h1>
+      <p class="lede">{d.description}</p>
+    </header>
+
+    {d.figure && <Figure src={d.figure.src} alt={d.figure.alt} plate={d.figure.plate} />}
+
+    <Prose>
+      <Content />
+    </Prose>
+
+    {
+      d.repositories.length > 0 && (
+        <section class="block">
+          <h2>Code</h2>
+          <ul class="chips">
+            {d.repositories.map((r) => (
+              <li>
+                <a class="chip" href={r.url} rel="noopener">
+                  {r.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      related.length > 0 && (
+        <section class="block">
+          <h2>{related.length === 1 ? 'Related publication' : 'Related publications'}</h2>
+          <ul class="pubs">
+            {related.map(({ conference, pub }) => (
+              <li>
+                {pub?.data.abbr && <VenueBadge abbr={pub.data.abbr} />}
+                <div>
+                  <a href={conferencePath(conference.id)}>{conference.data.title}</a>
+                  <p>{conference.data.pubShortName ?? conference.data.conferenceName}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </article>
+</Base>
+
+<style>
+  .approach {
+    /* Narrower than the default .wrap width so every block on the page —
+       title, figure, abstract, screencast, links, cite — shares one measure. */
+    max-width: calc(var(--measure) + 2 * var(--gutter));
+    padding-block: clamp(2rem, 6vw, 3.5rem);
+  }
+  header {
+    margin-bottom: 1.75rem;
+  }
+  .lede {
+    max-width: var(--measure);
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .block {
+    margin-top: 2.5rem;
+  }
+  .chips,
+  .pubs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .pubs li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .pubs a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .pubs a:hover {
+    color: var(--sec-strong);
+  }
+  .pubs p {
+    margin: 0.15rem 0 0;
+    font-size: var(--fs-small);
+    color: var(--text-faint);
+  }
+</style>

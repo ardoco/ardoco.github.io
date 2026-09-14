@@ -1,6 +1,36 @@
 {
+  "name": "ardoco.de",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check && prettier . --check",
+    "format": "prettier . --write",
+    "audit": "node scripts/audit-site.mjs && node scripts/audit-features.mjs",
+    "verify": "node scripts/verify-invariants.mjs && npm run audit"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@fontsource-variable/ibm-plex-sans": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@retorquere/bibtex-parser": "^11.0.0",
+    "astro": "^7.3.2",
+    "zod": "^4.6.4"
+  },
   "devDependencies": {
-    "@shopify/prettier-plugin-liquid": "^1.10.0",
-    "prettier": "^3.8.0"
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^26.5.1",
+    "prettier": "^3.8.0",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
   }
 }

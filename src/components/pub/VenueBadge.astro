@@ -1,0 +1,55 @@
+---
+import { getEntry } from 'astro:content';
+import type { DataEntryMap } from 'astro:content';
+
+interface Props {
+  abbr: { collection: 'venues'; id: string } | undefined;
+}
+const { abbr } = Astro.props;
+
+const venue: DataEntryMap['venues'][string] | undefined = abbr ? await getEntry(abbr) : undefined;
+---
+
+{
+  venue && (
+    <a
+      class="venue"
+      href={venue.data.url}
+      style={`--brand: ${venue.data.color}`}
+      title={`${venue.data.name} (${venue.id})`}
+      rel="noopener"
+    >
+      {venue.id}
+    </a>
+  )
+}
+
+<style>
+  /*
+   * venues.yml holds real conference brand colours (ICSE #a3107c, ICSA #23a1e0).
+   * Several are far too dark to read as text on a near-black page, so the raw
+   * hue is used only for the border and a low-alpha tint; the text colour is
+   * mixed toward white until it is legible.
+   */
+  .venue {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4.25rem;
+    padding: 0.3em 0.6em;
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid color-mix(in srgb, var(--brand) 55%, transparent);
+    border-radius: var(--radius-s);
+    background: color-mix(in srgb, var(--brand) 16%, transparent);
+    color: color-mix(in srgb, var(--brand) 45%, white);
+    transition: background var(--dur) var(--ease);
+  }
+  .venue:hover {
+    background: color-mix(in srgb, var(--brand) 30%, transparent);
+  }
+</style>

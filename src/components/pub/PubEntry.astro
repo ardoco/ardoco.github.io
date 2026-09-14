@@ -1,0 +1,181 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import VenueBadge from './VenueBadge.astro';
+import CopyButton from './CopyButton.astro';
+import { conferencePath } from '../../lib/urls';
+
+interface Props {
+  pub: CollectionEntry<'publications'>;
+  /** Surname (lowercased) -> /people/#anchor, from src/lib/people.ts. */
+  links?: Map<string, string>;
+  /** Drop the venue line and BibTeX block, for use inside a paper page. */
+  compact?: boolean;
+}
+
+const { pub, links, compact = false } = Astro.props;
+const d = pub.data;
+
+const venueLine = [
+  d.booktitle ?? d.journal ?? d.school ?? d.institution,
+  d.location,
+  d.year,
+].filter(Boolean);
+---
+
+<article class="entry" id={pub.id}>
+  <div class="badge"><VenueBadge abbr={d.abbr} /></div>
+
+  <div class="body">
+    <h3>
+      {d.infoSlug ? <a href={conferencePath(d.infoSlug)}>{d.title}</a> : d.title}
+    </h3>
+
+    <p class="authors">
+      {
+        d.authors.map((a, i) => {
+          const href = links?.get(a.last.toLowerCase());
+          const name = `${a.first} ${a.last}`.trim();
+          return (
+            <>
+              {i > 0 && ', '}
+              {href ? <a href={href}>{name}</a> : name}
+            </>
+          );
+        })
+      }
+    </p>
+
+    {venueLine.length > 0 && <p class="venue-line">{venueLine.join(' · ')}</p>}
+
+    <div class="actions">
+      {
+        d.infoSlug && (
+          <a class="chip" href={conferencePath(d.infoSlug)}>
+            Details &rarr;
+          </a>
+        )
+      }
+      {
+        d.doi && (
+          <a class="chip" href={`https://doi.org/${d.doi}`} rel="noopener">
+            DOI
+          </a>
+        )
+      }
+      {
+        d.url && !d.doi && (
+          <a class="chip" href={d.url} rel="noopener">
+            Link
+          </a>
+        )
+      }
+      {
+        !compact && (
+          <details class="bib">
+            <summary class="chip">BibTeX</summary>
+            <div class="bib-body">
+              <CopyButton target={`bib-${pub.id}`} />
+              <pre id={`bib-${pub.id}`}>{d.bibtex}</pre>
+            </div>
+          </details>
+        )
+      }
+    </div>
+  </div>
+</article>
+
+<style>
+  /* minmax(0, 1fr) rather than 1fr: a plain 1fr track refuses to shrink below
+     its content, and the wide BibTeX <pre> then pushes the whole row past the
+     viewport instead of scrolling inside its own box. */
+  .entry {
+    display: grid;
+    grid-template-columns: 5rem minmax(0, 1fr);
+    gap: 0.25rem 1rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .entry:target {
+    background: var(--sec-dim);
+    border-radius: var(--radius-m);
+    padding-inline: 0.9rem;
+  }
+  .badge {
+    padding-top: 0.2rem;
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0 0 0.3rem;
+  }
+  h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  h3 a:hover {
+    color: var(--sec-strong);
+  }
+
+  .authors {
+    margin: 0 0 0.2rem;
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+  }
+  .venue-line {
+    margin: 0;
+    font-size: var(--fs-small);
+    color: var(--text-faint);
+    font-style: italic;
+  }
+
+  /* One row for Details / DOI / BibTeX. The BibTeX toggle used to be a sibling
+     block below the others, so its pill sat on its own line and broke the row. */
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0.6rem 0 0;
+  }
+
+  .bib {
+    min-width: 0;
+  }
+  /* Open, it needs the whole width for the BibTeX block, so it claims its own
+     line rather than stretching the pill row. */
+  .bib[open] {
+    flex-basis: 100%;
+  }
+  .bib summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  .bib summary::-webkit-details-marker {
+    display: none;
+  }
+  .bib[open] summary {
+    border-color: var(--sec-line);
+    color: var(--sec-strong);
+  }
+  .bib-body {
+    position: relative;
+    margin-top: 0.6rem;
+  }
+  .bib-body pre {
+    margin: 0;
+    max-height: 22rem;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+
+  @media (max-width: 34rem) {
+    .entry {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .badge {
+      padding-top: 0;
+    }
+  }
+</style>

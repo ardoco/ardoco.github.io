@@ -1,0 +1,30 @@
+---
+import { SITE } from '../consts';
+import { canonical } from '../lib/urls';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = SITE.description } = Astro.props;
+const pageTitle = title ? `${title} | ${SITE.title}` : `${SITE.title} — ${SITE.tagline}`;
+const href = canonical(Astro.url.pathname);
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={href} />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={href} />
+<meta property="og:image" content={new URL('/assets/img/logo.png', SITE.url).href} />
+<meta name="twitter:card" content="summary" />
+
+<link rel="icon" href="/assets/img/logo.png" />
+<link rel="apple-touch-icon" href="/assets/img/logo.png" />
+<link rel="sitemap" href="/sitemap.xml" />
