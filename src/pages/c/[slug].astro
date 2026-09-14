@@ -1,0 +1,305 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Prose from '../../components/Prose.astro';
+import Figure from '../../components/Figure.astro';
+import PubEntry from '../../components/pub/PubEntry.astro';
+import ScholarMeta from '../../components/pub/ScholarMeta.astro';
+import VenueBadge from '../../components/pub/VenueBadge.astro';
+import { LINK_LABELS, slideLabel } from '../../lib/conferences';
+import { approachPath, conferencePath, personPath } from '../../lib/urls';
+import { peopleLinks } from '../../lib/people';
+import { redirectResponse } from '../../lib/redirect';
+
+export async function getStaticPaths() {
+  const all = await getCollection('conferences');
+  return all.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+
+/*
+ * Five entries exist only to keep a published URL alive: /c/se24 and friends
+ * point at the paper page that superseded them. See src/lib/redirect.ts for why
+ * the stub is a Response rather than markup.
+ *
+ * Astro wraps this frontmatter in an async function, so the early return is
+ * valid — but `astro check` analyses the block as a module, where a top-level
+ * return is not, and drops the statement during error recovery. That is why it
+ * reports `redirectResponse` and `conferencePath` as unused. Both are hints,
+ * `astro check` still exits 0, and the built stubs prove the branch runs.
+ */
+if (d.redirectTo) {
+  return redirectResponse(conferencePath(d.redirectTo), d.title);
+}
+
+const pub = d.publication ? await getEntry(d.publication) : undefined;
+const authors = await Promise.all(d.authors.map((ref) => getEntry(ref)));
+const approaches = await Promise.all(d.approaches.map((ref) => getEntry(ref)));
+const links = await peopleLinks();
+
+// Anchor for each author who also has a profile on /people/.
+const people = await getCollection('people');
+const anchorByAuthor = new Map(people.map((p) => [p.data.author.id, personPath(p.id)]));
+
+const { Content } = await render(entry);
+
+const sections: { key: 'paper' | 'replication' | 'slides'; title: string }[] = [
+  { key: 'paper', title: 'Paper' },
+  { key: 'replication', title: 'Replication Package' },
+  { key: 'slides', title: 'Slides' },
+];
+const linkRows = sections
+  .map((s) => ({ ...s, items: Object.entries(d.links[s.key] ?? {}) }))
+  .filter((s) => s.items.length > 0);
+---
+
+<Base title={d.title} description={d.description ?? d.conferenceName} section="conferences">
+  {
+    pub && (
+      <Fragment slot="head">
+        <ScholarMeta pub={pub} />
+      </Fragment>
+    )
+  }
+
+  <article class="wrap paper">
+    <header>
+      <p class="kicker" data-sigil="##">
+        {d.pubShortName ?? d.navLabel ?? 'publication'}
+      </p>
+      <h1>{d.title}</h1>
+
+      {
+        authors.length > 0 && (
+          <p class="byline">
+            {authors.map((a, i) => {
+              const href = anchorByAuthor.get(a.id);
+              return (
+                <Fragment>
+                  {i > 0 && ', '}
+                  {href ? <a href={href}>{a.data.name}</a> : a.data.name}
+                  {a.data.orcid && (
+                    <a
+                      class="orcid"
+                      href={`https://orcid.org/${a.data.orcid}`}
+                      rel="noopener"
+                      title={`ORCID ${a.data.orcid}`}
+                    >
+                      <span class="sr-only">ORCID of {a.data.name}</span>
+                      iD
+                    </a>
+                  )}
+                </Fragment>
+              );
+            })}
+          </p>
+        )
+      }
+
+      <p class="venue-line">
+        {pub?.data.abbr && <VenueBadge abbr={pub.data.abbr} />}
+        {
+          d.conferenceName && (
+            <span>
+              {d.inPress ? 'To be published at ' : 'Published at '}
+              {d.conferenceUrl ? (
+                <a href={d.conferenceUrl} rel="noopener">
+                  {d.conferenceName}
+                </a>
+              ) : (
+                d.conferenceName
+              )}
+            </span>
+          )
+        }
+        {
+          !d.conferenceName && d.pubPrefixText !== 'Paper at' && (
+            <span>
+              {d.pubEmoji} {d.pubPrefixText}
+            </span>
+          )
+        }
+      </p>
+
+      {
+        d.additionalPresentations.length > 0 && (
+          <p class="also">
+            Also presented at{' '}
+            {d.additionalPresentations.map((p, i) => (
+              <Fragment>
+                {i > 0 && ', '}
+                <a href={p.url} rel="noopener">
+                  {p.name}
+                </a>
+              </Fragment>
+            ))}
+          </p>
+        )
+      }
+    </header>
+
+    {
+      approaches.length > 0 && (
+        <aside class="related">
+          <p>This publication is related to:</p>
+          <ul>
+            {approaches.map((a) => (
+              <li>
+                <a class="chip" href={approachPath(a.id)}>
+                  {a.data.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )
+    }
+
+    {d.figure && <Figure src={d.figure.src} alt={d.figure.alt} plate={d.figure.plate} />}
+
+    <Prose>
+      <Content />
+    </Prose>
+
+    {
+      linkRows.length > 0 && (
+        <section class="links">
+          <h2>Links</h2>
+          <dl>
+            {linkRows.map((row) => (
+              <Fragment>
+                <dt>{row.title}</dt>
+                <dd>
+                  {row.items.map(([key, url]) => (
+                    <a class="chip" href={url} rel="noopener">
+                      {row.key === 'slides' ? slideLabel(key) : (LINK_LABELS[key] ?? key)}
+                    </a>
+                  ))}
+                </dd>
+              </Fragment>
+            ))}
+          </dl>
+        </section>
+      )
+    }
+
+    {
+      pub && (
+        <section class="cite">
+          <h2>Cite this paper</h2>
+          <PubEntry pub={pub} links={links} />
+        </section>
+      )
+    }
+  </article>
+</Base>
+
+<style>
+  .paper {
+    /* Narrower than the default .wrap width so every block on the page —
+       title, figure, abstract, screencast, links, cite — shares one measure. */
+    max-width: calc(var(--measure) + 2 * var(--gutter));
+    padding-block: clamp(2rem, 6vw, 3.5rem);
+  }
+  header {
+    margin-bottom: 1.75rem;
+  }
+  h1 {
+    font-size: clamp(1.6rem, 1.1rem + 2.2vw, 2.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .byline {
+    margin: 0 0 0.65rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  .orcid {
+    display: inline-block;
+    margin-left: 0.3em;
+    padding: 0.05em 0.35em;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--green-line);
+    border-radius: var(--radius-s);
+    color: var(--green);
+    vertical-align: 0.1em;
+  }
+  .orcid:hover {
+    background: var(--green-dim);
+  }
+
+  .venue-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 0.5rem;
+    color: var(--text-muted);
+    font-size: var(--fs-small);
+  }
+  .also {
+    margin: 0;
+    font-size: var(--fs-small);
+    color: var(--text-faint);
+  }
+
+  .related {
+    margin: 0 0 1.75rem;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--sec-line);
+    border-radius: var(--radius-m);
+    background: var(--sec-dim);
+  }
+  .related p {
+    margin: 0 0 0.6rem;
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+  }
+  .related ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .links dl {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 0.6rem 1.25rem;
+    margin: 0;
+    align-items: baseline;
+  }
+  .links dt {
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    color: var(--text-faint);
+  }
+  .links dd {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 0;
+  }
+
+  .links,
+  .cite {
+    margin-top: 2.5rem;
+  }
+
+  @media (max-width: 34rem) {
+    .links dl {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.3rem;
+    }
+    .links dd {
+      margin-bottom: 0.7rem;
+    }
+  }
+</style>

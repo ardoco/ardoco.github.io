@@ -1,0 +1,273 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { featured } from '../lib/conferences';
+import { approachPath, conferencePath } from '../lib/urls';
+import { SITE } from '../consts';
+import Email from '../components/Email.astro';
+
+const approaches = (await getCollection('approaches')).sort(
+  (a, b) => a.data.importance - b.data.importance,
+);
+
+const conferences = featured(await getCollection('conferences'));
+const highlights = await Promise.all(
+  conferences.map(async (c) => ({
+    c,
+    authors: await Promise.all(c.data.authors.map((ref) => getEntry(ref))),
+  })),
+);
+---
+
+<Base>
+  <section class="hero wrap">
+    <img class="logo" src="/assets/img/logo.png" alt="" width="480" height="600" />
+    <h1>ARDoCo</h1>
+    <p class="tagline">{SITE.tagline}</p>
+    <p class="actions">
+      <a class="chip primary" href="/approaches/">Explore approaches</a>
+      <a class="chip" href="/publications/">Publications</a>
+      <a class="chip" href={SITE.repo} rel="noopener">GitHub</a>
+    </p>
+  </section>
+
+  <section class="wrap intro">
+    <!-- NEVER CHANGE THIS LINE B. It is used as delimiter for the page at mcse.kastel.kit.edu -->
+
+    <p>
+      ARDoCo (Automating Requirements and Documentation Comprehension) is a research project focused
+      on traceability link recovery and consistency analysis between software artifacts. The project
+      connects architecture documentation and models while identifying missing or deviating elements
+      (inconsistencies). An element can be any representable item of the model, like a component or
+      a relation.
+    </p>
+
+    <p>
+      Our recent approaches, such as <a href="/approaches/lissa/">LiSSA</a>, leverage Large Language
+      Models (LLMs) and Information Retrieval (IR) to enable more generic and effective traceability
+      link recovery across various artifact types, including requirements-to-code,
+      documentation-to-code, and architecture-to-code tracing. We also leverage LLMs for specialized
+      tasks, such as <a href="/approaches/exarch/">ExArch</a> which uses LLM-based architecture component
+      name extraction to identify and link architectural elements. You can find our different approaches,
+      including <a href="/approaches/lissa/">LiSSA</a>,{' '}
+      <a href="/approaches/exarch/">ExArch</a>, and others, on the{' '}
+      <a href="/approaches/">approaches</a> page or read more about them using the details link on the{
+        ' '
+      }
+      <a href="/publications/">publications</a> page.
+    </p>
+
+    <p>
+      Documenting the architecture of a software system is important, especially to capture
+      reasoning and design decisions. However, documentation is often incomplete, outdated, or
+      missing, leading to loss of crucial knowledge and increased risks. Our long-term vision is to
+      persist information from various sources, such as whiteboard discussions, to avoid losing
+      essential system knowledge. A key challenge is ensuring consistency between formal artifacts
+      (e.g., models) and informal documentation. We address this by applying natural language
+      understanding and knowledge bases to analyze consistency and create traceability links between
+      models and textual artifacts.
+    </p>
+
+    <!-- NEVER CHANGE THIS LINE E. It is used as delimiter for the page at mcse.kastel.kit.edu -->
+
+    <p class="affiliation">
+      ARDoCo is actively developed by researchers of the{' '}
+      <a href="https://mcse.kastel.kit.edu"
+        ><em>Modelling for Continuous Software Engineering (MCSE) group</em></a
+      >{' '}
+      of{' '}
+      <a href="https://kastel.kit.edu"
+        ><em>KASTEL — Institute of Information Security and Dependability</em></a
+      >{' '}
+      at the <a href="https://www.kit.edu">KIT</a>.
+    </p>
+  </section>
+
+  <section class="wrap section" data-section="approaches" id="approaches">
+    <p class="kicker" data-sigil="##">approaches</p>
+    <h2>What we build</h2>
+    <ul class="approach-grid">
+      {
+        approaches.map((a) => (
+          <li class="reveal">
+            <a href={approachPath(a.id)}>
+              <strong>{a.data.title}</strong>
+              <span>{a.data.description}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="wrap section" data-section="conferences" id="publications">
+    <p class="kicker" data-sigil="##">publications</p>
+    <h2>Relevant and recent publications</h2>
+    <p class="sub">Each link leads to a page with details about the corresponding publication.</p>
+    <ul class="pub-list">
+      {
+        highlights.map(({ c, authors }) => (
+          <li class="reveal">
+            <a href={conferencePath(c.id)}>
+              {c.data.pubEmoji && <span class="emoji">{c.data.pubEmoji}</span>}
+              {c.data.pubPrefixText}
+              {c.data.pubShortName ? ` ${c.data.pubShortName}` : ''}
+            </a>
+            {c.data.additionalPresentations.length > 0 && (
+              <span class="extra">
+                {' '}
+                with additional presentation
+                {c.data.additionalPresentations.length > 1 ? 's' : ''} at{' '}
+                {c.data.additionalPresentations.map((p, i) => (
+                  <Fragment>
+                    {i > 0 && ', '}
+                    <a href={p.url} rel="noopener">
+                      {p.shortName ?? p.name}
+                    </a>
+                  </Fragment>
+                ))}
+              </span>
+            )}
+            : <strong>{c.data.title}</strong>
+            {authors.length > 0 && (
+              <span class="by">
+                {' '}
+                {c.data.pubBylineConnector} {authors.map((a) => a.data.name).join(', ')}
+              </span>
+            )}
+          </li>
+        ))
+      }
+      <li>
+        <a href="/initial-poster-2019/">Poster</a> with the initial idea from the ICSA 2019 NEMI track.
+      </li>
+    </ul>
+  </section>
+
+  <section class="wrap section" id="links">
+    <p class="kicker" data-sigil="##">links</p>
+    <h2>Important links</h2>
+    <ul class="links">
+      <li>
+        <a href="https://mcse.kastel.kit.edu/projects_ardoco.php?tab=%5B661%5D#tabpanel-661"
+          >Open student theses</a
+        >
+      </li>
+      <li><a href="/people/">People</a> who are involved in the project</li>
+      <li>
+        Central code repository <a href="https://github.com/ardoco/ardoco">ardoco/ardoco</a>
+      </li>
+      <li>Contact us at <Email address={SITE.email} /></li>
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-block: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .logo {
+    width: auto;
+    height: clamp(5rem, 12vw, 7.5rem);
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 {
+    font-size: var(--fs-h1);
+    letter-spacing: -0.03em;
+    margin: 0 0 0.35rem;
+  }
+  .tagline {
+    max-width: 34ch;
+    margin: 0 0 1.5rem;
+    color: var(--text-muted);
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.2rem);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 0;
+  }
+  .chip.primary {
+    border-color: var(--sec-line);
+    background: var(--sec-dim);
+    color: var(--sec-strong);
+  }
+
+  .intro {
+    max-width: calc(var(--measure) + 2 * var(--gutter));
+  }
+  .intro p {
+    color: var(--text-muted);
+  }
+  .affiliation {
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+    font-size: var(--fs-small);
+  }
+
+  .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+    gap: 0.75rem;
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+  }
+  .approach-grid a {
+    display: block;
+    height: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-m);
+    background: var(--bg-1);
+    text-decoration: none;
+    color: inherit;
+    transition:
+      border-color var(--dur) var(--ease),
+      translate var(--dur) var(--ease);
+  }
+  .approach-grid a:hover {
+    border-color: var(--sec-line);
+    translate: 0 -2px;
+  }
+  .approach-grid strong {
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .approach-grid span {
+    font-size: var(--fs-small);
+    color: var(--text-faint);
+  }
+
+  .sub {
+    color: var(--text-faint);
+    font-size: var(--fs-small);
+    margin-bottom: 1rem;
+  }
+  .pub-list,
+  .links {
+    padding-left: 1.15rem;
+    margin: 0;
+  }
+  .pub-list li,
+  .links li {
+    margin-bottom: 0.65rem;
+    color: var(--text-muted);
+  }
+  .pub-list strong {
+    color: var(--text);
+  }
+  .by,
+  .extra {
+    font-size: var(--fs-small);
+  }
+  .emoji {
+    margin-right: 0.25em;
+  }
+</style>

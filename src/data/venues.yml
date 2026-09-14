@@ -1,0 +1,30 @@
+# Venue badge colours, keyed by the `abbr` field in papers.bib.
+# An abbr with no entry here fails the build (content.config.ts uses
+# reference('venues')) — under Jekyll it silently rendered an uncoloured badge.
+ICSA:
+  name: International Conference on Software Architecture
+  url: https://conf.researchr.org/series/icsa
+  color: '#23a1e0'
+
+ECSA:
+  name: European Conference on Software Architecture
+  url: https://conf.researchr.org/series/ecsa
+  color: '#df9b1b'
+
+ICSE:
+  name: International Conference on Software Engineering
+  url: https://conf.researchr.org/series/icse
+  color: '#a3107c'
+
+ASE:
+  name: International Conference on Automated Software Engineering
+  url: https://conf.researchr.org/series/ase
+  color: '#2a9d8f'
+
+# Added during the Astro migration: two @article entries (fuchss_exarch_2026,
+# fuchss_lissa_2026) carried abbr = {SE} with no venues.yml entry, so their
+# badges rendered grey and unlabelled on the old site.
+SE:
+  name: Software Engineering (GI)
+  url: https://fachgruppe-se.gi.de/
+  color: '#5b5bd6'

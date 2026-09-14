@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { SITE } from '../../consts';
+import { canonical } from '../../lib/urls';
+
+interface Props {
+  pub: CollectionEntry<'publications'>;
+}
+const { pub } = Astro.props;
+const d = pub.data;
+
+/*
+ * Highwire Press citation_* tags plus a ScholarlyArticle JSON-LD block.
+ *
+ * The old site emitted neither — serve_og_meta and serve_schema_org were both
+ * false in _config.yml. These are how Google Scholar, DBLP and friends discover
+ * and attribute a paper page, so on a research-project site they are free.
+ *
+ * ARDoCo hosts no paper PDFs itself (only slide decks), so there is no
+ * citation_pdf_url; the canonical page URL stands in.
+ */
+const container = d.booktitle ?? d.journal;
+const date = d.month ? `${d.year}/${String(d.month).padStart(2, '0')}` : String(d.year);
+const pageUrl = canonical(Astro.url.pathname);
+---
+
+<meta name="citation_title" content={d.title} />
+{d.authors.map((a) => <meta name="citation_author" content={`${a.last}, ${a.first}`} />)}
+<meta name="citation_publication_date" content={date} />
+{container && <meta name="citation_conference_title" content={container} />}
+{d.journal && <meta name="citation_journal_title" content={d.journal} />}
+{d.publisher && <meta name="citation_publisher" content={d.publisher} />}
+{d.doi && <meta name="citation_doi" content={d.doi} />}
+{d.volume && <meta name="citation_volume" content={d.volume} />}
+{d.pages && <meta name="citation_firstpage" content={d.pages.split('--')[0]} />}
+<meta name="citation_abstract_html_url" content={pageUrl} />
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'ScholarlyArticle',
+    headline: d.title,
+    name: d.title,
+    author: d.authors.map((a) => ({ '@type': 'Person', name: `${a.first} ${a.last}`.trim() })),
+    datePublished: String(d.year),
+    isPartOf: container ? { '@type': 'PublicationEvent', name: container } : undefined,
+    publisher: d.publisher ? { '@type': 'Organization', name: d.publisher } : undefined,
+    identifier: d.doi ? `https://doi.org/${d.doi}` : undefined,
+    url: pageUrl,
+    isAccessibleForFree: true,
+    sourceOrganization: { '@type': 'Organization', name: SITE.title, url: SITE.url },
+  })}
+/>

@@ -1,0 +1,53 @@
+---
+import { intrinsic } from '../lib/images';
+
+interface Props {
+  src: string;
+  alt: string;
+  plate?: boolean;
+}
+const { src, alt, plate = true } = Astro.props;
+
+const { width, height } = intrinsic(src);
+
+/*
+ * How wide the figure is allowed to get.
+ *
+ * The approach diagrams are small and wide (icsa25-transarc.svg is 337x110).
+ * Stretched across the full 1120px column they dominate the page and dwarf the
+ * text they illustrate, so vectors are capped at roughly the prose measure.
+ *
+ * Raster images are capped at their own pixel width instead: the 2019 poster is
+ * 1010px across, and scaling it past that is what made it look soft.
+ */
+const isVector = src.endsWith('.svg');
+const maxWidth = isVector ? 'var(--measure)' : `${width}px`;
+---
+
+<figure class:list={['figure', plate && 'has-plate']} style={`--fig-max: ${maxWidth}`}>
+  <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" />
+</figure>
+
+<style>
+  .figure {
+    max-width: min(100%, var(--fig-max));
+    margin: 0 auto 1.75rem;
+  }
+  .figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-m);
+    border: 1px solid var(--border);
+  }
+  /*
+   * The approach diagrams are dark line art on a transparent background, drawn
+   * for a white page. On a near-black one they are all but invisible, so they
+   * sit on a light plate — except the two that were authored with their own
+   * background already baked in.
+   */
+  .has-plate img {
+    background: #fff;
+    padding: 0.9rem;
+  }
+</style>

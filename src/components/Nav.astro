@@ -1,0 +1,113 @@
+---
+import { NAV, SITE, type Section } from '../consts';
+
+interface Props {
+  section?: Section;
+}
+const { section } = Astro.props;
+---
+
+<nav class="nav" aria-label="Primary">
+  <div class="wrap inner">
+    <a class="brand" href="/">
+      <img src="/assets/img/logo.png" alt="" width="28" height="28" />
+      <span>{SITE.title}</span>
+    </a>
+    <ul>
+      {
+        NAV.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              data-section={item.section}
+              aria-current={item.section === section ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    min-height: 3.75rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .brand img {
+    border-radius: var(--radius-s);
+  }
+  .brand:hover {
+    color: var(--teal);
+  }
+
+  /* No hamburger: five short items wrap onto a second line on narrow screens,
+     which is less machinery and one fewer thing that can trap focus. */
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.1rem;
+    list-style: none;
+    margin: 0 0 0 auto;
+    padding: 0;
+  }
+  ul a {
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid transparent;
+  }
+
+  /* Each nav item previews the accent of the section it leads to, so the
+     colour change on arrival is continuous rather than a surprise. */
+  ul a[data-section='home']:hover,
+  ul a[data-section='home'][aria-current='page'] {
+    color: var(--text);
+    border-color: var(--text-faint);
+  }
+  ul a[data-section='approaches']:hover,
+  ul a[data-section='approaches'][aria-current='page'] {
+    color: var(--azure);
+    border-color: var(--azure-line);
+  }
+  ul a[data-section='conferences']:hover,
+  ul a[data-section='conferences'][aria-current='page'] {
+    color: var(--violet);
+    border-color: var(--violet-line);
+  }
+  ul a[data-section='publications']:hover,
+  ul a[data-section='publications'][aria-current='page'] {
+    color: var(--green);
+    border-color: var(--green-line);
+  }
+  ul a[data-section='people']:hover,
+  ul a[data-section='people'][aria-current='page'] {
+    color: var(--amber);
+    border-color: var(--amber-line);
+  }
+</style>

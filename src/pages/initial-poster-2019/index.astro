@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import { intrinsic } from '../../lib/images';
+
+const poster = '/assets/img/approaches/icsa2019-poster.png';
+const { width, height } = intrinsic(poster);
+---
+
+<Base
+  title="initial poster (2019)"
+  description="The poster presenting the initial ARDoCo idea, from the ICSA 2019 New and Emerging Ideas track."
+>
+  <article class="wrap page">
+    <p class="kicker" data-sigil="##">2019</p>
+    <h1>The initial idea</h1>
+    <p class="lede">
+      ARDoCo started as a poster at the New and Emerging Ideas (NEMI) track of ICSA 2019. It
+      sketches the goal the project has pursued since: keeping informal documentation and formal
+      models consistent with one another.
+    </p>
+
+    <figure>
+      <img
+        src={poster}
+        alt="ARDoCo poster from the ICSA 2019 NEMI track"
+        width={width}
+        height={height}
+      />
+    </figure>
+  </article>
+</Base>
+
+<style>
+  .page {
+    padding-block: clamp(2rem, 6vw, 3.5rem);
+  }
+  .lede {
+    max-width: var(--measure);
+    color: var(--text-muted);
+  }
+  figure {
+    /* Capped at the poster's own 1010px width — scaling a raster past its pixel
+       count is what made it look soft. */
+    max-width: min(100%, 1010px);
+    margin: 2rem auto 0;
+  }
+  figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #fff;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-m);
+  }
+</style>

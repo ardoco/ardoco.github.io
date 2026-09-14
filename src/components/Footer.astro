@@ -1,0 +1,45 @@
+---
+import { SITE } from '../consts';
+import Email from './Email.astro';
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="wrap inner">
+    <p>
+      &copy; {year} ARDoCo &middot; developed at the{' '}
+      <a href="https://mcse.kastel.kit.edu">MCSE group</a>,{' '}
+      <a href="https://kastel.kit.edu">KASTEL</a>,{' '}
+      <a href="https://www.kit.edu">KIT</a>
+    </p>
+    <p class="links">
+      <a href={SITE.repo}>GitHub</a>
+      <Email address={SITE.email} />
+    </p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: clamp(3rem, 8vw, 6rem);
+    padding-block: 2rem;
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+  }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+  }
+  p {
+    margin: 0;
+  }
+  .links {
+    display: flex;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+  }
+</style>
