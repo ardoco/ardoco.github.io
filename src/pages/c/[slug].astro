@@ -44,10 +44,12 @@ const anchorByAuthor = new Map(people.map((p) => [p.data.author.id, personPath(p
 
 const { Content } = await render(entry);
 
+// Lowercase because the column heads are set in mono and read as keys, not as
+// sentences — the same voice as every other `.mono` label on the site.
 const sections: { key: 'paper' | 'replication' | 'slides'; title: string }[] = [
-  { key: 'paper', title: 'Paper' },
-  { key: 'replication', title: 'Replication Package' },
-  { key: 'slides', title: 'Slides' },
+  { key: 'paper', title: 'paper' },
+  { key: 'replication', title: 'replication package' },
+  { key: 'slides', title: 'slides' },
 ];
 const linkRows = sections
   .map((s) => ({ ...s, items: Object.entries(d.links[s.key] ?? {}) }))
@@ -65,7 +67,18 @@ const linkRows = sections
 
   <article class="wrap paper">
     <header>
-      <p class="kicker" data-sigil="##">
+      {
+        /* One line doing both jobs: where you are, and what this is. A separate
+          breadcrumb above a venue kicker said the same thing twice in a row, and
+          the slug it ended on is the part a reader already knows — they just
+          clicked it. So the path's leaf is the venue label instead.
+
+          Both sides of the separator need an explicit space: Astro strips the
+          newline between an element and the next. */
+      }
+      <p class="kicker" data-sigil="none">
+        <a href="/conferences/">conferences</a>
+        {' / '}
         {d.pubShortName ?? d.navLabel ?? 'publication'}
       </p>
       <h1>{d.title}</h1>
@@ -77,7 +90,7 @@ const linkRows = sections
               const href = anchorByAuthor.get(a.id);
               return (
                 <Fragment>
-                  {i > 0 && ', '}
+                  {i > 0 && (i === authors.length - 1 ? ', and ' : ', ')}
                   {href ? <a href={href}>{a.data.name}</a> : a.data.name}
                   {a.data.orcid && (
                     <a
@@ -128,7 +141,7 @@ const linkRows = sections
             Also presented at{' '}
             {d.additionalPresentations.map((p, i) => (
               <Fragment>
-                {i > 0 && ', '}
+                {i > 0 && (i === authors.length - 1 ? ', and ' : ', ')}
                 <a href={p.url} rel="noopener">
                   {p.name}
                 </a>
@@ -166,20 +179,24 @@ const linkRows = sections
       linkRows.length > 0 && (
         <section class="links">
           <h2>Links</h2>
-          <dl>
+          {/* One column per group, plain links rather than chips: a chip reads as
+              an action, and these are an index of everywhere the work lives. */}
+          <div class="link-grid">
             {linkRows.map((row) => (
-              <Fragment>
-                <dt>{row.title}</dt>
-                <dd>
+              <div>
+                <h3 class="mono">{row.title}</h3>
+                <ul>
                   {row.items.map(([key, url]) => (
-                    <a class="chip" href={url} rel="noopener">
-                      {row.key === 'slides' ? slideLabel(key) : (LINK_LABELS[key] ?? key)}
-                    </a>
+                    <li>
+                      <a href={url} rel="noopener">
+                        {row.key === 'slides' ? slideLabel(key) : (LINK_LABELS[key] ?? key)}
+                      </a>
+                    </li>
                   ))}
-                </dd>
-              </Fragment>
+                </ul>
+              </div>
             ))}
-          </dl>
+          </div>
         </section>
       )
     }
@@ -209,6 +226,14 @@ const linkRows = sections
     max-width: calc(var(--measure) + 2 * var(--gutter));
     padding-block: clamp(2rem, 6vw, 3.5rem);
   }
+
+  .kicker a {
+    color: inherit;
+  }
+  .kicker a:hover {
+    color: var(--sec-strong);
+  }
+
   header {
     margin-bottom: 1.75rem;
   }
@@ -275,23 +300,28 @@ const linkRows = sections
     padding: 0;
   }
 
-  .links dl {
+  /* auto-fit rather than a fixed column count: three groups sit side by side on
+     a wide page and collapse to one column on a phone without a media query. */
+  .link-grid {
     display: grid;
-    grid-template-columns: max-content minmax(0, 1fr);
-    gap: 0.6rem 1.25rem;
-    margin: 0;
-    align-items: baseline;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 1.25rem;
   }
-  .links dt {
-    font-family: var(--font-mono);
+  .link-grid h3 {
+    margin: 0 0 0.5rem;
     font-size: var(--fs-mono);
     color: var(--text-faint);
+    text-transform: lowercase;
   }
-  .links dd {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
+  .link-grid ul {
+    list-style: none;
     margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.35rem;
+  }
+  .link-grid a {
+    font-size: var(--fs-small);
   }
 
   .links,
@@ -306,15 +336,5 @@ const linkRows = sections
   .bib-body pre {
     margin: 0;
     font-size: 0.75rem;
-  }
-
-  @media (max-width: 34rem) {
-    .links dl {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.3rem;
-    }
-    .links dd {
-      margin-bottom: 0.7rem;
-    }
   }
 </style>
