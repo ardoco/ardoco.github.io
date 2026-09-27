@@ -19,6 +19,10 @@ conferenceUrl: https://conf.researchr.org/home/ase-2026
 links:
   paper:
     arxiv: https://arxiv.org/abs/2606.28064
+    kitopen: https://publikationen.bibliothek.kit.edu/1000195623
+  replication:
+    zenodo: https://doi.org/10.5281/zenodo.21533985
+    repo: https://github.com/ardoco/Replication-Package-ASE26_Ardoco-Tool-Landscape
 ---
 
 ## Abstract

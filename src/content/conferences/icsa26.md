@@ -10,7 +10,6 @@ authors:
   - tobias_hey
 year: 2026
 featured: true
-inPress: true
 navLabel: ICSA 2026
 navOrder: 3
 pubShortName: ICSA 2026
@@ -22,6 +21,7 @@ figure:
   plate: true
 links:
   paper:
+    ieee: https://doi.org/10.1109/ICSA66085.2026.00011
     kitopen: https://publikationen.bibliothek.kit.edu/1000191263
   replication:
     zenodo: https://doi.org/10.5281/zenodo.18891082

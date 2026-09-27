@@ -27,7 +27,7 @@ const num = (v: unknown): number | undefined => {
 };
 
 /** A parsed BibTeX name. The parser hands these back even in `raw` mode. */
-type BibName = { lastName?: string; firstName?: string };
+type BibName = { lastName?: string; firstName?: string; prefix?: string; suffix?: string };
 
 const isNameList = (v: unknown): v is BibName[] =>
   Array.isArray(v) && v.length > 0 && typeof v[0] === 'object' && v[0] !== null;
@@ -123,9 +123,12 @@ export function bibtexLoader(opts: { file: string; conferenceRoot: string }): Lo
           (rawEntry?.fields as Record<string, unknown>) ?? f,
         );
 
+        // The normalizing parse splits a nobiliary particle off into `prefix`
+        // and a "Jr."-style tail into `suffix` (only "von Geisau, Johannes" is
+        // affected today). Reading `lastName` alone printed "Johannes Geisau".
         const people = authors.map((a) => ({
           first: str(a.firstName) ?? '',
-          last: str(a.lastName) ?? '',
+          last: [str(a.prefix), str(a.lastName), str(a.suffix)].filter(Boolean).join(' '),
         }));
 
         const data = {
