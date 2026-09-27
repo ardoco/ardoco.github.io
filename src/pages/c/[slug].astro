@@ -188,12 +188,10 @@ const linkRows = sections
       pub && (
         <section class="cite">
           <h2>Cite this paper</h2>
-          {
-            /* BibTeX alone. A full PubEntry here repeated the whole header —
+          {/* BibTeX alone. A full PubEntry here repeated the whole header —
               badge, title, authors, venue, PDF and DOI — a screen further down
               the same page, and buried the one thing this section is for behind
-              a disclosure toggle. */
-          }
+              a disclosure toggle. */}
           <div class="bib-body">
             <CopyButton target={bibId} />
             <pre id={bibId}>{pub.data.bibtex}</pre>
