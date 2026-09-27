@@ -3,12 +3,11 @@ import { getCollection, getEntry, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Prose from '../../components/Prose.astro';
 import Figure from '../../components/Figure.astro';
-import PubEntry from '../../components/pub/PubEntry.astro';
+import CopyButton from '../../components/pub/CopyButton.astro';
 import ScholarMeta from '../../components/pub/ScholarMeta.astro';
 import VenueBadge from '../../components/pub/VenueBadge.astro';
 import { LINK_LABELS, slideLabel } from '../../lib/conferences';
 import { approachPath, conferencePath, personPath } from '../../lib/urls';
-import { peopleLinks } from '../../lib/people';
 import { redirectResponse } from '../../lib/redirect';
 
 export async function getStaticPaths() {
@@ -35,9 +34,9 @@ if (d.redirectTo) {
 }
 
 const pub = d.publication ? await getEntry(d.publication) : undefined;
+const bibId = `bib-${pub?.id ?? 'entry'}`;
 const authors = await Promise.all(d.authors.map((ref) => getEntry(ref)));
 const approaches = await Promise.all(d.approaches.map((ref) => getEntry(ref)));
-const links = await peopleLinks();
 
 // Anchor for each author who also has a profile on /people/.
 const people = await getCollection('people');
@@ -189,7 +188,16 @@ const linkRows = sections
       pub && (
         <section class="cite">
           <h2>Cite this paper</h2>
-          <PubEntry pub={pub} links={links} />
+          {
+            /* BibTeX alone. A full PubEntry here repeated the whole header —
+              badge, title, authors, venue, PDF and DOI — a screen further down
+              the same page, and buried the one thing this section is for behind
+              a disclosure toggle. */
+          }
+          <div class="bib-body">
+            <CopyButton target={bibId} />
+            <pre id={bibId}>{pub.data.bibtex}</pre>
+          </div>
         </section>
       )
     }
@@ -291,6 +299,15 @@ const linkRows = sections
   .links,
   .cite {
     margin-top: 2.5rem;
+  }
+
+  /* Copy sits in the corner of the block it copies rather than above it. */
+  .bib-body {
+    position: relative;
+  }
+  .bib-body pre {
+    margin: 0;
+    font-size: 0.75rem;
   }
 
   @media (max-width: 34rem) {
