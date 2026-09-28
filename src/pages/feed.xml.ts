@@ -55,6 +55,20 @@ export async function GET(context: { site: URL }) {
     description: SITE.description,
     site: context.site ?? SITE.url,
     items,
+    /*
+     * @astrojs/rss defaults this to `true` and appends a slash to every item
+     * link. This site is `build.format: 'preserve'`, so a paper page IS the
+     * flat file /c/icse25 — and /c/icse25/ is a 404. Without this, every link
+     * in the published feed pointed one level too deep: a subscriber who
+     * clicked through got a 404, which is the one failure a feed cannot afford,
+     * because nobody reading it is looking at the site to notice.
+     *
+     * conferencePath() already returns the right address; this stops the
+     * integration from editing it. Correct for every item because the feed
+     * carries only /c/ pages — if it ever carries a directory route as well,
+     * the fix is per-item absolute URLs, not flipping this back.
+     */
+    trailingSlash: false,
     customData: `<language>${SITE.lang}</language>`,
   });
 }
