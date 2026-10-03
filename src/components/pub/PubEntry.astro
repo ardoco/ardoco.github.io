@@ -23,63 +23,53 @@ const venueLine = [
 ---
 
 <article class="entry" id={pub.id}>
-  <div class="badge"><VenueBadge abbr={d.abbr} /></div>
+  <div class="badge">
+    <VenueBadge abbr={d.abbr} />
+  </div>
 
   <div class="body">
-    <h3>
-      {d.infoSlug ? <a href={conferencePath(d.infoSlug)}>{d.title}</a> : d.title}
-    </h3>
+    <h3>{d.infoSlug ? <a href={conferencePath(d.infoSlug)}>{d.title}</a> : d.title}</h3>
 
     <p class="authors">
-      {
-        d.authors.map((a, i) => {
-          const href = links?.get(a.last.toLowerCase());
-          const name = `${a.first} ${a.last}`.trim();
-          return (
-            <>
-              {i > 0 && ', '}
-              {href ? <a href={href}>{name}</a> : name}
-            </>
-          );
-        })
-      }
+      {d.authors.map((a, i) => {
+        const href = links?.get(a.last.toLowerCase());
+        const name = `${a.first} ${a.last}`.trim();
+        return (
+          <>
+            {i > 0 && ', '}
+            {href ? <a href={href}>{name}</a> : name}
+          </>
+        );
+      })}
     </p>
 
     {venueLine.length > 0 && <p class="venue-line">{venueLine.join(' · ')}</p>}
 
     <div class="actions">
-      {
-        d.infoSlug && (
-          <a class="chip" href={conferencePath(d.infoSlug)}>
-            Details &rarr;
-          </a>
-        )
-      }
-      {
-        d.doi && (
-          <a class="chip" href={`https://doi.org/${d.doi}`} rel="noopener">
-            DOI
-          </a>
-        )
-      }
-      {
-        d.url && !d.doi && (
-          <a class="chip" href={d.url} rel="noopener">
-            Link
-          </a>
-        )
-      }
-      {
-        !compact && (
-          <details class="bib">
-            <summary class="chip">BibTeX</summary>
-            <div class="bib-body">
-              <CopyButton target={`bib-${pub.id}`} />
-              <pre id={`bib-${pub.id}`}>{d.bibtex}</pre>
-            </div>
-          </details>
-        )
-      }
+      {d.infoSlug && (
+        <a class="chip" href={conferencePath(d.infoSlug)}>
+          Details &rarr;
+        </a>
+      )}
+      {d.doi && (
+        <a class="chip" href={`https://doi.org/${d.doi}`} rel="noopener">
+          DOI
+        </a>
+      )}
+      {d.url && !d.doi && (
+        <a class="chip" href={d.url} rel="noopener">
+          Link
+        </a>
+      )}
+      {!compact && (
+        <details class="bib">
+          <summary class="chip">BibTeX</summary>
+          <div class="bib-body">
+            <CopyButton target={`bib-${pub.id}`} />
+            <pre id={`bib-${pub.id}`}>{d.bibtex}</pre>
+          </div>
+        </details>
+      )}
     </div>
   </div>
 </article>

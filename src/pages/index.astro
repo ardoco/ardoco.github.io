@@ -25,9 +25,15 @@ const highlights = await Promise.all(
     <h1>ARDoCo</h1>
     <p class="tagline">{SITE.tagline}</p>
     <p class="actions">
-      <a class="chip primary" href="/approaches/">Explore approaches</a>
-      <a class="chip" href="/publications/">Publications</a>
-      <a class="chip" href={SITE.repo} rel="noopener">GitHub</a>
+      <a class="chip primary" href="/approaches/">
+        Explore approaches
+      </a>
+      <a class="chip" href="/publications/">
+        Publications
+      </a>
+      <a class="chip" href={SITE.repo} rel="noopener">
+        GitHub
+      </a>
     </p>
   </section>
 
@@ -47,14 +53,12 @@ const highlights = await Promise.all(
       Models (LLMs) and Information Retrieval (IR) to enable more generic and effective traceability
       link recovery across various artifact types, including requirements-to-code,
       documentation-to-code, and architecture-to-code tracing. We also leverage LLMs for specialized
-      tasks, such as <a href="/approaches/exarch/">ExArch</a> which uses LLM-based architecture component
-      name extraction to identify and link architectural elements. You can find our different approaches,
-      including <a href="/approaches/lissa/">LiSSA</a>,{' '}
+      tasks, such as <a href="/approaches/exarch/">ExArch</a> which uses LLM-based architecture
+      component name extraction to identify and link architectural elements. You can find our
+      different approaches, including <a href="/approaches/lissa/">LiSSA</a>,{' '}
       <a href="/approaches/exarch/">ExArch</a>, and others, on the{' '}
-      <a href="/approaches/">approaches</a> page or read more about them using the details link on the{
-        ' '
-      }
-      <a href="/publications/">publications</a> page.
+      <a href="/approaches/">approaches</a> page or read more about them using the details link on
+      the <a href="/publications/">publications</a> page.
     </p>
 
     <p>
@@ -72,92 +76,99 @@ const highlights = await Promise.all(
 
     <p class="affiliation">
       ARDoCo is actively developed by researchers of the{' '}
-      <a href="https://mcse.kastel.kit.edu"
-        ><em>Modelling for Continuous Software Engineering (MCSE) group</em></a
-      >{' '}
+      <a href="https://mcse.kastel.kit.edu">
+        <em>Modelling for Continuous Software Engineering (MCSE) group</em>
+      </a>{' '}
       of{' '}
-      <a href="https://kastel.kit.edu"
-        ><em>KASTEL — Institute of Information Security and Dependability</em></a
-      >{' '}
+      <a href="https://kastel.kit.edu">
+        <em>KASTEL — Institute of Information Security and Dependability</em>
+      </a>{' '}
       at the <a href="https://www.kit.edu">KIT</a>.
     </p>
   </section>
 
   <section class="wrap section" data-section="approaches" id="approaches">
-    <p class="kicker" data-sigil="##">approaches</p>
+    <p class="kicker" data-sigil="##">
+      approaches
+    </p>
     <h2>What we build</h2>
     <ul class="approach-grid">
-      {
-        approaches.map((a) => (
-          <li class="reveal">
-            <a href={approachPath(a.id)}>
-              <strong>{a.data.title}</strong>
-              <span>{a.data.description}</span>
-            </a>
-          </li>
-        ))
-      }
+      {approaches.map((a) => (
+        <li class="reveal">
+          <a href={approachPath(a.id)}>
+            <strong>{a.data.title}</strong>
+            <span>{a.data.description}</span>
+          </a>
+        </li>
+      ))}
     </ul>
   </section>
 
   <section class="wrap section" data-section="conferences" id="publications">
-    <p class="kicker" data-sigil="##">publications</p>
+    <p class="kicker" data-sigil="##">
+      publications
+    </p>
     <h2>Relevant and recent publications</h2>
     <p class="sub">Each link leads to a page with details about the corresponding publication.</p>
     <ul class="pub-list">
-      {
-        highlights.map(({ c, authors }) => (
-          <li class="reveal">
-            <a href={conferencePath(c.id)}>
-              {c.data.pubEmoji && <span class="emoji">{c.data.pubEmoji}</span>}
-              {c.data.pubPrefixText}
-              {c.data.pubShortName ? ` ${c.data.pubShortName}` : ''}
-            </a>
-            {c.data.additionalPresentations.length > 0 && (
-              <span class="extra">
-                {' '}
-                with additional presentation
-                {c.data.additionalPresentations.length > 1 ? 's' : ''} at{' '}
-                {c.data.additionalPresentations.map((p, i) => (
-                  <Fragment>
-                    {i > 0 && ', '}
-                    <a href={p.url} rel="noopener">
-                      {p.shortName ?? p.name}
-                    </a>
-                  </Fragment>
-                ))}
-              </span>
-            )}
-            : <strong>{c.data.title}</strong>
-            {authors.length > 0 && (
-              <span class="by">
-                {' '}
-                {c.data.pubBylineConnector} {authors.map((a) => a.data.name).join(', ')}
-              </span>
-            )}
-          </li>
-        ))
-      }
+      {highlights.map(({ c, authors }) => (
+        <li class="reveal">
+          <a href={conferencePath(c.id)}>
+            {c.data.pubEmoji && <span class="emoji">{c.data.pubEmoji}</span>}
+            {c.data.pubPrefixText}
+            {c.data.pubShortName ? ` ${c.data.pubShortName}` : ''}
+          </a>
+          {c.data.additionalPresentations.length > 0 && (
+            <span class="extra">
+              {' '}
+              with additional presentation
+              {c.data.additionalPresentations.length > 1 ? 's' : ''} at{' '}
+              {c.data.additionalPresentations.map((p, i) => (
+                <Fragment>
+                  {i > 0 && ', '}
+                  <a href={p.url} rel="noopener">
+                    {p.shortName ?? p.name}
+                  </a>
+                </Fragment>
+              ))}
+            </span>
+          )}
+          : <strong>{c.data.title}</strong>
+          {authors.length > 0 && (
+            <span class="by">
+              {' '}
+              {c.data.pubBylineConnector} {authors.map((a) => a.data.name).join(', ')}
+            </span>
+          )}
+        </li>
+      ))}
       <li>
-        <a href="/initial-poster-2019/">Poster</a> with the initial idea from the ICSA 2019 NEMI track.
+        <a href="/initial-poster-2019/">Poster</a> with the initial idea from the ICSA 2019 NEMI
+        track.
       </li>
     </ul>
   </section>
 
   <section class="wrap section" id="links">
-    <p class="kicker" data-sigil="##">links</p>
+    <p class="kicker" data-sigil="##">
+      links
+    </p>
     <h2>Important links</h2>
     <ul class="links">
       <li>
-        <a href="https://mcse.kastel.kit.edu/projects_ardoco.php?tab=%5B661%5D#tabpanel-661"
-          >Open student theses</a
-        >
+        <a href="https://mcse.kastel.kit.edu/projects_ardoco.php?tab=%5B661%5D#tabpanel-661">
+          Open student theses
+        </a>
       </li>
-      <li><a href="/people/">People</a> who are involved in the project</li>
+      <li>
+        <a href="/people/">People</a> who are involved in the project
+      </li>
       <li>
         Central code repository <a href="https://github.com/ardoco/ardoco">ardoco/ardoco</a>
       </li>
-      <li>Contact us at <Email address={SITE.email} /></li>
+      <li>
+        Contact us at <Email address={SITE.email} />
+      </li>
     </ul>
   </section>
 </Base>

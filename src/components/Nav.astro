@@ -14,19 +14,17 @@ const { section } = Astro.props;
       <span>{SITE.title}</span>
     </a>
     <ul>
-      {
-        NAV.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              data-section={item.section}
-              aria-current={item.section === section ? 'page' : undefined}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
+      {NAV.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            data-section={item.section}
+            aria-current={item.section === section ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
     </ul>
   </div>
 </nav>

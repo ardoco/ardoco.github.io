@@ -40,8 +40,10 @@ const shown = label ?? `${user} (at) ${host.replace(/\./g, ' (dot) ')}`;
   class:list={['email', className]}
   data-u={rot13(user)}
   data-h={rot13(host)}
-  data-label={label ? '' : undefined}>{shown}</span
+  data-label={label ? '' : undefined}
 >
+  {shown}
+</span>
 
 <script>
   const rot13 = (s: string) =>

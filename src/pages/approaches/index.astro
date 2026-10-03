@@ -14,7 +14,9 @@ const approaches = (await getCollection('approaches')).sort(
   section="approaches"
 >
   <div class="wrap head">
-    <p class="kicker" data-sigil="##">approaches</p>
+    <p class="kicker" data-sigil="##">
+      approaches
+    </p>
     <h1>What ARDoCo builds</h1>
     <p class="lede">
       Each approach targets a different pair of artifacts — documentation, architecture models,
@@ -24,19 +26,17 @@ const approaches = (await getCollection('approaches')).sort(
   </div>
 
   <ul class="wrap grid">
-    {
-      approaches.map((a) => (
-        <li class="reveal">
-          <a class="card" href={approachPath(a.id)}>
-            <h2>{a.data.title}</h2>
-            <p>{a.data.description}</p>
-            <span class="more">
-              Learn more <span aria-hidden="true">&rarr;</span>
-            </span>
-          </a>
-        </li>
-      ))
-    }
+    {approaches.map((a) => (
+      <li class="reveal">
+        <a class="card" href={approachPath(a.id)}>
+          <h2>{a.data.title}</h2>
+          <p>{a.data.description}</p>
+          <span class="more">
+            Learn more <span aria-hidden="true">&rarr;</span>
+          </span>
+        </a>
+      </li>
+    ))}
   </ul>
 </Base>
 

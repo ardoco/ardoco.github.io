@@ -38,7 +38,9 @@ const related = await Promise.all(
 <Base title={d.title} description={d.description} section="approaches">
   <article class="wrap approach">
     <header>
-      <p class="kicker" data-sigil="##">approach</p>
+      <p class="kicker" data-sigil="##">
+        approach
+      </p>
       <h1>{d.title}</h1>
       <p class="lede">{d.description}</p>
     </header>
@@ -49,41 +51,37 @@ const related = await Promise.all(
       <Content />
     </Prose>
 
-    {
-      d.repositories.length > 0 && (
-        <section class="block">
-          <h2>Code</h2>
-          <ul class="chips">
-            {d.repositories.map((r) => (
-              <li>
-                <a class="chip" href={r.url} rel="noopener">
-                  {r.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )
-    }
+    {d.repositories.length > 0 && (
+      <section class="block">
+        <h2>Code</h2>
+        <ul class="chips">
+          {d.repositories.map((r) => (
+            <li>
+              <a class="chip" href={r.url} rel="noopener">
+                {r.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
 
-    {
-      related.length > 0 && (
-        <section class="block">
-          <h2>{related.length === 1 ? 'Related publication' : 'Related publications'}</h2>
-          <ul class="pubs">
-            {related.map(({ conference, pub }) => (
-              <li>
-                {pub?.data.abbr && <VenueBadge abbr={pub.data.abbr} />}
-                <div>
-                  <a href={conferencePath(conference.id)}>{conference.data.title}</a>
-                  <p>{conference.data.pubShortName ?? conference.data.conferenceName}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )
-    }
+    {related.length > 0 && (
+      <section class="block">
+        <h2>{related.length === 1 ? 'Related publication' : 'Related publications'}</h2>
+        <ul class="pubs">
+          {related.map(({ conference, pub }) => (
+            <li>
+              {pub?.data.abbr && <VenueBadge abbr={pub.data.abbr} />}
+              <div>
+                <a href={conferencePath(conference.id)}>{conference.data.title}</a>
+                <p>{conference.data.pubShortName ?? conference.data.conferenceName}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
   </article>
 </Base>
 

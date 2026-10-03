@@ -13,61 +13,59 @@ const people = (await members()).map((p) => ({ ...p, size: intrinsic(p.image) })
   section="people"
 >
   <div class="wrap head">
-    <p class="kicker" data-sigil="##">people</p>
+    <p class="kicker" data-sigil="##">
+      people
+    </p>
     <h1>Who works on ARDoCo</h1>
     <p class="lede">
       ARDoCo is developed by researchers of the{' '}
-      <a href="https://mcse.kastel.kit.edu">Modelling for Continuous Software Engineering</a> group at{
-        ' '
-      }
-      <a href="https://kastel.kit.edu">KASTEL</a>, Karlsruhe Institute of Technology.
+      <a href="https://mcse.kastel.kit.edu">Modelling for Continuous Software Engineering</a> group
+      at <a href="https://kastel.kit.edu">KASTEL</a>, Karlsruhe Institute of Technology.
     </p>
   </div>
 
   <ul class="wrap grid">
-    {
-      people.map((p) => (
-        /*
-         * The id is the anchor: publication author links point at
-         * /people/#dominik-fuchß, an address Jekyll generated from the
-         * "## Dominik Fuchß" headings. It has to keep resolving.
-         */
-        <li class="card reveal" id={p.id}>
-          <img
-            src={p.image}
-            alt=""
-            width={p.size.width}
-            height={p.size.height}
-            loading="lazy"
-            decoding="async"
-          />
-          <div>
-            <h2>{p.name}</h2>
-            <ul class="links">
-              {p.orcid && (
-                <li>
-                  <a class="chip" href={`https://orcid.org/${p.orcid}`} rel="noopener">
-                    ORCID {p.orcid}
-                  </a>
-                </li>
-              )}
-              {p.kitUrl && (
-                <li>
-                  <a class="chip" href={p.kitUrl} rel="noopener">
-                    Website at KIT
-                  </a>
-                </li>
-              )}
-              {p.email && (
-                <li>
-                  <Email class="chip" address={p.email} />
-                </li>
-              )}
-            </ul>
-          </div>
-        </li>
-      ))
-    }
+    {people.map((p) => (
+      /*
+       * The id is the anchor: publication author links point at
+       * /people/#dominik-fuchß, an address Jekyll generated from the
+       * "## Dominik Fuchß" headings. It has to keep resolving.
+       */
+      <li class="card reveal" id={p.id}>
+        <img
+          src={p.image}
+          alt=""
+          width={p.size.width}
+          height={p.size.height}
+          loading="lazy"
+          decoding="async"
+        />
+        <div>
+          <h2>{p.name}</h2>
+          <ul class="links">
+            {p.orcid && (
+              <li>
+                <a class="chip" href={`https://orcid.org/${p.orcid}`} rel="noopener">
+                  ORCID {p.orcid}
+                </a>
+              </li>
+            )}
+            {p.kitUrl && (
+              <li>
+                <a class="chip" href={p.kitUrl} rel="noopener">
+                  Website at KIT
+                </a>
+              </li>
+            )}
+            {p.email && (
+              <li>
+                <Email class="chip" address={p.email} />
+              </li>
+            )}
+          </ul>
+        </div>
+      </li>
+    ))}
   </ul>
 </Base>
 
