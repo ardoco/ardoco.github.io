@@ -22,26 +22,14 @@ export const listed = (all: Conference[]): Conference[] =>
 export const featured = (all: Conference[]): Conference[] =>
   listed(all).filter((c) => c.data.featured);
 
-/** Human labels for the keys used in a conference entry's `links` maps. */
-export const LINK_LABELS: Record<string, string> = {
-  arxiv: 'arXiv',
-  ieee: 'IEEE Xplore',
-  acm: 'ACM DL',
-  springer: 'Springer',
-  kitopen: 'KITopen',
-  zenodo: 'Zenodo',
-  repo: 'GitHub',
-  pptx: 'PPTX',
-  pdf: 'PDF',
-};
-
 /**
  * Slides keys carry a presentation venue as a prefix: `se26_pdf` is the SE 2026
  * deck, `icsa23_pdf` the ICSA 2023 one. The old Liquid derived the label by
- * string surgery on the key; same rule, in one place.
+ * string surgery on the key; same rule, in one place. `labels` are the human
+ * names for the link keys, `linkLabels` in src/content/pages/site/publication.md.
  */
-export function slideLabel(key: string): string {
+export function slideLabel(key: string, labels: Record<string, string>): string {
   const m = key.match(/^(.+)_(pdf|pptx)$/);
   if (m) return `${m[2].toUpperCase()} (${m[1].replace(/[-_]/g, ' ').toUpperCase()})`;
-  return LINK_LABELS[key] ?? key.toUpperCase();
+  return labels[key] ?? key.toUpperCase();
 }

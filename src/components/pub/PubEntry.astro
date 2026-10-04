@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import VenueBadge from './VenueBadge.astro';
 import CopyButton from './CopyButton.astro';
 import { conferencePath } from '../../lib/urls';
+import { getPage } from '../../lib/pages';
 
 interface Props {
   pub: CollectionEntry<'publications'>;
@@ -14,6 +15,8 @@ interface Props {
 
 const { pub, links, compact = false } = Astro.props;
 const d = pub.data;
+/* The words on every entry: src/content/pages/site/publication.md. */
+const { label } = await getPage('site/publication');
 
 const venueLine = [
   d.booktitle ?? d.journal ?? d.school ?? d.institution,
@@ -48,22 +51,22 @@ const venueLine = [
     <div class="actions">
       {d.infoSlug && (
         <a class="chip" href={conferencePath(d.infoSlug)}>
-          Details &rarr;
+          {label('details')} &rarr;
         </a>
       )}
       {d.doi && (
         <a class="chip" href={`https://doi.org/${d.doi}`} rel="noopener">
-          DOI
+          {label('doi')}
         </a>
       )}
       {d.url && !d.doi && (
         <a class="chip" href={d.url} rel="noopener">
-          Link
+          {label('link')}
         </a>
       )}
       {!compact && (
         <details class="bib">
-          <summary class="chip">BibTeX</summary>
+          <summary class="chip">{label('bibtex')}</summary>
           <div class="bib-body">
             <CopyButton target={`bib-${pub.id}`} />
             <pre id={`bib-${pub.id}`}>{d.bibtex}</pre>

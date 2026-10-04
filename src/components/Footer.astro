@@ -1,22 +1,31 @@
 ---
 import { SITE } from '../consts';
+import { getPage, need } from '../lib/pages';
 import Email from './Email.astro';
+
+/* The words are src/content/pages/site/footer.md, its body the affiliation;
+   the "built with" credit is the theme's and stays here. */
+const footer = await getPage('site/footer');
+const holder = need(footer.data.copyright, 'site/footer.copyright');
+const links = footer.links();
 const year = new Date().getFullYear();
 ---
 
 <footer>
   <div class="wrap inner">
-    <p>
-      &copy; {year} ARDoCo &middot; developed at the{' '}
-      <a href="https://mcse.kastel.kit.edu">MCSE group</a>,{' '}
-      <a href="https://kastel.kit.edu">KASTEL</a>, <a href="https://www.kit.edu">KIT</a>
+    {/* A div, not a <p>: the affiliation is a Markdown body, which brings its
+        own paragraph, set inline here. */}
+    <div class="meta">
+      &copy; {year} {holder} &middot; <footer.Content />
       {/* Every {' '} here is load-bearing: Astro strips the newline before an
           <a>, which would render "Astro andStudia Theme". */}
       &middot; website built with <a href="https://astro.build/">Astro</a> and{' '}
       <a href="https://github.com/dfuchss/astro-studia">Studia Theme</a>
-    </p>
+    </div>
     <p class="links">
-      <a href={SITE.repo}>GitHub</a>
+      {links.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
       <Email address={SITE.email} />
     </p>
   </div>
@@ -38,6 +47,14 @@ const year = new Date().getFullYear();
   }
   p {
     margin: 0;
+  }
+  /* What the paragraph it replaces had from base.css; the body's own <p> is
+     inline, so the block that wraps the lines is this one. */
+  .meta {
+    text-wrap: pretty;
+  }
+  .meta :global(p) {
+    display: inline;
   }
   .links {
     display: flex;

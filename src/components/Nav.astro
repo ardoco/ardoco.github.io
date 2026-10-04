@@ -1,20 +1,25 @@
 ---
-import { NAV, SITE, type Section } from '../consts';
+import type { Section } from '../consts';
+import { navLinks, siteText } from '../lib/pages';
 
 interface Props {
   section?: Section;
 }
 const { section } = Astro.props;
+
+// The rows are src/content/pages/site/nav.md, the wordmark site/site.md.
+const nav = await navLinks();
+const { title } = await siteText();
 ---
 
 <nav class="nav" aria-label="Primary">
   <div class="wrap inner">
     <a class="brand" href="/">
       <img src="/assets/img/logo.png" alt="" width="28" height="28" />
-      <span>{SITE.title}</span>
+      <span>{title}</span>
     </a>
     <ul>
-      {NAV.map((item) => (
+      {nav.map((item) => (
         <li>
           <a
             href={item.href}

@@ -3,6 +3,7 @@ import { getCollection, getEntry } from 'astro:content';
 import { SITE } from '../consts';
 import { conferencePath } from '../lib/urls';
 import { listed } from '../lib/conferences';
+import { siteText } from '../lib/pages';
 
 /*
  * /feed.xml existed on the old site (jekyll-feed) and is in the sitemap, so it
@@ -50,9 +51,12 @@ export async function GET(context: { site: URL }) {
    */
   items.sort((a, b) => (b.pubDate?.getTime() ?? -Infinity) - (a.pubDate?.getTime() ?? -Infinity));
 
+  // The site's own title and description, from src/content/pages/site/site.md.
+  const { title, tagline, description } = await siteText();
+
   return rss({
-    title: `${SITE.title} — ${SITE.tagline}`,
-    description: SITE.description,
+    title: `${title} — ${tagline}`,
+    description,
     site: context.site ?? SITE.url,
     items,
     /*

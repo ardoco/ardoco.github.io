@@ -3,25 +3,24 @@ import Base from '../../layouts/Base.astro';
 import { members } from '../../lib/people';
 import { intrinsic } from '../../lib/images';
 import Email from '../../components/Email.astro';
+import { getPage } from '../../lib/pages';
 
 const people = (await members()).map((p) => ({ ...p, size: intrinsic(p.image) }));
+
+/* The words: src/content/pages/people.md. */
+const page = await getPage('people');
+const { label } = page;
 ---
 
-<Base
-  title="people"
-  description="The researchers behind ARDoCo at the MCSE group, KASTEL, Karlsruhe Institute of Technology."
-  section="people"
->
+<Base {...page.meta()} section="people">
   <div class="wrap head">
     <p class="kicker" data-sigil="##">
       people
     </p>
     <h1>Who works on ARDoCo</h1>
-    <p class="lede">
-      ARDoCo is developed by researchers of the{' '}
-      <a href="https://mcse.kastel.kit.edu">Modelling for Continuous Software Engineering</a> group
-      at <a href="https://kastel.kit.edu">KASTEL</a>, Karlsruhe Institute of Technology.
-    </p>
+    <div class="lede">
+      <page.Content />
+    </div>
   </div>
 
   <ul class="wrap grid">
@@ -46,14 +45,14 @@ const people = (await members()).map((p) => ({ ...p, size: intrinsic(p.image) })
             {p.orcid && (
               <li>
                 <a class="chip" href={`https://orcid.org/${p.orcid}`} rel="noopener">
-                  ORCID {p.orcid}
+                  {label('orcid')} {p.orcid}
                 </a>
               </li>
             )}
             {p.kitUrl && (
               <li>
                 <a class="chip" href={p.kitUrl} rel="noopener">
-                  Website at KIT
+                  {label('kitUrl')}
                 </a>
               </li>
             )}

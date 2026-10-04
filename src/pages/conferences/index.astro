@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import VenueBadge from '../../components/pub/VenueBadge.astro';
 import { listed } from '../../lib/conferences';
 import { conferencePath } from '../../lib/urls';
+import { getPage, need } from '../../lib/pages';
 
 /*
  * This page is new. The old site had no conferences index: the eleven paper
@@ -18,22 +19,19 @@ const entries = await Promise.all(
     pub: c.data.publication ? await getEntry(c.data.publication) : undefined,
   })),
 );
+
+/* The words: src/content/pages/conferences.md, and site/publication.md for a row. */
+const page = await getPage('conferences');
+const words = await getPage('site/publication');
 ---
 
-<Base
-  title="conferences"
-  description="Paper pages for ARDoCo publications: abstracts, slides, replication packages and the approaches each one builds on."
-  section="conferences"
->
+<Base {...page.meta()} section="conferences">
   <div class="wrap head">
     <p class="kicker" data-sigil="##">
       conferences
     </p>
     <h1>Papers &amp; presentations</h1>
-    <p class="lede">
-      One page per publication, with the abstract, the approaches it builds on, and links to the
-      paper, slides and replication package.
-    </p>
+    <p class="lede">{need(page.data.lede, 'conferences.lede')}</p>
   </div>
 
   <ul class="wrap list">
@@ -47,7 +45,7 @@ const entries = await Promise.all(
           <p class="meta">
             {c.data.pubEmoji && <span>{c.data.pubEmoji} </span>}
             {c.data.conferenceName ?? c.data.pubPrefixText}
-            {c.data.inPress && <span class="tag">to appear</span>}
+            {c.data.inPress && <span class="tag">{words.label('toAppear')}</span>}
           </p>
         </div>
         <span class="year">{c.data.year}</span>

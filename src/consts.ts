@@ -1,10 +1,14 @@
+/**
+ * Single values that decide how the site behaves: where it lives, which
+ * language it is in, where the code and the mailing list are. No words a reader
+ * sees: the site's text is in `src/content/pages/` (the title, the tagline, the
+ * nav and footer rows, every page's prose), and the works themselves in
+ * `src/content/` and `src/data/`.
+ */
 export const SITE = {
   url: 'https://ardoco.de',
-  title: 'ARDoCo',
-  tagline: 'Automating Requirements and Documentation Comprehension',
-  description:
-    'ARDoCo is a research project on traceability link recovery and consistency analysis between software artifacts — connecting architecture documentation, models and code, and finding what is missing or has drifted.',
   lang: 'en',
+  /** The home page's GitHub button. */
   repo: 'https://github.com/ardoco',
   email: 'ardoco@lists.kit.edu',
 } as const;
@@ -13,13 +17,9 @@ export const SITE = {
  * Drives the accent-colour cascade in tokens.css: whichever value lands on
  * <body data-section> re-points the neutral --sec-* aliases at one accent
  * family, so a single component set recolours itself per area of the site.
+ *
+ * A list rather than a bare union so the nav rows in
+ * src/content/pages/site/nav.md are validated against it.
  */
-export type Section = 'home' | 'approaches' | 'conferences' | 'publications' | 'people';
-
-export const NAV: { label: string; href: string; section: Section }[] = [
-  { label: 'about', href: '/', section: 'home' },
-  { label: 'approaches', href: '/approaches/', section: 'approaches' },
-  { label: 'conferences', href: '/conferences/', section: 'conferences' },
-  { label: 'publications', href: '/publications/', section: 'publications' },
-  { label: 'people', href: '/people/', section: 'people' },
-];
+export const SECTIONS = ['home', 'approaches', 'conferences', 'publications', 'people'] as const;
+export type Section = (typeof SECTIONS)[number];

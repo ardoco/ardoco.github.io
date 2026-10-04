@@ -6,9 +6,10 @@ import Figure from '../../components/Figure.astro';
 import CopyButton from '../../components/pub/CopyButton.astro';
 import ScholarMeta from '../../components/pub/ScholarMeta.astro';
 import VenueBadge from '../../components/pub/VenueBadge.astro';
-import { LINK_LABELS, slideLabel } from '../../lib/conferences';
+import { slideLabel } from '../../lib/conferences';
 import { approachPath, conferencePath, personPath } from '../../lib/urls';
 import { redirectResponse } from '../../lib/redirect';
+import { getPage } from '../../lib/pages';
 
 export async function getStaticPaths() {
   const all = await getCollection('conferences');
@@ -43,6 +44,11 @@ const people = await getCollection('people');
 const anchorByAuthor = new Map(people.map((p) => [p.data.author.id, personPath(p.id)]));
 
 const { Content } = await render(entry);
+
+/* The words: src/content/pages/site/publication.md. Its `linkLabels` are the
+   human names for the link keys in front matter. */
+const words = await getPage('site/publication');
+const linkLabels = words.data.linkLabels ?? {};
 
 // Lowercase because the column heads are set in mono and read as keys, not as
 // sentences — the same voice as every other `.mono` label on the site.
@@ -108,7 +114,7 @@ const linkRows = sections
         {pub?.data.abbr && <VenueBadge abbr={pub.data.abbr} />}
         {d.conferenceName && (
           <span>
-            {d.inPress ? 'To be published at ' : 'Published at '}
+            {words.label(d.inPress ? 'toBePublishedAt' : 'publishedAt')}{' '}
             {d.conferenceUrl ? (
               <a href={d.conferenceUrl} rel="noopener">
                 {d.conferenceName}
@@ -127,7 +133,7 @@ const linkRows = sections
 
       {d.additionalPresentations.length > 0 && (
         <p class="also">
-          Also presented at{' '}
+          {words.label('alsoPresented')}{' '}
           {d.additionalPresentations.map((p, i) => (
             <Fragment>
               {i > 0 && (i === authors.length - 1 ? ', and ' : ', ')}
@@ -142,7 +148,7 @@ const linkRows = sections
 
     {approaches.length > 0 && (
       <aside class="related">
-        <p>This publication is related to:</p>
+        <p>{words.label('related')}</p>
         <ul>
           {approaches.map((a) => (
             <li>
@@ -174,7 +180,9 @@ const linkRows = sections
                 {row.items.map(([key, url]) => (
                   <li>
                     <a href={url} rel="noopener">
-                      {row.key === 'slides' ? slideLabel(key) : (LINK_LABELS[key] ?? key)}
+                      {row.key === 'slides'
+                        ? slideLabel(key, linkLabels)
+                        : (linkLabels[key] ?? key)}
                     </a>
                   </li>
                 ))}

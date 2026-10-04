@@ -2,27 +2,23 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { approachPath } from '../../lib/urls';
+import { getPage, need } from '../../lib/pages';
 
 const approaches = (await getCollection('approaches')).sort(
   (a, b) => a.data.importance - b.data.importance,
 );
+
+/* The words: src/content/pages/approaches.md. */
+const page = await getPage('approaches');
 ---
 
-<Base
-  title="approaches"
-  description="The approaches developed in ARDoCo: traceability link recovery and inconsistency detection between architecture documentation, models and code."
-  section="approaches"
->
+<Base {...page.meta()} section="approaches">
   <div class="wrap head">
     <p class="kicker" data-sigil="##">
       approaches
     </p>
     <h1>What ARDoCo builds</h1>
-    <p class="lede">
-      Each approach targets a different pair of artifacts — documentation, architecture models,
-      requirements, source code — and most of them compose. They are listed roughly in the order
-      they were published.
-    </p>
+    <p class="lede">{need(page.data.lede, 'approaches.lede')}</p>
   </div>
 
   <ul class="wrap grid">
@@ -32,7 +28,7 @@ const approaches = (await getCollection('approaches')).sort(
           <h2>{a.data.title}</h2>
           <p>{a.data.description}</p>
           <span class="more">
-            Learn more <span aria-hidden="true">&rarr;</span>
+            {page.label('more')} <span aria-hidden="true">&rarr;</span>
           </span>
         </a>
       </li>

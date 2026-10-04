@@ -1,28 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getPage, need } from '../lib/pages';
+
+/* The words, and the chips under them: src/content/pages/404.md. */
+const page = await getPage('404');
+const links = page.links();
 ---
 
-<Base title="not found" description="This page does not exist.">
+<Base {...page.meta()}>
   <section class="wrap notfound">
     <p class="kicker">404</p>
     <h1>No such page</h1>
-    <p class="lede">
-      The address you followed does not exist here. It may have been a paper page that moved, or a
-      link that was never quite right.
-    </p>
+    <p class="lede">{need(page.data.lede, '404.lede')}</p>
     <p class="actions">
-      <a class="chip" href="/">
-        Home
-      </a>
-      <a class="chip" href="/approaches/">
-        Approaches
-      </a>
-      <a class="chip" href="/conferences/">
-        Conferences
-      </a>
-      <a class="chip" href="/publications/">
-        Publications
-      </a>
+      {links.map((link) => (
+        <a class="chip" href={link.href}>
+          {link.label}
+        </a>
+      ))}
     </p>
   </section>
 </Base>

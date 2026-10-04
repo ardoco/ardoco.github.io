@@ -2,6 +2,7 @@ import { defineCollection, reference } from 'astro:content';
 import { z } from 'zod';
 import { file, glob } from 'astro/loaders';
 import { bibtexLoader } from './loaders/bibtex';
+import { SECTIONS } from './consts';
 
 /** Conference brand colours for the publication badges, keyed by BibTeX `abbr`. */
 const venues = defineCollection({
@@ -98,9 +99,10 @@ const approaches = defineCollection({
 });
 
 /**
- * A map of label -> target, e.g. links.paper.ieee. Labels are resolved in
- * LINK_LABELS. Targets are absolute URLs for papers and replication packages,
- * but site-relative paths for slides, which are served from /assets/pdf/.
+ * A map of label -> target, e.g. links.paper.ieee. Labels are resolved by
+ * `linkLabels` in src/content/pages/site/publication.md. Targets are absolute
+ * URLs for papers and replication packages, but site-relative paths for
+ * slides, which are served from /assets/pdf/.
  */
 const linkTarget = z.union([
   z.url(),
@@ -157,4 +159,76 @@ const conferences = defineCollection({
   }),
 });
 
-export const collections = { venues, authors, people, publications, approaches, conferences };
+/* ── page text ─────────────────────────────────────────────────────────── */
+
+/** Singular and plural; the template picks one and fills in `{count}`. */
+const plural = z.object({ one: z.string(), other: z.string() }).strict();
+
+/** Short labels keyed by what they label. Which keys a page reads is listed in
+    its file; a missing one fails the build naming it (need() in lib/pages.ts). */
+const labels = z.record(z.string(), z.string());
+
+/** A link written as Markdown, `[label](href)`; parsed by markdownLink() in
+    lib/pages.ts, which fails the build on anything else. */
+const markdownLink = z.string();
+
+/**
+ * Every word the templates print that is not computed: one Markdown file per
+ * page in src/content/pages/<id>.md, plus site/ for what every page shares and
+ * a few fragments (home/affiliation.md) for rich blocks placed on their own.
+ * Front matter holds meta and short plain strings, the body holds anything
+ * with a link or emphasis in it. Strings may carry `{placeholders}` that the
+ * template fills with computed values.
+ *
+ * Fields are optional because the shapes differ per page; the page that needs
+ * one asks for it through need(). `.strict()` makes a misspelt key a build
+ * error rather than a silently ignored line.
+ *
+ * What stays in the templates: headings and the `## kicker` above them, alt
+ * text, aria-labels and tooltips, the labels of interactive controls (the copy
+ * button, the skip link, the publication filter), separators and glyphs, and
+ * the footer's "built with" credit.
+ */
+const pages = defineCollection({
+  loader: glob({ base: 'src/content/pages', pattern: '**/*.md' }),
+  schema: z
+    .object({
+      // Every page: <title> and meta description.
+      title: z.string().optional(),
+      description: z.string().optional(),
+      // site/site.md: the line after the title on the home page, in its
+      // <title> and in the feed's title
+      tagline: z.string().optional(),
+      // site/nav.md: each section's nav item, in order; every section in
+      // SECTIONS (src/consts.ts) needs one
+      sections: z.record(z.enum(SECTIONS), markdownLink).optional(),
+      // site/footer.md, 404.md: a row of links
+      links: z.array(markdownLink).optional(),
+      // site/footer.md: the holder after "© <year>"
+      copyright: z.string().optional(),
+      // the line under a page's heading, when it is plain text; one with a
+      // link in it is the page's body
+      lede: z.string().optional(),
+      // "N things" before a list's lede; {count} is filled in
+      count: z.string().optional(),
+      // short words a page places around its lists: buttons, chips, notes
+      labels: labels.optional(),
+      // a sentence under a section's heading, keyed by section
+      intros: labels.optional(),
+      // home.md, site/publication.md
+      plurals: z.record(z.string(), plural).optional(),
+      // site/publication.md: a conference page's link keys → their names
+      linkLabels: labels.optional(),
+    })
+    .strict(),
+});
+
+export const collections = {
+  venues,
+  authors,
+  people,
+  publications,
+  approaches,
+  conferences,
+  pages,
+};
