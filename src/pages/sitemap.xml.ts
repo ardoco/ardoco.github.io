@@ -18,6 +18,7 @@ const abs = (p: string) => new URL(p, SITE.url).href;
 export async function GET() {
   const approaches = await getCollection('approaches');
   const conferences = await getCollection('conferences');
+  const standalone = await getCollection('standalone');
 
   const urls = [
     '/',
@@ -25,7 +26,7 @@ export async function GET() {
     '/conferences/',
     '/publications/',
     '/people/',
-    '/initial-poster-2019/',
+    ...standalone.map((entry) => `/${entry.id}/`),
     ...approaches.map((a) => approachPath(a.id)),
     // Redirect stubs are excluded: they exist to keep old links alive, not to
     // be indexed, and they already carry <meta name="robots" content="noindex">.

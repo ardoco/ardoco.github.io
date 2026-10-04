@@ -1,0 +1,67 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { intrinsic } from '../../lib/images';
+
+/*
+ * A page that is nothing but its own words: one file in src/content/standalone/
+ * each, whose name is its URL — initial-poster-2019.md is /initial-poster-2019/.
+ * A rest route ranks below every other route, so it can never shadow one.
+ *
+ * The image is front matter rather than `![]()` in the body: a Markdown image
+ * would lose its intrinsic width and height, which the audit requires.
+ */
+export async function getStaticPaths() {
+  const all = await getCollection('standalone');
+  return all.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const size = d.image && intrinsic(d.image.src);
+---
+
+<Base title={d.title} description={d.description}>
+  <article class="wrap page">
+    <p class="kicker" data-sigil="##">
+      {d.kicker}
+    </p>
+    <h1>{d.heading}</h1>
+    <div class="lede">
+      <Content />
+    </div>
+
+    {d.image && size && (
+      <figure>
+        <img src={d.image.src} alt={d.image.alt} width={size.width} height={size.height} />
+      </figure>
+    )}
+  </article>
+</Base>
+
+<style>
+  .page {
+    padding-block: clamp(2rem, 6vw, 3.5rem);
+  }
+  .lede {
+    max-width: var(--measure);
+    color: var(--text-muted);
+  }
+  figure {
+    /* Capped at the poster's own 1010px width — scaling a raster past its pixel
+       count is what made it look soft. Today the poster is the only image here;
+       a page with another raster needs this cap per image. */
+    max-width: min(100%, 1010px);
+    margin: 2rem auto 0;
+  }
+  figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #fff;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-m);
+  }
+</style>

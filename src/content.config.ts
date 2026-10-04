@@ -223,6 +223,26 @@ const pages = defineCollection({
     .strict(),
 });
 
+/**
+ * Pages that are nothing but their own words, one file each, rendered by
+ * src/pages/[...slug]/index.astro at /<file name>/. The body is the lede; the
+ * image is front matter so the template can give it its intrinsic size.
+ */
+const standalone = defineCollection({
+  loader: glob({ base: 'src/content/standalone', pattern: '**/*.md' }),
+  schema: z
+    .object({
+      title: z.string(),
+      description: z.string(),
+      /** The `## kicker` above the heading. */
+      kicker: z.string(),
+      heading: z.string(),
+      /** A file under public/, shown below the text. */
+      image: z.object({ src: z.string(), alt: z.string() }).strict().optional(),
+    })
+    .strict(),
+});
+
 export const collections = {
   venues,
   authors,
@@ -231,4 +251,5 @@ export const collections = {
   approaches,
   conferences,
   pages,
+  standalone,
 };
