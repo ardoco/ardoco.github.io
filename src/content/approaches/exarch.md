@@ -8,7 +8,7 @@ figure:
   plate: true
 repositories:
   - name: Implementation
-    url: https://github.com/ardoco/tlr
+    url: https://github.com/ardoco/ardoco
   - name: Replication Package (ICSA 2025)
     url: https://github.com/ardoco/Replication-Package-ICSA25_Enabling-Arch-Traceability-by-LLM-based-Arch-Component-Name-Extraction
 ---

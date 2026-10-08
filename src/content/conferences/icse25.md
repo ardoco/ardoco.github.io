@@ -32,7 +32,7 @@ links:
     kitopen: https://publikationen.bibliothek.kit.edu/1000179816
   replication:
     zenodo: https://doi.org/10.5281/zenodo.14714706
-    repo: https://github.com/ardoco/ReplicationPackage-ICSE25_LiSSA-Toward-Generic-Traceability-Link-Recovery-through-RAG/tree/main
+    repo: https://github.com/ardoco/Replication-Package-ICSE25_LiSSA-Toward-Generic-Traceability-Link-Recovery-through-RAG/tree/main
   slides:
     pptx: /assets/pdf/presentation_icse25.pptx
     pdf: /assets/pdf/presentation_icse25.pdf

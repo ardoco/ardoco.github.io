@@ -8,7 +8,7 @@ figure:
   plate: false
 repositories:
   - name: Implementation
-    url: https://github.com/ardoco/tlr
+    url: https://github.com/ardoco/ardoco
   - name: Replication Package (ICSE 2024)
     url: https://github.com/ardoco/Replication-Package-ICSE24_Recovering-Trace-Links-Between-Software-Documentation-And-Code
 ---

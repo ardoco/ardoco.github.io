@@ -34,7 +34,7 @@ links:
     kitopen: https://publikationen.bibliothek.kit.edu/1000179830
   replication:
     zenodo: https://doi.org/10.5281/zenodo.14506935
-    repo: https://github.com/ardoco/ReplicationPackage-EnablingArchitectureTraceabilitybyLLM-basedArchitectureComponentNameExtraction
+    repo: https://github.com/ardoco/Replication-Package-ICSA25_Enabling-Arch-Traceability-by-LLM-based-Arch-Component-Name-Extraction
   slides:
     pptx: /assets/pdf/presentation_icsa25.pptx
     pdf: /assets/pdf/presentation_icsa25.pdf

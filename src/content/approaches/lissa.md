@@ -8,7 +8,7 @@ figure:
   plate: true
 repositories:
   - name: Implementation
-    url: https://github.com/ardoco/lissa-ratlr
+    url: https://github.com/ardoco/lissa
   - name: Replication Package (ICSE 2025)
     url: https://github.com/ardoco/Replication-Package-ICSE25_LiSSA-Toward-Generic-Traceability-Link-Recovery-through-RAG
   - name: Replication Package (REFSQ 2025)

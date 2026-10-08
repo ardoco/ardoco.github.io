@@ -8,7 +8,7 @@ figure:
   plate: false
 repositories:
   - name: Implementation
-    url: https://github.com/ardoco/tlr
+    url: https://github.com/ardoco/ardoco
   - name: Replication Package (ECSA 2021)
     url: https://github.com/ardoco/SWATTR
 ---

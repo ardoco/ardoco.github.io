@@ -8,7 +8,7 @@ figure:
   plate: true
 repositories:
   - name: Implementation
-    url: https://github.com/ardoco/inconsistency-detection
+    url: https://github.com/ardoco/ardoco
   - name: Replication Package (ICSA 2023)
     url: https://github.com/ardoco/DetectingInconsistenciesInSoftwareArchitectureDocumentationUsingTraceabilityLinkRecovery
 ---
