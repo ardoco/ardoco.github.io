@@ -71,7 +71,9 @@ const related = await relatedPublications(entry);
             <li>
               {abbr && <VenueBadge abbr={abbr} />}
               <div>
-                <a href={href} rel={href.startsWith('/') ? undefined : 'noopener'}>{title}</a>
+                <a href={href} rel={href.startsWith('/') ? undefined : 'noopener'}>
+                  {title}
+                </a>
                 <p>{venue}</p>
               </div>
             </li>

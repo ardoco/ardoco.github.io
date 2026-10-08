@@ -22,9 +22,8 @@ const { pairs } = Astro.props;
           elements, so none would survive otherwise. */}
       <span class="sep" aria-hidden="true">
         &harr;
-      </span>
-      {' '}<span class="sr-only">linked with</span>{' '}
-      <span class="tag">{to}</span>
+      </span>{' '}
+      <span class="sr-only">linked with</span> <span class="tag">{to}</span>
     </li>
   ))}
 </ul>

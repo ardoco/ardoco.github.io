@@ -161,9 +161,7 @@ for (const l of labels) {
 
 /* The SVG's name and description; the description is the list in prose, for
    a reader who gets the SVG but cannot see it. */
-const desc = [...rows].map(
-  ([key, row]) => `${key}: ${row.items.map((r) => r.text).join(', ')}.`,
-);
+const desc = [...rows].map(([key, row]) => `${key}: ${row.items.map((r) => r.text).join(', ')}.`);
 ---
 
 <figure class="map card">
@@ -183,7 +181,9 @@ const desc = [...rows].map(
     <desc id="map-desc">{desc.join(' ')}</desc>
 
     <g class="lines" aria-hidden="true">
-      {LINES.map((l) => <path class:list={['line', l.kind]} d={l.d} />)}
+      {LINES.map((l) => (
+        <path class:list={['line', l.kind]} d={l.d} />
+      ))}
     </g>
 
     <g class="nodes" aria-hidden="true">
