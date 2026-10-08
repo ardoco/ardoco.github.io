@@ -26,7 +26,7 @@ It identifies two kinds of issues:
 (a) **Model Entity Absent from Text (MEAT)**: components or interfaces that appear in the model but are never described in the documentation;
 (b) **Text Entity Absent from Model (TEAM)**: elements mentioned in the text that do not exist in the model.
 
-The method runs a TLR procedure (namely SWATTR) and then flags any model element with no corresponding text link (a MEAT) or any sentence that refers to a non-modeled item (a TEAM).
+The method runs a TLR procedure (an extended version of SWATTR that adds a filter and recommended instances) and then flags any model element with no corresponding text link (a MEAT) or any sentence that refers to a non-modeled item (a TEAM).
 
 - Detection strategy: Use the TLR results as a bridge. After linking as many sentences to model elements as possible, any "orphan" model nodes or text mentions indicate a consistency gap. For example, if the model has a "Cache" component with no sentence linked, that is a MEAT; if the doc talks about "Common" but the model lacks it, that is a TEAM.
-- Results: The approach achieved an excellent F1 (0.81) for the underlying trace recovery. For inconsistency detection, it attained ~93% accuracy in identifying MEAT and ~75% for TEAM, significantly better than naive baselines. These results suggest that using trace links is a promising way to find documentation-model mismatches.
+- Results: The extended SWATTR achieved an excellent F1 (0.81) for the underlying trace recovery. For inconsistency detection, it attained ~93% accuracy in identifying MEAT and ~75% accuracy for TEAM (reported as UME and MME in the ICSA 2023 paper), significantly better than competing baselines. These results suggest that using trace links is a promising way to find documentation-model mismatches.

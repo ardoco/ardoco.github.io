@@ -33,5 +33,7 @@ The key idea is to use a Large Language Model (LLM) together with information re
 For a given source artifact (e.g. a requirement or a sentence in documentation), LiSSA first uses IR techniques to retrieve a small set of potentially relevant target artifacts (code files, model elements, etc.).
 It then queries the LLM with the retrieved context to generate or suggest the most likely trace link.
 
-- Scope: LiSSA was tested on multiple tasks including requirements→code, documentation→code, and architecture-docs→models. The same RAG process is applied in each case, making it a one-size-fits-many solution.
-- Effectiveness: In experiments, LiSSA significantly outperformed state-of-the-art tools on the code-centric tasks. For example, it showed much higher accuracy when linking requirements to code than prior methods.
+- Scope: LiSSA was tested on multiple tasks including requirements→code, documentation→code, and architecture-docs→models. The same RAG process is applied in each case.
+- Effectiveness: LiSSA is most effective on requirements-related tasks. For requirements→code it significantly outperformed the state-of-the-art approaches. For documentation→code it achieved better F1-scores than the state of the art on smaller projects, but underperformed on larger ones. For architecture documentation→models it did not outperform the state of the art. Further research is needed before RAG-based approaches are applicable in practice.
+- REFSQ 2025: Building on that strength, LiSSA was applied to requirements-to-requirements TLR via RAG, evaluated on six benchmark datasets. Chain-of-thought prompting can be beneficial, and open-source models perform comparably to proprietary ones.
+- AIRE 2025: An ensemble of small LLMs (chaining, majority voting) replaces IR for candidate filtering in requirements TLR. It reduces the candidate space with high recall, but lags in precision.
