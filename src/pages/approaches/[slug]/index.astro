@@ -38,6 +38,16 @@ const related = await relatedPublications(entry);
       <Content />
     </Prose>
 
+    {/* Extra figures from front matter (`gallery`), after the text they
+        illustrate; see the schema for why they are not Markdown images. */}
+    {d.gallery.length > 0 && (
+      <div class="gallery">
+        {d.gallery.map((g) => (
+          <Figure src={g.src} alt={g.alt} plate={g.plate} caption={g.caption} />
+        ))}
+      </div>
+    )}
+
     {d.repositories.length > 0 && (
       <section class="block">
         <h2>Code</h2>
@@ -89,6 +99,10 @@ const related = await relatedPublications(entry);
   }
   header :global(.artifacts) {
     margin-top: 0.9rem;
+  }
+
+  .gallery {
+    margin-top: 2.25rem;
   }
 
   .block {

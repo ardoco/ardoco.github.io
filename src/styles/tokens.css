@@ -21,6 +21,8 @@
   --bg-1: #111620;
   --bg-2: #171d28;
   --bg-3: #1e2633;
+  /* The light plate behind dark line-art diagrams (Figure, approach cards). */
+  --plate: #fff;
   --border: rgb(255 255 255 / 9%);
   --border-strong: rgb(255 255 255 / 17%);
 

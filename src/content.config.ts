@@ -75,21 +75,37 @@ const publications = defineCollection({
   }),
 });
 
-const figure = z.object({
+/**
+ * An image under public/, as every figure and gallery picture is given.
+ *
+ * The approach diagrams are dark-on-transparent SVGs drawn for a white page.
+ * On a near-black background they need a light plate behind them. Only
+ * screenshots, which bring their own background, turn it off.
+ *
+ * The draw.io exports (ecsa21-swattr.svg, icse24-ardocode.svg) carry
+ * `color-scheme: light dark` and light-dark() fills, so on this dark site
+ * they drew black boxes onto the white plate. Their root style is pinned
+ * to `color-scheme: light`; a fresh export needs the same edit.
+ */
+const image = z.object({
   src: z.string(),
   alt: z.string(),
-  /**
-   * The approach diagrams are dark-on-transparent SVGs drawn for a white page.
-   * On a near-black background they need a light plate behind them. Only
-   * screenshots, which bring their own background, turn it off.
-   *
-   * The draw.io exports (ecsa21-swattr.svg, icse24-ardocode.svg) carry
-   * `color-scheme: light dark` and light-dark() fills, so on this dark site
-   * they drew black boxes onto the white plate. Their root style is pinned
-   * to `color-scheme: light`; a fresh export needs the same edit.
-   */
   plate: z.boolean().default(true),
 });
+
+const figure = image;
+
+/**
+ * One extra image on an approach page, after its text. Front matter rather
+ * than a Markdown image in the body: Markdown cannot carry width and height,
+ * and scripts/audit-site.mjs fails any <img> without them.
+ */
+const galleryImage = image
+  .extend({
+    /** Shown under the image; plain text. */
+    caption: z.string().optional(),
+  })
+  .strict();
 
 const approaches = defineCollection({
   loader: glob({ base: 'src/content/approaches', pattern: '**/*.md' }),
@@ -122,6 +138,7 @@ const approaches = defineCollection({
      */
     publications: z.array(reference('publications')).default([]),
     figure: figure.optional(),
+    gallery: z.array(galleryImage).default([]),
   }),
 });
 

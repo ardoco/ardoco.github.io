@@ -12,6 +12,11 @@ figure:
   src: /assets/img/approaches/icse25-lissa.svg
   alt: LiSSA Overview
   plate: true
+gallery:
+  - src: /assets/img/approaches/aire25-aire.svg
+    alt: AIRE 2025 Overview
+    caption: 'Beyond Retrieval: A Study of Using LLM Ensembles for Candidate Filtering in Requirements Traceability (AIRE 2025)'
+    plate: true
 repositories:
   - name: Implementation
     url: https://github.com/ardoco/lissa
