@@ -67,7 +67,7 @@ const { title } = await siteText();
     color: var(--teal);
   }
 
-  /* No hamburger: five short items wrap onto a second line on narrow screens,
+  /* No hamburger: four short items move onto a second line on narrow screens,
      which is less machinery and one fewer thing that can trap focus. */
   ul {
     display: flex;
@@ -84,6 +84,23 @@ const { title } = await siteText();
     text-decoration: none;
     padding: 0.3rem 0;
     border-bottom: 1px solid transparent;
+  }
+
+  /* Phones: the brand gets its own row and the links share the full width of
+     the second, spread edge to edge rather than hanging off the right, so the
+     sticky bar stays two rows high down to 320px. */
+  @media (max-width: 32rem) {
+    .inner {
+      gap: 0.25rem;
+      padding-block: 0.6rem 0.2rem;
+    }
+    ul {
+      flex: 1 0 100%;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin: 0;
+    }
   }
 
   /* Each nav item previews the accent of the section it leads to, so the
