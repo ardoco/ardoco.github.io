@@ -134,6 +134,7 @@ is the _file_ path, so canonical links and sitemap entries go through `canonical
 stay that way.
 
 **`/conferences/`** was published, so it stays as a redirect stub to `/publications/`: that page links every
+| `/approaches/tv/`                      | redirect stub to `/approaches/tools/`                |
 `/c/<slug>` page, so the list was a duplicate.
 
 **`public/assets/**`** — served byte-for-byte at URLs that have been live for years. Never rename,
@@ -148,12 +149,16 @@ makes them easy to lose.
 **`public/CNAME`** — the deploy replaces the `gh-pages` branch wholesale, so if this file stops being
 emitted, `ardoco.de` stops resolving.
 
-`npm run verify` asserts the redirect stubs (the five `/c/` ones and `/conferences/`), the asset hashes, the two comments and `CNAME`, and the deploy workflow runs it before publishing. It also checks
+`npm run verify` asserts the redirect stubs (the five `/c/` ones, `/conferences/` and
+`/approaches/tv/`), the asset hashes, the two comments and `CNAME`, and the deploy workflow runs it before publishing. It also checks
 WCAG contrast, that every internal link and `#fragment` resolves, that images carry intrinsic
 dimensions, that no text runs into a link, that no email address appears in the served bytes, and
 that `www.youtube.com` (the two screencasts) is still the only third-party origin.
 
 ## Content tasks
+
+**`/approaches/tv/`** was the page for ARDoCo-TV alone, which grew into the tools page, so it stays as a
+redirect stub to `/approaches/tools/`.
 
 | Task                       | How                                                                               |
 | -------------------------- | --------------------------------------------------------------------------------- |

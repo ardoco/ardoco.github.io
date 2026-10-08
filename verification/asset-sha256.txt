@@ -9,6 +9,9 @@
 # Regenerate with: node scripts/generate-asset-baseline.mjs
 
 44a2a583fa2f46d8e2e7bcaae2105aab9d61adbeb74a5a46b28bca2991092eba  assets/img/approaches/aire25-aire.svg
+500d6d8661e1e7881a381148443354e7303716dea16a9a5cfe1fc4896855c367  assets/img/approaches/ase26-landscape.svg
+95f91dfc5d438ce501ae9ea6c420ba896f6a67e4273767124073ecfc20fe23de  assets/img/approaches/ase26-traceview.png
+ef42f0adcae70a8f8dfdb78bf7783e5a87a798014d1d095a9d017f8b71e63639  assets/img/approaches/ase26-traceviz.png
 6954b6f6a29fb93d86588abb9f9c250d83324a8b1004a3325bc2efd3bd75b02c  assets/img/approaches/ecsa21-swattr.svg
 b12be95af68108a34d1538afa842e606471f0073b7fa770a768a29cc07a5fc39  assets/img/approaches/fgarch24-titleslide.png
 4f154c230bd2e2192ef4994c50415f0d78444e03ccd4b6fddbe2827fafcc5a11  assets/img/approaches/icsa2019-poster.png

@@ -69,9 +69,10 @@ const PUB_COUNT = (readFileSync(join(SRC, 'data/papers.bib'), 'utf8').match(/^@/
     `conferences: all ${stubs.length} legacy redirect stubs refresh and are noindex`,
   );
 
-  // The folded-away page: a published URL that now only points onward.
+  // The two folded-away pages: published URLs that now only point onward.
   for (const [file, to] of [
     ['conferences/index.html', '/publications/'],
+    ['approaches/tv/index.html', '/approaches/tools/'],
   ]) {
     const html = has(file) ? read(file) : '';
     check(

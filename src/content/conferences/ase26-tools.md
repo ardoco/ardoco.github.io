@@ -8,6 +8,8 @@ authors:
   - tobias_hey
   - julian_winter
   - kevin_feichtinger
+approaches:
+  - tools
 year: 2026
 featured: true
 navLabel: ArDoCo Tools @ASE 2026
@@ -15,6 +17,10 @@ navOrder: 1
 pubShortName: ASE 2026
 conferenceName: 41st IEEE/ACM International Conference on Automated Software Engineering (ASE 2026) — Tools and Datasets Track
 conferenceUrl: https://conf.researchr.org/home/ase-2026
+figure:
+  src: /assets/img/approaches/ase26-landscape.svg
+  alt: ARDoCo tool landscape
+  plate: true
 links:
   paper:
     acm: https://doi.org/10.1145/3832783.3834621
