@@ -16,8 +16,6 @@ intros:
 labels:
   # the link on each card, before its arrow
   more: 'Learn more'
-  # each card's link to its first repository
-  code: 'Code'
   # a dataset's two links: to the data, and to the paper that introduces it
   dataset: 'Dataset'
   paper: 'Paper'

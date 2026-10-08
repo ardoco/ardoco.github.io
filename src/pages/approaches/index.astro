@@ -37,7 +37,7 @@ const cards = await Promise.all(
       plate: f.thumb ? false : f.plate,
       ...intrinsic(f.thumb ?? f.src),
     };
-    return { a, thumb, venues: await relatedVenues(a), repo: a.data.repositories[0] };
+    return { a, thumb, venues: await relatedVenues(a) };
   }),
 );
 
@@ -84,12 +84,14 @@ const datasets = await Promise.all(
       <p class="intro">{page.text('intros', s.group)}</p>
 
       <ul class="grid">
-        {s.cards.map(({ a, thumb, venues, repo }) => (
+        {s.cards.map(({ a, thumb, venues }) => (
           <li class="reveal">
             {/* The title's link is stretched over the whole card (::after),
                 so the card stays one big target without wrapping the venue
-                badges and the code link, which are links themselves, in a
-                second <a>. Those two sit above the stretched area. */}
+                badges, which are links themselves, in a second <a>. They
+                sit above the stretched area. No code link here: most
+                approaches share the ardoco/ardoco monorepo, so it would not
+                tell the cards apart; each approach page lists its repos. */}
             <article class="card item">
               {thumb && (
                 <div class:list={['thumb', thumb.plate && 'has-plate']}>
@@ -126,16 +128,6 @@ const datasets = await Promise.all(
                   <span class="more" aria-hidden="true">
                     {page.label('more')} <span class="arrow">&rarr;</span>
                   </span>
-                  {repo && (
-                    <a
-                      class="chip above"
-                      href={repo.url}
-                      rel="noopener"
-                      aria-label={`${page.label('code')}: ${a.data.title}`}
-                    >
-                      {page.label('code')}
-                    </a>
-                  )}
                 </p>
               </div>
             </article>
