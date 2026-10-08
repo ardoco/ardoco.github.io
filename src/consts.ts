@@ -21,5 +21,5 @@ export const SITE = {
  * A list rather than a bare union so the nav rows in
  * src/content/pages/site/nav.md are validated against it.
  */
-export const SECTIONS = ['home', 'approaches', 'conferences', 'publications', 'people'] as const;
+export const SECTIONS = ['home', 'approaches', 'publications', 'people'] as const;
 export type Section = (typeof SECTIONS)[number];

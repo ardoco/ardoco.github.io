@@ -23,7 +23,6 @@ export async function GET() {
   const urls = [
     '/',
     '/approaches/',
-    '/conferences/',
     '/publications/',
     '/people/',
     ...standalone.map((entry) => `/${entry.id}/`),

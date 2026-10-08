@@ -74,14 +74,14 @@ The `.astro` files hold layout and code. Every word a reader sees that is not co
 `<title>` and description, its lede, the labels on its chips and buttons, the nav and footer rows,
 the home page's introduction — is in `src/content/pages/`, one Markdown file per page:
 
-| File                                                                        | Holds                                                                                   |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `site/site.md`                                                              | the site `title`, the `tagline` and the default `description`                           |
-| `site/nav.md`                                                               | each section's nav item                                                                 |
-| `site/footer.md`                                                            | the copyright holder and link row; the body is the affiliation                          |
-| `site/publication.md`                                                       | words shared by a publication entry and a conference page, and `linkLabels`             |
-| `home.md`, `home/affiliation.md`, `home/poster.md`, `home/links.md`         | the home page: buttons and labels; the body is the introduction; one block per fragment |
-| `404.md`, `approaches.md`, `conferences.md`, `people.md`, `publications.md` | one page each; the body, where there is one, is the lede                                |
+| File                                                                | Holds                                                                                   |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `site/site.md`                                                      | the site `title`, the `tagline` and the default `description`                           |
+| `site/nav.md`                                                       | each section's nav item                                                                 |
+| `site/footer.md`                                                    | the copyright holder and link row; the body is the affiliation                          |
+| `site/publication.md`                                               | words shared by a publication entry and a conference page, and `linkLabels`             |
+| `home.md`, `home/affiliation.md`, `home/poster.md`, `home/links.md` | the home page: buttons and labels; the body is the introduction; one block per fragment |
+| `404.md`, `approaches.md`, `people.md`, `publications.md`           | one page each; the body, where there is one, is the lede                                |
 
 **Front matter holds short plain strings, the body holds anything with a link or emphasis in it.**
 `labels` are short words, `intros` the sentence under a section heading, `plurals` a
@@ -115,7 +115,7 @@ Two shapes, both inherited from the Jekyll site and both still served:
 | `/`                                    | `src/pages/index.astro`                              |
 | `/approaches/`                         | `src/pages/approaches/index.astro`                   |
 | `/approaches/<slug>/`                  | `src/pages/approaches/[slug]/`                       |
-| `/conferences/`                        | `src/pages/conferences/index.astro`                  |
+| `/conferences/`                        | redirect stub to `/publications/`                    |
 | **`/c/<slug>`**                        | `src/pages/c/[slug].astro` → `.html`                 |
 | `/publications/`                       | `src/pages/publications/index.astro`                 |
 | `/people/`                             | `src/pages/people/index.astro`                       |
@@ -133,6 +133,9 @@ is the _file_ path, so canonical links and sitemap entries go through `canonical
 (`se24`, `se25`, `se26-exarch`, `se26-lissa`, `taas26`) redirect to the page that superseded them and
 stay that way.
 
+**`/conferences/`** was published, so it stays as a redirect stub to `/publications/`: that page links every
+`/c/<slug>` page, so the list was a duplicate.
+
 **`public/assets/**`** — served byte-for-byte at URLs that have been live for years. Never rename,
 move, or run them through an optimiser. Pinned by SHA-256 in `verification/asset-sha256.txt`; if you
 genuinely add or replace one, rerun `node scripts/generate-asset-baseline.mjs`.
@@ -145,7 +148,7 @@ makes them easy to lose.
 **`public/CNAME`** — the deploy replaces the `gh-pages` branch wholesale, so if this file stops being
 emitted, `ardoco.de` stops resolving.
 
-`npm run verify` asserts all four, and the deploy workflow runs it before publishing. It also checks
+`npm run verify` asserts the redirect stubs (the five `/c/` ones and `/conferences/`), the asset hashes, the two comments and `CNAME`, and the deploy workflow runs it before publishing. It also checks
 WCAG contrast, that every internal link and `#fragment` resolves, that images carry intrinsic
 dimensions, that no text runs into a link, that no email address appears in the served bytes, and
 that `www.youtube.com` (the two screencasts) is still the only third-party origin.
@@ -160,7 +163,7 @@ that `www.youtube.com` (the two screencasts) is still the only third-party origi
 | Add an approach            | new `.md` in `src/content/approaches/`; `importance` sets its place in the list   |
 | Link a paper to approaches | `approaches: [lissa, exarch]` in its front matter — bad slugs fail the build      |
 | Add a person               | new entry in `src/data/people.yml`; the key becomes the `/people/#anchor`         |
-| Reorder the nav            | `navOrder` on a conference entry; it drives the nav and the front-page list alike |
+| Reorder the home list      | `navOrder` on a conference entry; it orders the home-page list and the feed       |
 | Add an image               | drop it in `public/assets/img/`, then rerun `scripts/generate-asset-baseline.mjs` |
 | Change a page's words      | its file in `src/content/pages/`; the nav and footer rows are in `site/`          |
 | Check bib against Crossref | `python3 scripts/update_bib.py` (stdlib only; `--write` applies the safe fields)  |

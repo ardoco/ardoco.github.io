@@ -137,10 +137,9 @@ const conferences = defineCollection({
     inPress: z.boolean().default(false),
 
     /**
-     * Navbar label and ordering, previously the `children:` array in
-     * _pages/conferences.md. That one list drove both the dropdown and the
-     * front-page publication order, so it had to be edited in lockstep with
-     * this directory; now each entry carries its own position.
+     * Label and ordering of the home page's publication list (and the feed),
+     * previously the `children:` array in _pages/conferences.md, which also
+     * drove a navbar dropdown. Each entry now carries its own position.
      */
     navLabel: z.string().optional(),
     navOrder: z.number().int().optional(),

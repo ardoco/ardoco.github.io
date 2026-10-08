@@ -69,6 +69,17 @@ const PUB_COUNT = (readFileSync(join(SRC, 'data/papers.bib'), 'utf8').match(/^@/
     `conferences: all ${stubs.length} legacy redirect stubs refresh and are noindex`,
   );
 
+  // The folded-away page: a published URL that now only points onward.
+  for (const [file, to] of [
+    ['conferences/index.html', '/publications/'],
+  ]) {
+    const html = has(file) ? read(file) : '';
+    check(
+      html.includes(`<meta http-equiv="refresh" content="0; url=${to}"`) && /noindex/.test(html),
+      `${file}: refresh stub to ${to}, noindex`,
+    );
+  }
+
   const noScholar = papers.filter((f) => {
     const fm = frontmatter(join(SRC, 'content/conferences', f));
     if (!/^publication:/m.test(fm)) return false;

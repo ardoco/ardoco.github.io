@@ -62,7 +62,7 @@ const linkRows = sections
   .filter((s) => s.items.length > 0);
 ---
 
-<Base title={d.title} description={d.description ?? d.conferenceName} section="conferences">
+<Base title={d.title} description={d.description ?? d.conferenceName} section="publications">
   {pub && (
     <Fragment slot="head">
       <ScholarMeta pub={pub} />
@@ -79,7 +79,7 @@ const linkRows = sections
           Both sides of the separator need an explicit space: Astro strips the
           newline between an element and the next. */}
       <p class="kicker" data-sigil="none">
-        <a href="/conferences/">conferences</a>
+        <a href="/publications/">publications</a>
         {' / '}
         {d.pubShortName ?? d.navLabel ?? 'publication'}
       </p>

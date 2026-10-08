@@ -9,4 +9,4 @@ labels:
   noResults: 'No publications match that filter.'
 ---
 
-Entries with a **Details** link have a page of their own with the abstract, slides and replication package.
+Entries with a **Details** link have a paper page of their own with the abstract, slides and replication package.

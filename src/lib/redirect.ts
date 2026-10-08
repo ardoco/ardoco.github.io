@@ -10,11 +10,11 @@ const escapeHtml = (s: string): string =>
  * A bare meta-refresh page.
  *
  * Used for the five /c/ URLs that outlived the papers they pointed at
- * (se24, se25, se26-exarch, se26-lissa, taas26). Returned as a Response from
- * the route rather than rendered as markup, because rendering it through the
- * page component would make Astro inject that page's stylesheet into the
- * stub's <head> — several KB of CSS on a page whose whole job is to be left
- * immediately.
+ * (se24, se25, se26-exarch, se26-lissa, taas26) and for /conferences/, folded
+ * into /publications/. Returned as a Response from the route rather than
+ * rendered as markup, because rendering it through the page component would
+ * make Astro inject that page's stylesheet into the stub's <head> — several KB
+ * of CSS on a page whose whole job is to be left immediately.
  *
  * Lives in a .ts module rather than inline in the .astro frontmatter: raw
  * closing tags inside a template literal confuse the frontmatter parser
