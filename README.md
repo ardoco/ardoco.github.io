@@ -72,6 +72,21 @@ dataset and to the paper that introduces it.
 The BibTeX loader also reads ARDoCo's own `html = {/c/<slug>}` field, which links a paper to its
 page, and fails the build if that page is missing.
 
+## Approaches
+
+Each approach is one `.md` in `src/content/approaches/`; the body is the page text. Front matter:
+
+- `title`, `description`, `importance`: `importance` is only a sort key, so renumber freely.
+- `group`: `tlr`, `consistency` or `tools`, required. It decides the section on `/approaches/`.
+- `artifacts`: the pairs of artifact the approach links, e.g. `[['SAD', 'SAM']]`; a generic approach lists several pairs.
+- `figure`: `{ src, alt, plate, thumb? }`. `thumb` is an optional different image for the overview card.
+- `gallery`: extra figures after the body, `[{ src, alt, caption?, plate? }]`. Use these, not Markdown images:
+  the audit requires width and height on every `img`.
+- `repositories`: `[{ name, url }]`.
+- `publications`: BibTeX keys of papers with no conference page of their own, e.g. a journal extension
+  whose page is only a redirect stub: `[fuchss_whos_2026]`. They join the papers found through
+  conference pages' `approaches:`.
+
 ## Page text — `src/content/pages/`
 
 The `.astro` files hold layout and code. Every word a reader sees that is not computed — a page's
@@ -119,6 +134,7 @@ Two shapes, both inherited from the Jekyll site and both still served:
 | `/`                                    | `src/pages/index.astro`                              |
 | `/approaches/`                         | `src/pages/approaches/index.astro`                   |
 | `/approaches/<slug>/`                  | `src/pages/approaches/[slug]/`                       |
+| `/approaches/tv/`                      | redirect stub to `/approaches/tools/`                |
 | `/conferences/`                        | redirect stub to `/publications/`                    |
 | **`/c/<slug>`**                        | `src/pages/c/[slug].astro` → `.html`                 |
 | `/publications/`                       | `src/pages/publications/index.astro`                 |
@@ -138,8 +154,10 @@ is the _file_ path, so canonical links and sitemap entries go through `canonical
 stay that way.
 
 **`/conferences/`** was published, so it stays as a redirect stub to `/publications/`: that page links every
-| `/approaches/tv/`                      | redirect stub to `/approaches/tools/`                |
 `/c/<slug>` page, so the list was a duplicate.
+
+**`/approaches/tv/`** was the page for ARDoCo-TV alone, which grew into the tools page, so it stays as a
+redirect stub to `/approaches/tools/`.
 
 **`public/assets/**`** — served byte-for-byte at URLs that have been live for years. Never rename,
 move, or run them through an optimiser. Pinned by SHA-256 in `verification/asset-sha256.txt`; if you
@@ -161,15 +179,12 @@ that `www.youtube.com` (the two screencasts) is still the only third-party origi
 
 ## Content tasks
 
-**`/approaches/tv/`** was the page for ARDoCo-TV alone, which grew into the tools page, so it stays as a
-redirect stub to `/approaches/tools/`.
-
 | Task                       | How                                                                               |
 | -------------------------- | --------------------------------------------------------------------------------- |
 | Add a publication          | append to `src/data/papers.bib`; `html = {/c/<slug>}` links it to its page        |
 | Add a venue badge          | add the abbreviation to `src/data/venues.yml` — an unknown `abbr` fails the build |
 | Add a paper page           | new `.md` in `src/content/conferences/`; the filename is the `/c/<slug>` URL      |
-| Add an approach            | new `.md` in `src/content/approaches/`; `importance` sets its place in the list   |
+| Add an approach            | new `.md` in `src/content/approaches/`; see "Approaches" above                    |
 | Link a paper to approaches | `approaches: [lissa, exarch]` in its front matter — bad slugs fail the build      |
 | Add a person               | new entry in `src/data/people.yml`; the key becomes the `/people/#anchor`         |
 | Reorder the home list      | `navOrder` on a conference entry; it orders the home-page list and the feed       |
