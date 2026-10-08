@@ -8,7 +8,7 @@ description: 'The approaches developed in ARDoCo: traceability link recovery and
 lede: 'Each approach connects a different pair of artifacts — requirements, architecture documentation, architecture models, source code — and many of them compose. The map shows which approach links what; below, they are grouped by what they are for.'
 # Under each section's heading, keyed by section.
 intros:
-  map: 'The four kinds of artifact ARDoCo connects, and the approaches that connect them. Each label leads to its approach.'
+  map: 'The four kinds of artifact ARDoCo connects, and on each connection the approaches built mainly for it. Generic approaches such as LiSSA cover more pairs; the tags on each card list them all. Each label leads to its approach.'
   tlr: 'Recovering trace links: which sentence, model element or requirement corresponds to which part of the system.'
   consistency: 'Using trace links to find where documentation and models disagree.'
   tools: 'Tools that put trace links in front of developers.'
