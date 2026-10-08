@@ -11,7 +11,6 @@ authors:
   - anne_koziolek
 year: 2026
 featured: true
-inPress: true
 navLabel: EVerest Dataset @ASE 2026
 navOrder: 2
 pubShortName: ASE 2026
@@ -19,7 +18,7 @@ conferenceName: 41st IEEE/ACM International Conference on Automated Software Eng
 conferenceUrl: https://conf.researchr.org/home/ase-2026
 links:
   paper:
-    arxiv: https://arxiv.org/abs/2606.23197
+    acm: https://doi.org/10.1145/3832783.3834614
     kitopen: https://publikationen.bibliothek.kit.edu/1000195783
   replication:
     zenodo: https://doi.org/10.5281/zenodo.21157836

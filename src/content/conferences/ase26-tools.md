@@ -10,7 +10,6 @@ authors:
   - kevin_feichtinger
 year: 2026
 featured: true
-inPress: true
 navLabel: ArDoCo Tools @ASE 2026
 navOrder: 1
 pubShortName: ASE 2026
@@ -18,7 +17,7 @@ conferenceName: 41st IEEE/ACM International Conference on Automated Software Eng
 conferenceUrl: https://conf.researchr.org/home/ase-2026
 links:
   paper:
-    arxiv: https://arxiv.org/abs/2606.28064
+    acm: https://doi.org/10.1145/3832783.3834621
     kitopen: https://publikationen.bibliothek.kit.edu/1000195623
   replication:
     zenodo: https://doi.org/10.5281/zenodo.21533985
