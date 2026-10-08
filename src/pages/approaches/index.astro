@@ -2,11 +2,10 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { approachPath } from '../../lib/urls';
+import { ordered } from '../../lib/approaches';
 import { getPage, need } from '../../lib/pages';
 
-const approaches = (await getCollection('approaches')).sort(
-  (a, b) => a.data.importance - b.data.importance,
-);
+const approaches = ordered(await getCollection('approaches'));
 
 /* The words: src/content/pages/approaches.md. */
 const page = await getPage('approaches');

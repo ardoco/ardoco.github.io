@@ -2,6 +2,8 @@
 title: SWATTR
 description: SWATTR – TLR between Software Architecture Documentation and Software Architecture Models.
 importance: 1
+group: tlr
+artifacts: [['SAD', 'SAM']]
 figure:
   src: /assets/img/approaches/ecsa21-swattr.svg
   alt: SWATTR Overview

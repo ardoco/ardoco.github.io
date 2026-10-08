@@ -1,0 +1,61 @@
+---
+/**
+ * The pairs of artifact an approach links — `artifacts` in its front matter,
+ * e.g. SAD ↔ SAM — as a row of tags. Used on the approach's card on
+ * /approaches/ and under the lede on its own page. Most approaches link one
+ * pair; a generic one like LiSSA lists several.
+ */
+interface Props {
+  pairs: [string, string][];
+}
+const { pairs } = Astro.props;
+---
+
+<ul class="artifacts" aria-label="Artifacts linked">
+  {pairs.map(([from, to]) => (
+    <li class="pair">
+      <span class="tag">{from}</span>{' '}
+      {/* The arrow says "linked with". A glyph, so it lives here rather than
+          in the content; a screen reader gets the words instead. The explicit
+          spaces keep the words from running into the tags in the accessible
+          text ("SADlinked withSAM"): Astro strips the whitespace between
+          elements, so none would survive otherwise. */}
+      <span class="sep" aria-hidden="true">
+        &harr;
+      </span>
+      {' '}<span class="sr-only">linked with</span>{' '}
+      <span class="tag">{to}</span>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .artifacts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    line-height: 1;
+  }
+  .pair {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  /* Tags, not chips: nothing here is clickable, so no pill and no hover — a
+     quiet outline that reads as a label next to the real links around it. */
+  .tag {
+    padding: 0.3em 0.5em;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-s);
+    color: var(--text-muted);
+  }
+  .sep {
+    color: var(--text-faint);
+  }
+</style>

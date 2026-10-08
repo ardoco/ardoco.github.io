@@ -3,6 +3,7 @@ import { getCollection, getEntry, render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Prose from '../../../components/Prose.astro';
 import Figure from '../../../components/Figure.astro';
+import Artifacts from '../../../components/Artifacts.astro';
 import VenueBadge from '../../../components/pub/VenueBadge.astro';
 import { conferencePath } from '../../../lib/urls';
 
@@ -43,6 +44,7 @@ const related = await Promise.all(
       </p>
       <h1>{d.title}</h1>
       <p class="lede">{d.description}</p>
+      {d.artifacts.length > 0 && <Artifacts pairs={d.artifacts} />}
     </header>
 
     {d.figure && <Figure src={d.figure.src} alt={d.figure.alt} plate={d.figure.plate} />}
@@ -99,6 +101,9 @@ const related = await Promise.all(
     max-width: var(--measure);
     color: var(--text-muted);
     margin: 0;
+  }
+  header :global(.artifacts) {
+    margin-top: 0.9rem;
   }
 
   .block {

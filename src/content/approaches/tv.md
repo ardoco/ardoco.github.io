@@ -2,6 +2,7 @@
 title: ARDoCo-TV
 description: 'Trace View: a viewer for trace links.'
 importance: 9
+group: tools
 repositories:
   - name: Implementation (v2)
     url: https://github.com/ardoco/traceview-v2

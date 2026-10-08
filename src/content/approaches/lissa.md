@@ -1,7 +1,13 @@
 ---
 title: LiSSA
 description: LiSSA – LLM/RAG-based TLR.
-importance: 6
+importance: 7
+group: tlr
+artifacts:
+  - ['Requirements', 'Code']
+  - ['Requirements', 'Requirements']
+  - ['SAD', 'Code']
+  - ['SAD', 'SAM']
 figure:
   src: /assets/img/approaches/icse25-lissa.svg
   alt: LiSSA Overview

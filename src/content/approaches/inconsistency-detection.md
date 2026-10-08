@@ -2,6 +2,8 @@
 title: Inconsistency Detection
 description: Documentation-Model-Inconsistency-Analysis pipeline.
 importance: 8
+group: consistency
+artifacts: [['SAD', 'SAM']]
 figure:
   src: /assets/img/approaches/icsa23-inconsistency.svg
   alt: Approach Overview

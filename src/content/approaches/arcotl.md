@@ -2,6 +2,8 @@
 title: ArCoTL
 description: ArCoTL – TLR between Software Architecture Models and Code.
 importance: 2
+group: tlr
+artifacts: [['SAM', 'Code']]
 figure:
   src: /assets/img/approaches/icse24-transarc.svg
   alt: ArCoTL Overview

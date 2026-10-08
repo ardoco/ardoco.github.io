@@ -23,3 +23,22 @@ export const SITE = {
  */
 export const SECTIONS = ['home', 'approaches', 'publications', 'people'] as const;
 export type Section = (typeof SECTIONS)[number];
+
+/**
+ * The four kinds of artifact an approach can link, as the short tags the site
+ * shows: `SAD` is architecture documentation, `SAM` an architecture model. A
+ * list rather than a bare union so `artifacts` in the approaches schema can
+ * validate against it.
+ */
+export const ARTIFACTS = ['Requirements', 'SAD', 'SAM', 'Code'] as const;
+export type Artifact = (typeof ARTIFACTS)[number];
+
+/**
+ * The groups /approaches/ is divided into, in the order the page shows them:
+ * traceability link recovery, consistency analysis, then the tools built on
+ * both. Each approach names its group in front matter (`group`); its
+ * `importance` orders it within that group. A list rather than a bare union so
+ * the schema can validate against it and the page can iterate it.
+ */
+export const APPROACH_GROUPS = ['tlr', 'consistency', 'tools'] as const;
+export type ApproachGroup = (typeof APPROACH_GROUPS)[number];

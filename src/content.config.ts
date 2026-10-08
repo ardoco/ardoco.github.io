@@ -2,7 +2,7 @@ import { defineCollection, reference } from 'astro:content';
 import { z } from 'zod';
 import { file, glob } from 'astro/loaders';
 import { bibtexLoader } from './loaders/bibtex';
-import { SECTIONS } from './consts';
+import { APPROACH_GROUPS, ARTIFACTS, SECTIONS } from './consts';
 
 /** Conference brand colours for the publication badges, keyed by BibTeX `abbr`. */
 const venues = defineCollection({
@@ -96,8 +96,20 @@ const approaches = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    /** Sort key for /approaches/, roughly the order the work was published. */
+    /** The section of /approaches/ the card sits in; see APPROACH_GROUPS. */
+    group: z.enum(APPROACH_GROUPS),
+    /** Order within the group, lowest first: roughly the order the work was published. */
     importance: z.number().int(),
+    /**
+     * The pairs of artifact the approach links, each as two short tags: `SAD`
+     * (architecture documentation), `SAM` (architecture model), `Code`,
+     * `Requirements`. A list of pairs rather than one list of tags, because a
+     * generic approach like LiSSA links several pairs, and a flat list would
+     * read as one chain (Requirements ↔ SAD ↔ Code ↔ …). Shown as tags on the
+     * card and under the page's lede.
+     */
+    artifacts: z.array(z.tuple([z.enum(ARTIFACTS), z.enum(ARTIFACTS)])).default([]),
+    repositories: z.array(z.object({ name: z.string(), url: z.url() })).default([]),
     repositories: z.array(z.object({ name: z.string(), url: z.url() })).default([]),
     figure: figure.optional(),
   }),

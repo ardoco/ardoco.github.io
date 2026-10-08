@@ -1,7 +1,9 @@
 ---
 title: ExArch
 description: ExArch – LLM-based Architecture Component Name Extraction for TLR between Software Architecture Documentation and Code.
-importance: 4
+importance: 5
+group: tlr
+artifacts: [['SAD', 'Code']]
 figure:
   src: /assets/img/approaches/icsa25-transarc.svg
   alt: ExArch Overview

@@ -2,14 +2,13 @@
 import { getCollection, getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import { featured } from '../lib/conferences';
+import { ordered } from '../lib/approaches';
 import { approachPath, conferencePath } from '../lib/urls';
 import { SITE } from '../consts';
 import Email from '../components/Email.astro';
 import { getPage, siteText } from '../lib/pages';
 
-const approaches = (await getCollection('approaches')).sort(
-  (a, b) => a.data.importance - b.data.importance,
-);
+const approaches = ordered(await getCollection('approaches'));
 
 const conferences = featured(await getCollection('conferences'));
 const highlights = await Promise.all(

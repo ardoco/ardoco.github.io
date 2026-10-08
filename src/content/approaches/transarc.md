@@ -2,6 +2,8 @@
 title: TransArC
 description: TransArC – TLR between Software Architecture Documentation, Models, and Code.
 importance: 3
+group: tlr
+artifacts: [['SAD', 'Code']]
 figure:
   src: /assets/img/approaches/icse24-transarc.svg
   alt: TransArC Overview

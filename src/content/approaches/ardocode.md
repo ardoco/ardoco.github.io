@@ -1,7 +1,9 @@
 ---
 title: ArDoCode
 description: ArDoCode – TLR between Software Architecture Documentation and Code.
-importance: 5
+importance: 4
+group: tlr
+artifacts: [['SAD', 'Code']]
 figure:
   src: /assets/img/approaches/icse24-ardocode.svg
   alt: ArDoCode Overview
