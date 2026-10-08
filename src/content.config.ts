@@ -93,7 +93,18 @@ const image = z.object({
   plate: z.boolean().default(true),
 });
 
-const figure = image;
+const figure = image
+  .extend({
+    /**
+     * A different image for the approach's card on /approaches/, where the
+     * figure itself would not read at thumbnail size — a screenshot of a tool
+     * says more there than its architecture diagram. The card shows
+     * `thumb ?? src`, on no plate (a thumb is a screenshot with a background
+     * of its own). Only approaches use it; a conference page ignores it.
+     */
+    thumb: z.string().optional(),
+  })
+  .strict();
 
 /**
  * One extra image on an approach page, after its text. Front matter rather
@@ -126,7 +137,6 @@ const approaches = defineCollection({
      */
     artifacts: z.array(z.tuple([z.enum(ARTIFACTS), z.enum(ARTIFACTS)])).default([]),
     repositories: z.array(z.object({ name: z.string(), url: z.url() })).default([]),
-    repositories: z.array(z.object({ name: z.string(), url: z.url() })).default([]),
     /**
      * Papers about the approach that have no conference page of their own, as
      * references to BibTeX entries (the id is the BibTeX key). Most papers
@@ -142,16 +152,6 @@ const approaches = defineCollection({
   }),
 });
 
-/**
- * A map of label -> target, e.g. links.paper.ieee. Labels are resolved by
- * `linkLabels` in src/content/pages/site/publication.md. Targets are absolute
- * URLs for papers and replication packages, but site-relative paths for
- * slides, which are served from /assets/pdf/.
- */
-const linkTarget = z.union([
-  z.url(),
-  z.string().regex(/^\/[^\s]*$/, 'link must be an absolute URL or a site-relative path'),
-]);
 /**
  * Datasets ARDoCo publishes, shown as a strip at the foot of /approaches/.
  * They have no pages of their own: each links out to the dataset and to the
@@ -170,6 +170,16 @@ const datasets = defineCollection({
     .strict(),
 });
 
+/**
+ * A map of label -> target, e.g. links.paper.ieee. Labels are resolved by
+ * `linkLabels` in src/content/pages/site/publication.md. Targets are absolute
+ * URLs for papers and replication packages, but site-relative paths for
+ * slides, which are served from /assets/pdf/.
+ */
+const linkTarget = z.union([
+  z.url(),
+  z.string().regex(/^\/[^\s]*$/, 'link must be an absolute URL or a site-relative path'),
+]);
 const linkMap = z.record(z.string(), linkTarget).optional();
 
 const conferences = defineCollection({
@@ -310,8 +320,8 @@ export const collections = {
   people,
   publications,
   approaches,
+  datasets,
   conferences,
   pages,
   standalone,
 };
-  datasets,
