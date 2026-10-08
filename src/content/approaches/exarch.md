@@ -8,6 +8,7 @@ figure:
   src: /assets/img/approaches/icsa25-transarc.svg
   alt: ExArch Overview
   plate: true
+publications: [fuchss_whos_2026]
 repositories:
   - name: Implementation
     url: https://github.com/ardoco/ardoco

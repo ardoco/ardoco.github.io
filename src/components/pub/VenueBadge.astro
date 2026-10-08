@@ -1,9 +1,10 @@
 ---
 import { getEntry } from 'astro:content';
 import type { DataEntryMap } from 'astro:content';
+import type { VenueRef } from '../../lib/publications';
 
 interface Props {
-  abbr: { collection: 'venues'; id: string } | undefined;
+  abbr: VenueRef | undefined;
 }
 const { abbr } = Astro.props;
 

@@ -111,6 +111,16 @@ const approaches = defineCollection({
     artifacts: z.array(z.tuple([z.enum(ARTIFACTS), z.enum(ARTIFACTS)])).default([]),
     repositories: z.array(z.object({ name: z.string(), url: z.url() })).default([]),
     repositories: z.array(z.object({ name: z.string(), url: z.url() })).default([]),
+    /**
+     * Papers about the approach that have no conference page of their own, as
+     * references to BibTeX entries (the id is the BibTeX key). Most papers
+     * reach an approach the other way round, through a conference page's
+     * `approaches:`; this is for the ones that only exist as a redirect stub,
+     * like a journal extension, whose stub would otherwise attach the
+     * approach to the paper it redirects to. Merged with the conference
+     * pages by relatedPublications() in lib/approaches.ts.
+     */
+    publications: z.array(reference('publications')).default([]),
     figure: figure.optional(),
   }),
 });
