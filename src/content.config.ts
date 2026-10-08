@@ -80,8 +80,13 @@ const figure = z.object({
   alt: z.string(),
   /**
    * The approach diagrams are dark-on-transparent SVGs drawn for a white page.
-   * On a near-black background they need a light plate behind them — except
-   * the two that were authored without one.
+   * On a near-black background they need a light plate behind them. Only
+   * screenshots, which bring their own background, turn it off.
+   *
+   * The draw.io exports (ecsa21-swattr.svg, icse24-ardocode.svg) carry
+   * `color-scheme: light dark` and light-dark() fills, so on this dark site
+   * they drew black boxes onto the white plate. Their root style is pinned
+   * to `color-scheme: light`; a fresh export needs the same edit.
    */
   plate: z.boolean().default(true),
 });

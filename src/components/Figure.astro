@@ -43,8 +43,8 @@ const maxWidth = isVector ? 'var(--measure)' : `${width}px`;
   /*
    * The approach diagrams are dark line art on a transparent background, drawn
    * for a white page. On a near-black one they are all but invisible, so they
-   * sit on a light plate — except the two that were authored with their own
-   * background already baked in.
+   * sit on a light plate. Screenshots, which bring their own background, opt
+   * out with `plate: false`.
    */
   .has-plate img {
     background: #fff;

@@ -4,8 +4,8 @@ description: ArDoCode – TLR between Software Architecture Documentation and Co
 importance: 5
 figure:
   src: /assets/img/approaches/icse24-ardocode.svg
-  alt: ArCoTL Overview
-  plate: false
+  alt: ArDoCode Overview
+  plate: true
 repositories:
   - name: Implementation
     url: https://github.com/ardoco/ardoco

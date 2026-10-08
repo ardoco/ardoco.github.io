@@ -5,7 +5,7 @@ importance: 1
 figure:
   src: /assets/img/approaches/ecsa21-swattr.svg
   alt: SWATTR Overview
-  plate: false
+  plate: true
 repositories:
   - name: Implementation
     url: https://github.com/ardoco/ardoco
