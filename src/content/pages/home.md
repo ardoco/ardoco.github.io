@@ -10,6 +10,8 @@ labels:
   approaches: 'Explore approaches'
   publications: 'Publications'
   github: 'GitHub'
+  # under the approach map, linking the full /approaches/ page
+  allApproaches: 'All approaches, tools and datasets'
   # before the mailing list, the last row under "Important links"
   contact: 'Contact us at'
 # Under a section's heading, and after its list.

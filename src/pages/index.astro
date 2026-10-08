@@ -2,13 +2,11 @@
 import { getCollection, getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import { featured } from '../lib/conferences';
-import { ordered } from '../lib/approaches';
-import { approachPath, conferencePath } from '../lib/urls';
+import { conferencePath } from '../lib/urls';
 import { SITE } from '../consts';
 import Email from '../components/Email.astro';
+import ApproachMap from '../components/ApproachMap.astro';
 import { getPage, siteText } from '../lib/pages';
-
-const approaches = ordered(await getCollection('approaches'));
 
 const conferences = featured(await getCollection('conferences'));
 const highlights = await Promise.all(
@@ -64,16 +62,15 @@ const { Content: Links } = await getPage('home/links');
       approaches
     </p>
     <h2>What we build</h2>
-    <ul class="approach-grid">
-      {approaches.map((a) => (
-        <li class="reveal">
-          <a href={approachPath(a.id)}>
-            <strong>{a.data.title}</strong>
-            <span>{a.data.description}</span>
-          </a>
-        </li>
-      ))}
-    </ul>
+    {/* The same map as at the top of /approaches/: what connects to what is
+        the quickest way in. It leaves out the tools and the datasets, so the
+        link below names them. */}
+    <ApproachMap />
+    <p class="more">
+      <a href="/approaches/">
+        {label('allApproaches')} <span aria-hidden="true">&rarr;</span>
+      </a>
+    </p>
   </section>
 
   <section class="wrap section" data-section="papers" id="publications">
@@ -188,38 +185,17 @@ const { Content: Links } = await getPage('home/links');
     font-size: var(--fs-small);
   }
 
-  .approach-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
-    gap: 0.75rem;
-    list-style: none;
-    margin: 1.25rem 0 0;
-    padding: 0;
+  .more {
+    margin: 1rem 0 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
   }
-  .approach-grid a {
-    display: block;
-    height: 100%;
-    padding: 0.9rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-m);
-    background: var(--bg-1);
+  .more a {
+    color: var(--sec);
     text-decoration: none;
-    color: inherit;
-    transition:
-      border-color var(--dur) var(--ease),
-      translate var(--dur) var(--ease);
   }
-  .approach-grid a:hover {
-    border-color: var(--sec-line);
-    translate: 0 -2px;
-  }
-  .approach-grid strong {
-    display: block;
-    margin-bottom: 0.2rem;
-  }
-  .approach-grid span {
-    font-size: var(--fs-small);
-    color: var(--text-faint);
+  .more a:hover span {
+    margin-left: 0.2em;
   }
 
   .sub {
