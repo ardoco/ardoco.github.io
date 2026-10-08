@@ -20,7 +20,8 @@ import { getPage } from '../lib/pages';
  * display: none takes the hidden one out of the tab order and the
  * accessibility tree, so no link is announced twice.
  *
- * The SVG's <title> and <desc> carry fixed ids (map-title, map-desc), so the
+ * The SVG is named by aria-label rather than <title>, which browsers show
+ * as a hover tooltip. Its <desc> carries a fixed id (map-desc), so the
  * component is meant to appear once per page. It sits on /approaches/ and on
  * the home page, but never twice on either.
  */
@@ -185,10 +186,9 @@ const desc = [...rows].map(([key, row]) => `${key}: ${row.items.map((r) => r.tex
     width="840"
     height="470"
     role="group"
-    aria-labelledby="map-title"
+    aria-label="Approach map"
     aria-describedby="map-desc"
   >
-    <title id="map-title">Approach map</title>
     <desc id="map-desc">{desc.join(' ')}</desc>
 
     <g class="lines" aria-hidden="true">
