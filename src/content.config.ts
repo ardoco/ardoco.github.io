@@ -152,6 +152,24 @@ const linkTarget = z.union([
   z.url(),
   z.string().regex(/^\/[^\s]*$/, 'link must be an absolute URL or a site-relative path'),
 ]);
+/**
+ * Datasets ARDoCo publishes, shown as a strip at the foot of /approaches/.
+ * They have no pages of their own: each links out to the dataset and to the
+ * paper that introduces it. File order is page order.
+ */
+const datasets = defineCollection({
+  loader: file('src/data/datasets.yml'),
+  schema: z
+    .object({
+      name: z.string(),
+      description: z.string(),
+      url: z.url(),
+      /** The paper that introduces it, by BibTeX key; a stale key fails the build. */
+      publication: reference('publications').optional(),
+    })
+    .strict(),
+});
+
 const linkMap = z.record(z.string(), linkTarget).optional();
 
 const conferences = defineCollection({
@@ -296,3 +314,4 @@ export const collections = {
   pages,
   standalone,
 };
+  datasets,

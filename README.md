@@ -10,7 +10,7 @@ a research project on traceability link recovery and documentation consistency a
 
 ---
 
-Built with [Astro](https://astro.build/): eight Zod-validated content collections, a hand-written
+Built with [Astro](https://astro.build/): nine Zod-validated content collections, a hand-written
 design, no UI framework, no CSS framework, no theme, dark only. Previously ran on al-folio (Jekyll).
 
 ## Develop
@@ -32,10 +32,10 @@ Node 22 or newer (`.nvmrc`).
 ```
 src/
   consts.ts           SITE (url, lang, repo, email) and SECTIONS, the accent areas
-  content.config.ts   the eight collections and their schemas
+  content.config.ts   the nine collections and their schemas
   loaders/bibtex.ts   papers.bib → a typed `publications` collection
-  data/               papers.bib, venues.yml, authors.yml, people.yml
-  content/            approaches/ (8), conferences/ (16), pages/: every word the
+  data/               papers.bib, venues.yml, authors.yml, people.yml, datasets.yml
+  content/            approaches/ (9), conferences/ (16), pages/: every word the
                       templates print, one Markdown file per page, and standalone/:
                       pages that are nothing but text
   pages/              routes; see the URL table below
@@ -50,7 +50,7 @@ verification/         committed SHA-256 baseline for the published assets
 
 ## Content model
 
-Six collections of content, plus `pages`, the site's own words, and `standalone`, the pages that
+Seven collections of content, plus `pages`, the site's own words, and `standalone`, the pages that
 are nothing but text. Every cross-reference is an Astro
 `reference()`, so a bad slug, an unknown venue or
 a BibTeX key pointing at a page that does not exist **stops the build**. Under Jekyll each of those
@@ -60,10 +60,14 @@ was a silent Liquid lookup that rendered blank.
 | -------------- | -------------------------- | ----------------------------------------------- |
 | `publications` | `src/data/papers.bib`      | parsed at build time; 16 entries                |
 | `conferences`  | `src/content/conferences/` | one page per paper, plus 5 redirect stubs       |
-| `approaches`   | `src/content/approaches/`  | the 8 approaches, ordered by `importance`       |
+| `approaches`   | `src/content/approaches/`  | the 9 approaches, by group, then `importance`   |
+| `datasets`     | `src/data/datasets.yml`    | the datasets strip on `/approaches/`            |
 | `people`       | `src/data/people.yml`      | the entry key **is** the `/people/#anchor`      |
 | `authors`      | `src/data/authors.yml`     | every author who appears anywhere; name + ORCID |
 | `venues`       | `src/data/venues.yml`      | badge colours, keyed by the BibTeX `abbr`       |
+
+Datasets are not approaches, so `datasets` entries have no page of their own: each links out to the
+dataset and to the paper that introduces it.
 
 The BibTeX loader also reads ARDoCo's own `html = {/c/<slug>}` field, which links a paper to its
 page, and fails the build if that page is missing.
