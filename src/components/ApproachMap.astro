@@ -137,12 +137,23 @@ const FONT = 14;
 const pillWidth = (text: string) => text.length * FONT * 0.6 + 24;
 const PILL_H = 26;
 
+/* The boxes an approach touches, over all its edges (LiSSA: requirements and
+   code; TransArC: SAD, SAM and code). Hovering or focusing any of its labels
+   lights them all up; see `.graph:has(…)` in the style block. */
+const touches = new Map<string, Set<Node>>();
+for (const e of EDGES) {
+  const set = touches.get(e.id) ?? new Set<Node>();
+  for (const n of [e.from, e.to, e.via]) if (n) set.add(n);
+  touches.set(e.id, set);
+}
+
 const labels = EDGES.map((e) => ({
   ...e,
   text: title(e.id),
   href: approachPath(e.id),
   aria: `${title(e.id)}: links ${pairWords(e)}`,
   w: pillWidth(title(e.id)),
+  on: [...touches.get(e.id)!].map((n) => `on-${n}`),
 }));
 
 /* The same edges as rows, one per connection, in EDGES order. */
@@ -190,7 +201,7 @@ const desc = [...rows].map(([key, row]) => `${key}: ${row.items.map((r) => r.tex
       {(Object.keys(NODES) as Node[]).map((n) => {
         const { cx, cy } = NODES[n];
         return (
-          <g class="node">
+          <g class:list={['node', n]}>
             <rect x={cx - W / 2} y={cy - H / 2} width={W} height={H} rx="12" />
             <text class="name" x={cx} y={cy - 3} text-anchor="middle">
               {name(n)}
@@ -205,7 +216,7 @@ const desc = [...rows].map(([key, row]) => `${key}: ${row.items.map((r) => r.tex
 
     <g class="labels">
       {labels.map((l) => (
-        <a href={l.href} aria-label={l.aria} class="label">
+        <a href={l.href} aria-label={l.aria} class:list={['label', l.on]}>
           <rect
             class="pill"
             x={l.x - l.w / 2}
@@ -298,12 +309,31 @@ const desc = [...rows].map(([key, row]) => `${key}: ${row.items.map((r) => r.tex
     fill: var(--bg-2);
     stroke: var(--border-strong);
     stroke-width: 1.5;
+    transition:
+      fill var(--dur) var(--ease),
+      stroke var(--dur) var(--ease);
+  }
+  /* A hovered or focused label lights up the boxes its approach links: each
+     label carries on-<node> for every box it touches (see `touches`). */
+  .graph:has(.label.on-req:is(:hover, :focus-visible)) .node.req rect,
+  .graph:has(.label.on-sad:is(:hover, :focus-visible)) .node.sad rect,
+  .graph:has(.label.on-sam:is(:hover, :focus-visible)) .node.sam rect,
+  .graph:has(.label.on-code:is(:hover, :focus-visible)) .node.code rect {
+    fill: var(--sec-dim);
+    stroke: var(--sec);
+  }
+  .graph:has(.label.on-req:is(:hover, :focus-visible)) .node.req .name,
+  .graph:has(.label.on-sad:is(:hover, :focus-visible)) .node.sad .name,
+  .graph:has(.label.on-sam:is(:hover, :focus-visible)) .node.sam .name,
+  .graph:has(.label.on-code:is(:hover, :focus-visible)) .node.code .name {
+    fill: var(--sec-strong);
   }
   .node .name {
     fill: var(--text);
     font-family: var(--font-head);
     font-size: 20px;
     font-weight: 600;
+    transition: fill var(--dur) var(--ease);
   }
   .node .sub {
     fill: var(--text-muted);
