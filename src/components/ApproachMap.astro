@@ -1,0 +1,395 @@
+---
+import { getCollection } from 'astro:content';
+import { ARTIFACTS, type Artifact } from '../consts';
+import { approachPath } from '../lib/urls';
+import { getPage } from '../lib/pages';
+
+/*
+ * The approach map at the top of /approaches/: the four kinds of artifact
+ * ARDoCo connects, and on each connection the approaches that recover it.
+ *
+ * Hand-drawn inline SVG rather than an image, for two reasons: every label is
+ * a real link to its approach, reachable by keyboard and read by a screen
+ * reader; and every colour is a token from tokens.css, so the map follows
+ * the section accent like the rest of the page.
+ *
+ * Coordinates are in the viewBox (840 × 470); the SVG scales to its column.
+ * Below 48rem that would shrink the labels to a few pixels, so there the SVG
+ * is hidden and the same edges are drawn as a list of rows instead —
+ * "SAD ↔ SAM: SWATTR, ArTEMiS, …". Both are built from EDGES below, and
+ * display: none takes the hidden one out of the tab order and the
+ * accessibility tree, so no link is announced twice.
+ *
+ * The SVG's <title> and <desc> carry fixed ids (map-title, map-desc), so the
+ * component is meant to appear once per page. It sits on /approaches/ and on
+ * the home page, but never twice on either.
+ */
+
+type Node = 'req' | 'sad' | 'sam' | 'code';
+
+/* The words: the node names in src/content/pages/approaches.md. */
+const page = await getPage('approaches');
+const NODE_KEY = { req: 'Requirements', sad: 'Sad', sam: 'Sam', code: 'Code' } as const;
+const name = (n: Node) => page.label(`node${NODE_KEY[n]}`);
+const sub = (n: Node) => page.label(`node${NODE_KEY[n]}Sub`);
+
+/* Box centres. Documentation and model share the top row, requirements and
+   code the bottom one, so the two trace-link families read left to right. */
+const W = 180;
+const H = 64;
+const NODES: Record<Node, { cx: number; cy: number }> = {
+  sad: { cx: 140, cy: 100 },
+  sam: { cx: 700, cy: 100 },
+  req: { cx: 140, cy: 360 },
+  code: { cx: 700, cy: 360 },
+};
+
+/*
+ * The lines, drawn under the boxes. `dashed` is consistency analysis rather
+ * than link recovery; `transitive` is TransArC's route SAD → SAM → Code: it
+ * leaves SAD's top, crosses above everything, runs down behind the SAM box and
+ * on into Code, so it reads as one path through the model rather than a
+ * shortcut past it.
+ */
+const LINES: { d: string; kind?: 'dashed' | 'transitive' }[] = [
+  { d: 'M230 84 H610' }, // SAD — SAM
+  { d: 'M230 120 H610', kind: 'dashed' }, // SAD — SAM, inconsistencies
+  { d: 'M660 132 V328' }, // SAM — Code
+  { d: 'M230 132 L610 328' }, // SAD — Code
+  { d: 'M230 360 H610' }, // Requirements — Code
+  { d: 'M110 392 C95 455 185 455 170 392' }, // Requirements — Requirements
+  { d: 'M140 68 V48 Q140 28 160 28 H730 Q750 28 750 48 V328', kind: 'transitive' },
+];
+
+/*
+ * The labels on the lines, one per approach and connection, keyed by approach
+ * id; x and y are the label's centre, on its line. An approach appears once
+ * per connection it covers (LiSSA twice). `via` marks a transitive
+ * connection, which the list below the breakpoint spells out.
+ */
+const EDGES: { id: string; from: Node; to: Node; via?: Node; x: number; y: number }[] = [
+  { id: 'swattr', from: 'sad', to: 'sam', x: 350, y: 84 },
+  { id: 'artemis', from: 'sad', to: 'sam', x: 490, y: 84 },
+  { id: 'inconsistency-detection', from: 'sad', to: 'sam', x: 420, y: 120 },
+  { id: 'arcotl', from: 'sam', to: 'code', x: 660, y: 230 },
+  { id: 'ardocode', from: 'sad', to: 'code', x: 367, y: 203 },
+  { id: 'exarch', from: 'sad', to: 'code', x: 473, y: 258 },
+  { id: 'transarc', from: 'sad', via: 'sam', to: 'code', x: 420, y: 28 },
+  { id: 'lissa', from: 'req', to: 'code', x: 420, y: 360 },
+  { id: 'lissa', from: 'req', to: 'req', x: 140, y: 432 },
+];
+
+/* A hand-written id that names no approach would render a dead link; fail the
+   build instead, naming it. */
+const approaches = new Map((await getCollection('approaches')).map((a) => [a.id, a]));
+for (const { id } of EDGES) {
+  if (!approaches.has(id)) {
+    throw new Error(
+      `ApproachMap: unknown approach "${id}" (no src/content/approaches/${id}.md) in EDGES`,
+    );
+  }
+}
+const title = (id: string) => approaches.get(id)!.data.title;
+
+/* The edges are drawn by hand and the `artifacts` front matter is written by
+   hand, so they can drift apart. Every edge must be a pair the approach lists
+   (either order; a transitive edge counts as its two ends). The reverse is
+   NOT required: the map deliberately shows LiSSA only for its requirements
+   pairs, although its `artifacts` also list SAD pairs. */
+const ARTIFACT_OF: Record<Node, Artifact> = {
+  req: ARTIFACTS[0],
+  sad: ARTIFACTS[1],
+  sam: ARTIFACTS[2],
+  code: ARTIFACTS[3],
+};
+for (const e of EDGES) {
+  const [a, b] = [ARTIFACT_OF[e.from], ARTIFACT_OF[e.to]];
+  const listed = approaches
+    .get(e.id)!
+    .data.artifacts.some(([x, y]) => (x === a && y === b) || (x === b && y === a));
+  if (!listed) {
+    throw new Error(
+      `ApproachMap: ${e.id} is drawn linking ${a} and ${b}, but its \`artifacts\` ` +
+        `in src/content/approaches/${e.id}.md does not list that pair`,
+    );
+  }
+}
+
+/* What a connection is called, in words: "SAD with SAM", or "SAD to Code via
+   SAM" for a transitive one. Used for each label's accessible name and the
+   SVG's description, where a glyph would be read out as "left right arrow". */
+const pairWords = (e: (typeof EDGES)[number]) =>
+  e.via
+    ? `${name(e.from)} to ${name(e.to)} via ${name(e.via)}`
+    : `${name(e.from)} with ${name(e.to)}`;
+
+/* The same connection for the narrow-screen rows, with the glyph shown and the
+   words for a screen reader (see the template). The row key is the words,
+   which are unique per connection. */
+const glyph = (e: (typeof EDGES)[number]) => (e.via ? '→' : '↔');
+const parts = (e: (typeof EDGES)[number]) =>
+  (e.via ? [e.from, e.via, e.to] : [e.from, e.to]).map(name);
+
+/* Label size, estimated: the labels are set in IBM Plex Mono, whose every
+   glyph is 0.6 em wide, so the text width is known without measuring it.
+   FONT must equal the font-size of `.label text` in the style block below. */
+const FONT = 14;
+const pillWidth = (text: string) => text.length * FONT * 0.6 + 24;
+const PILL_H = 26;
+
+const labels = EDGES.map((e) => ({
+  ...e,
+  text: title(e.id),
+  href: approachPath(e.id),
+  aria: `${title(e.id)}: links ${pairWords(e)}`,
+  w: pillWidth(title(e.id)),
+}));
+
+/* The same edges as rows, one per connection, in EDGES order. */
+const rows = new Map<
+  string,
+  { parts: string[]; glyph: string; items: { id: string; text: string; href: string }[] }
+>();
+for (const l of labels) {
+  const key = pairWords(l);
+  const row = rows.get(key) ?? { parts: parts(l), glyph: glyph(l), items: [] };
+  if (!row.items.some((r) => r.id === l.id)) {
+    row.items.push({ id: l.id, text: l.text, href: l.href });
+  }
+  rows.set(key, row);
+}
+
+/* The SVG's name and description; the description is the list in prose, for
+   a reader who gets the SVG but cannot see it. */
+const desc = [...rows].map(
+  ([key, row]) => `${key}: ${row.items.map((r) => r.text).join(', ')}.`,
+);
+---
+
+<figure class="map card">
+  {/* role="group", not role="img": img makes everything inside it
+      presentational, and the labels inside are links that must stay
+      reachable. */}
+  <svg
+    class="graph"
+    viewBox="0 0 840 470"
+    width="840"
+    height="470"
+    role="group"
+    aria-labelledby="map-title"
+    aria-describedby="map-desc"
+  >
+    <title id="map-title">Approach map</title>
+    <desc id="map-desc">{desc.join(' ')}</desc>
+
+    <g class="lines" aria-hidden="true">
+      {LINES.map((l) => <path class:list={['line', l.kind]} d={l.d} />)}
+    </g>
+
+    <g class="nodes" aria-hidden="true">
+      {(Object.keys(NODES) as Node[]).map((n) => {
+        const { cx, cy } = NODES[n];
+        return (
+          <g class="node">
+            <rect x={cx - W / 2} y={cy - H / 2} width={W} height={H} rx="12" />
+            <text class="name" x={cx} y={cy - 3} text-anchor="middle">
+              {name(n)}
+            </text>
+            <text class="sub" x={cx} y={cy + 17} text-anchor="middle">
+              {sub(n)}
+            </text>
+          </g>
+        );
+      })}
+    </g>
+
+    <g class="labels">
+      {labels.map((l) => (
+        <a href={l.href} aria-label={l.aria} class="label">
+          <rect
+            class="pill"
+            x={l.x - l.w / 2}
+            y={l.y - PILL_H / 2}
+            width={l.w}
+            height={PILL_H}
+            rx={PILL_H / 2}
+          />
+          <rect
+            class="ring"
+            x={l.x - l.w / 2 - 4}
+            y={l.y - PILL_H / 2 - 4}
+            width={l.w + 8}
+            height={PILL_H + 8}
+            rx={PILL_H / 2 + 4}
+          />
+          <text x={l.x} y={l.y} text-anchor="middle" dominant-baseline="central">
+            {l.text}
+          </text>
+        </a>
+      ))}
+    </g>
+  </svg>
+
+  <ul class="rows">
+    {[...rows].map(([, row]) => (
+      <li>
+        <span class="pair">
+          {row.parts.map((p, i) => (
+            <>
+              {i > 0 && (
+                <>
+                  {' '}
+                  <span aria-hidden="true">{row.glyph}</span>
+                  <span class="sr-only">{row.glyph === '→' ? ' to ' : ' with '}</span>{' '}
+                </>
+              )}
+              {p}
+            </>
+          ))}
+        </span>
+        <ul class="chips">
+          {row.items.map((r) => (
+            <li>
+              <a class="chip" href={r.href}>
+                {r.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ul>
+</figure>
+
+<style>
+  .map {
+    margin: 0;
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+  }
+
+  .graph {
+    display: block;
+    width: 100%;
+    max-width: 56rem;
+    height: auto;
+    margin-inline: auto;
+    overflow: visible;
+  }
+
+  /* ---- lines ---- */
+  .line {
+    fill: none;
+    stroke: var(--border-strong);
+    stroke-width: 2;
+  }
+  .line.dashed {
+    stroke: var(--text-faint);
+    stroke-dasharray: 7 6;
+  }
+  .line.transitive {
+    stroke: var(--sec-line);
+    stroke-width: 2.5;
+    stroke-dasharray: 1 7;
+    stroke-linecap: round;
+  }
+
+  /* ---- nodes ---- */
+  .node rect {
+    fill: var(--bg-2);
+    stroke: var(--border-strong);
+    stroke-width: 1.5;
+  }
+  .node .name {
+    fill: var(--text);
+    font-family: var(--font-head);
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .node .sub {
+    fill: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 12.5px;
+  }
+
+  /* ---- labels: the links ----
+     Opaque fill, so the line they sit on stops at their edge rather than
+     running through the text. */
+  .label {
+    text-decoration: none;
+  }
+  .label .pill {
+    fill: var(--bg-1);
+    stroke: var(--sec-line);
+    stroke-width: 1.5;
+    transition: stroke var(--dur) var(--ease);
+  }
+  .label text {
+    fill: var(--sec);
+    font-family: var(--font-mono);
+    font-size: 14px; /* = FONT in the frontmatter, which sizes the pills */
+    transition: fill var(--dur) var(--ease);
+  }
+  .label:hover .pill {
+    stroke: var(--sec);
+  }
+  .label:hover text {
+    fill: var(--sec-strong);
+  }
+  /* A drawn ring rather than the global outline: browsers disagree on where
+     an outline goes around an SVG link, and some draw none at all. */
+  .label .ring {
+    fill: none;
+    stroke: var(--sec);
+    stroke-width: 2;
+    opacity: 0;
+  }
+  .label:focus {
+    outline: none;
+  }
+  .label:focus-visible .ring {
+    opacity: 1;
+  }
+
+  /* ---- the narrow-screen list ---- */
+  .rows {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .rows > li {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .rows > li:first-child {
+    padding-top: 0;
+  }
+  .rows > li:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  .pair {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    color: var(--text-muted);
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (max-width: 48rem) {
+    .graph {
+      display: none;
+    }
+    .rows {
+      display: block;
+    }
+  }
+</style>
