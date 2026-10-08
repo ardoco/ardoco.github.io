@@ -51,7 +51,7 @@ const publications = defineCollection({
     authors: z.array(z.object({ first: z.string(), last: z.string() })).min(1),
     year: z.number().int(),
     month: z.number().int().min(1).max(12).optional(),
-    // An abbr with no venues.yml entry fails the build. Five entries carry no
+    // An abbr with no venues.yml entry fails the build. Two entries carry no
     // abbr at all, which is fine — they render without a badge.
     abbr: reference('venues').optional(),
     booktitle: z.string().optional(),

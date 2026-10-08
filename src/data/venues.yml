@@ -28,3 +28,20 @@ SE:
   name: Software Engineering (GI)
   url: https://fb-swt.gi.de/
   color: '#5b5bd6'
+
+# Colours are chosen apart from the five above (blue, amber, magenta, teal,
+# violet) and light enough for the badge's dark-site background.
+TAAS:
+  name: ACM Transactions on Autonomous and Adaptive Systems
+  url: https://dl.acm.org/journal/taas
+  color: '#e4572e'
+
+REFSQ:
+  name: 'International Working Conference on Requirements Engineering: Foundation for Software Quality'
+  url: https://refsq.org/
+  color: '#7cb518'
+
+AIRE:
+  name: International Workshop on Artificial Intelligence and Requirements Engineering
+  url: https://aire-ws.github.io/aire25/
+  color: '#e86a92'
