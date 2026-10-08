@@ -5,8 +5,8 @@ importance: 2
 group: tlr
 artifacts: [['SAM', 'Code']]
 figure:
-  src: /assets/img/approaches/icse24-transarc.svg
-  alt: ArCoTL Overview
+  src: /assets/img/approaches/icse24-arcotl.svg
+  alt: ArCoTL heuristic computation graph
   plate: true
 repositories:
   - name: Implementation
