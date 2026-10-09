@@ -1,0 +1,16 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "packageRules": [
+    {
+      "description": "Automerge non-major updates",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "description": "TypeScript 7 is refused by `astro check`, which says to install TypeScript 6 instead. Revisit when @astrojs/check supports it, or when astro check gives way to @astrojs/ts-content-mapper",
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<7"
+    }
+  ]
+}
