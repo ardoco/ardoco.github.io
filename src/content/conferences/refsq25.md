@@ -25,7 +25,7 @@ links:
     springer: https://doi.org/10.1007/978-3-031-88531-0_27
   replication:
     zenodo: https://doi.org/10.5281/zenodo.14779457
-    repo: https://github.com/ardoco/ReplicationPackage-REFSQ25_Requirements-TLR-via-RAG
+    repo: https://github.com/ardoco/Replication-Package-REFSQ25_Requirements-TLR-via-RAG
 ---
 
 ## Abstract

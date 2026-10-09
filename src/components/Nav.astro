@@ -67,7 +67,7 @@ const { title } = await siteText();
     color: var(--teal);
   }
 
-  /* No hamburger: five short items wrap onto a second line on narrow screens,
+  /* No hamburger: four short items move onto a second line on narrow screens,
      which is less machinery and one fewer thing that can trap focus. */
   ul {
     display: flex;
@@ -86,6 +86,23 @@ const { title } = await siteText();
     border-bottom: 1px solid transparent;
   }
 
+  /* Phones: the brand gets its own row and the links share the full width of
+     the second, spread edge to edge rather than hanging off the right, so the
+     sticky bar stays two rows high down to 320px. */
+  @media (max-width: 32rem) {
+    .inner {
+      gap: 0.25rem;
+      padding-block: 0.6rem 0.2rem;
+    }
+    ul {
+      flex: 1 0 100%;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin: 0;
+    }
+  }
+
   /* Each nav item previews the accent of the section it leads to, so the
      colour change on arrival is continuous rather than a surprise. */
   ul a[data-section='home']:hover,
@@ -97,11 +114,6 @@ const { title } = await siteText();
   ul a[data-section='approaches'][aria-current='page'] {
     color: var(--azure);
     border-color: var(--azure-line);
-  }
-  ul a[data-section='conferences']:hover,
-  ul a[data-section='conferences'][aria-current='page'] {
-    color: var(--violet);
-    border-color: var(--violet-line);
   }
   ul a[data-section='publications']:hover,
   ul a[data-section='publications'][aria-current='page'] {

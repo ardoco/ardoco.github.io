@@ -1,6 +1,10 @@
 import type { CollectionEntry } from 'astro:content';
+import { conferencePath } from './urls';
 
 type Pub = CollectionEntry<'publications'>;
+
+/** A reference to a venues.yml entry, as `abbr` on a publication. */
+export type VenueRef = NonNullable<Pub['data']['abbr']>;
 
 /**
  * Newest first, fully deterministic.
@@ -31,4 +35,19 @@ export function byYear(pubs: Pub[]): { year: number; pubs: Pub[] }[] {
   return [...groups.entries()]
     .sort((a, b) => b[0] - a[0])
     .map(([year, list]) => ({ year, pubs: list.sort(byNewest) }));
+}
+
+/** The paper's DOI as a link, else its `url`; undefined when it has neither. */
+export function doiOrUrl(pub: Pub): string | undefined {
+  return pub.data.doi ? `https://doi.org/${pub.data.doi}` : pub.data.url;
+}
+
+/**
+ * Where a link "to the paper" goes: its own page under /c/ when it has one —
+ * that page carries the abstract, slides and every other link — otherwise
+ * straight to the DOI, otherwise to its `url`. Undefined when there is none.
+ */
+export function paperHref(pub: Pub): string | undefined {
+  if (pub.data.infoSlug) return conferencePath(pub.data.infoSlug);
+  return doiOrUrl(pub);
 }

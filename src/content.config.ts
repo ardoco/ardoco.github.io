@@ -2,7 +2,7 @@ import { defineCollection, reference } from 'astro:content';
 import { z } from 'zod';
 import { file, glob } from 'astro/loaders';
 import { bibtexLoader } from './loaders/bibtex';
-import { SECTIONS } from './consts';
+import { APPROACH_GROUPS, ARTIFACTS, SECTIONS } from './consts';
 
 /** Conference brand colours for the publication badges, keyed by BibTeX `abbr`. */
 const venues = defineCollection({
@@ -51,8 +51,8 @@ const publications = defineCollection({
     authors: z.array(z.object({ first: z.string(), last: z.string() })).min(1),
     year: z.number().int(),
     month: z.number().int().min(1).max(12).optional(),
-    // An abbr with no venues.yml entry fails the build. Five entries carry no
-    // abbr at all, which is fine — they render without a badge.
+    // An abbr with no venues.yml entry fails the build. An entry without an
+    // abbr renders without a badge.
     abbr: reference('venues').optional(),
     booktitle: z.string().optional(),
     journal: z.string().optional(),
@@ -75,27 +75,99 @@ const publications = defineCollection({
   }),
 });
 
-const figure = z.object({
+/**
+ * An image under public/, as every figure and gallery picture is given.
+ *
+ * The approach diagrams are dark-on-transparent SVGs drawn for a white page.
+ * On a near-black background they need a light plate behind them. Only
+ * screenshots, which bring their own background, turn it off.
+ *
+ * The draw.io exports (ecsa21-swattr.svg, icse24-ardocode.svg) carry
+ * `color-scheme: light dark` and light-dark() fills, so on this dark site
+ * they drew black boxes onto the white plate. Their root style is pinned
+ * to `color-scheme: light`; a fresh export needs the same edit.
+ */
+const image = z.object({
   src: z.string(),
   alt: z.string(),
-  /**
-   * The approach diagrams are dark-on-transparent SVGs drawn for a white page.
-   * On a near-black background they need a light plate behind them — except
-   * the two that were authored without one.
-   */
   plate: z.boolean().default(true),
 });
+
+const figure = image
+  .extend({
+    /**
+     * A different image for the approach's card on /approaches/, where the
+     * figure itself would not read at thumbnail size — a screenshot of a tool
+     * says more there than its architecture diagram. The card shows
+     * `thumb ?? src`, on no plate (a thumb is a screenshot with a background
+     * of its own). Only approaches use it; a conference page ignores it.
+     */
+    thumb: z.string().optional(),
+  })
+  .strict();
+
+/**
+ * One extra image on an approach page, after its text. Front matter rather
+ * than a Markdown image in the body: Markdown cannot carry width and height,
+ * and scripts/audit-site.mjs fails any <img> without them.
+ */
+const galleryImage = image
+  .extend({
+    /** Shown under the image; plain text. */
+    caption: z.string().optional(),
+  })
+  .strict();
 
 const approaches = defineCollection({
   loader: glob({ base: 'src/content/approaches', pattern: '**/*.md' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    /** Sort key for /approaches/, roughly the order the work was published. */
+    /** The section of /approaches/ the card sits in; see APPROACH_GROUPS. */
+    group: z.enum(APPROACH_GROUPS),
+    /** Order within the group, lowest first: roughly the order the work was published. */
     importance: z.number().int(),
+    /**
+     * The pairs of artifact the approach links, each as two short tags: `SAD`
+     * (architecture documentation), `SAM` (architecture model), `Code`,
+     * `Requirements`. A list of pairs rather than one list of tags, because a
+     * generic approach like LiSSA links several pairs, and a flat list would
+     * read as one chain (Requirements ↔ SAD ↔ Code ↔ …). Shown as tags on the
+     * card and under the page's lede.
+     */
+    artifacts: z.array(z.tuple([z.enum(ARTIFACTS), z.enum(ARTIFACTS)])).default([]),
     repositories: z.array(z.object({ name: z.string(), url: z.url() })).default([]),
+    /**
+     * Papers about the approach that have no conference page of their own, as
+     * references to BibTeX entries (the id is the BibTeX key). Most papers
+     * reach an approach the other way round, through a conference page's
+     * `approaches:`; this is for the ones that only exist as a redirect stub,
+     * like a journal extension, whose stub would otherwise attach the
+     * approach to the paper it redirects to. Merged with the conference
+     * pages by relatedPublications() in lib/approaches.ts.
+     */
+    publications: z.array(reference('publications')).default([]),
     figure: figure.optional(),
+    gallery: z.array(galleryImage).default([]),
   }),
+});
+
+/**
+ * Datasets ARDoCo publishes, shown as a strip at the foot of /approaches/.
+ * They have no pages of their own: each links out to the dataset and to the
+ * paper that introduces it. File order is page order.
+ */
+const datasets = defineCollection({
+  loader: file('src/data/datasets.yml'),
+  schema: z
+    .object({
+      name: z.string(),
+      description: z.string(),
+      url: z.url(),
+      /** The paper that introduces it, by BibTeX key; a stale key fails the build. */
+      publication: reference('publications').optional(),
+    })
+    .strict(),
 });
 
 /**
@@ -132,10 +204,9 @@ const conferences = defineCollection({
     inPress: z.boolean().default(false),
 
     /**
-     * Navbar label and ordering, previously the `children:` array in
-     * _pages/conferences.md. That one list drove both the dropdown and the
-     * front-page publication order, so it had to be edited in lockstep with
-     * this directory; now each entry carries its own position.
+     * Label and ordering of the home page's publication list (and the feed),
+     * previously the `children:` array in _pages/conferences.md, which also
+     * drove a navbar dropdown. Each entry now carries its own position.
      */
     navLabel: z.string().optional(),
     navOrder: z.number().int().optional(),
@@ -249,6 +320,7 @@ export const collections = {
   people,
   publications,
   approaches,
+  datasets,
   conferences,
   pages,
   standalone,

@@ -6,10 +6,10 @@ type Conference = CollectionEntry<'conferences'>;
 const isPage = (c: Conference): boolean => c.data.redirectTo === undefined;
 
 /**
- * Navbar and front-page order.
+ * Home-page and feed order.
  *
  * `navOrder` came from the `children:` array in _pages/conferences.md, which
- * was the single list driving both. Entries without one (the redirect stubs)
+ * once drove a navbar dropdown as well. Entries without one (the redirect stubs)
  * are not listed anywhere.
  */
 function byNavOrder(a: Conference, b: Conference): number {

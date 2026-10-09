@@ -21,6 +21,8 @@
   --bg-1: #111620;
   --bg-2: #171d28;
   --bg-3: #1e2633;
+  /* The light plate behind dark line-art diagrams (Figure, approach cards). */
+  --plate: #fff;
   --border: rgb(255 255 255 / 9%);
   --border-strong: rgb(255 255 255 / 17%);
 
@@ -109,7 +111,10 @@
   --sec-dim: var(--azure-dim);
   --sec-glow: var(--azure-glow);
 }
-[data-section='conferences'] {
+/* Violet: only the home page's "Relevant and recent publications" section
+   (data-section="papers") uses it; the nav and /c/ pages are green, as
+   publications. */
+[data-section='papers'] {
   --sec: var(--violet);
   --sec-strong: var(--violet-strong);
   --sec-line: var(--violet-line);

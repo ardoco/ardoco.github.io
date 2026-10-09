@@ -4,7 +4,6 @@
 sections:
   home: '[about](/)'
   approaches: '[approaches](/approaches/)'
-  conferences: '[conferences](/conferences/)'
   publications: '[publications](/publications/)'
   people: '[people](/people/)'
 ---

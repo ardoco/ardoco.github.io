@@ -1,0 +1,14 @@
+---
+import { getEntry } from 'astro:content';
+import { approachPath } from '../../../lib/urls';
+import { redirectResponse } from '../../../lib/redirect';
+
+/*
+ * /approaches/tv/ was the page for ARDoCo-TV alone. It grew into the page for
+ * all the tools (REST API, TraceView, TraceViz) and moved to /approaches/tools/;
+ * the old URL stays alive as a stub, like the legacy /c/ pages.
+ */
+const tools = await getEntry('approaches', 'tools');
+if (!tools) throw new Error('approaches/tv: src/content/approaches/tools.md is gone');
+return redirectResponse(approachPath('tools'), tools.data.title);
+---

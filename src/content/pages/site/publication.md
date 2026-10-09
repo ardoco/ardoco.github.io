@@ -1,6 +1,6 @@
 ---
-# Words shared by a publication entry (/publications/), the conference list
-# (/conferences/) and a conference page (/c/<slug>).
+# Words shared by a publication entry (/publications/, via PubEntry) and a
+# conference page (/c/<slug>). The home page does not load this file.
 labels:
   # the chips on an entry; `details` is followed by an arrow
   details: 'Details'
@@ -8,8 +8,6 @@ labels:
   # the entry's `url`, shown when it has no DOI
   link: 'Link'
   bibtex: 'BibTeX'
-  # the status in the conference list
-  toAppear: 'to appear'
   # before the `conferenceName` on a conference page
   publishedAt: 'Published at'
   toBePublishedAt: 'To be published at'

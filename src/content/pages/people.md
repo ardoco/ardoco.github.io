@@ -3,7 +3,7 @@
 # lede.
 title: 'people'
 description: 'The researchers behind ARDoCo at the MCSE group, KASTEL, Karlsruhe Institute of Technology.'
-# The chips on a person's card; the ORCID one is followed by the id.
+# The ORCID mark after a person's name, and the chip linking their KIT page.
 labels:
   orcid: 'ORCID'
   kitUrl: 'Website at KIT'

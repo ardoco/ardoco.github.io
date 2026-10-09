@@ -10,7 +10,7 @@ a research project on traceability link recovery and documentation consistency a
 
 ---
 
-Built with [Astro](https://astro.build/): eight Zod-validated content collections, a hand-written
+Built with [Astro](https://astro.build/): nine Zod-validated content collections, a hand-written
 design, no UI framework, no CSS framework, no theme, dark only. Previously ran on al-folio (Jekyll).
 
 ## Develop
@@ -32,10 +32,10 @@ Node 22 or newer (`.nvmrc`).
 ```
 src/
   consts.ts           SITE (url, lang, repo, email) and SECTIONS, the accent areas
-  content.config.ts   the eight collections and their schemas
+  content.config.ts   the nine collections and their schemas
   loaders/bibtex.ts   papers.bib → a typed `publications` collection
-  data/               papers.bib, venues.yml, authors.yml, people.yml
-  content/            approaches/ (8), conferences/ (16), pages/: every word the
+  data/               papers.bib, venues.yml, authors.yml, people.yml, datasets.yml
+  content/            approaches/ (9), conferences/ (16), pages/: every word the
                       templates print, one Markdown file per page, and standalone/:
                       pages that are nothing but text
   pages/              routes; see the URL table below
@@ -50,7 +50,7 @@ verification/         committed SHA-256 baseline for the published assets
 
 ## Content model
 
-Six collections of content, plus `pages`, the site's own words, and `standalone`, the pages that
+Seven collections of content, plus `pages`, the site's own words, and `standalone`, the pages that
 are nothing but text. Every cross-reference is an Astro
 `reference()`, so a bad slug, an unknown venue or
 a BibTeX key pointing at a page that does not exist **stops the build**. Under Jekyll each of those
@@ -60,13 +60,32 @@ was a silent Liquid lookup that rendered blank.
 | -------------- | -------------------------- | ----------------------------------------------- |
 | `publications` | `src/data/papers.bib`      | parsed at build time; 16 entries                |
 | `conferences`  | `src/content/conferences/` | one page per paper, plus 5 redirect stubs       |
-| `approaches`   | `src/content/approaches/`  | the 8 approaches, ordered by `importance`       |
+| `approaches`   | `src/content/approaches/`  | the 9 approaches, by group, then `importance`   |
+| `datasets`     | `src/data/datasets.yml`    | the datasets strip on `/approaches/`            |
 | `people`       | `src/data/people.yml`      | the entry key **is** the `/people/#anchor`      |
 | `authors`      | `src/data/authors.yml`     | every author who appears anywhere; name + ORCID |
 | `venues`       | `src/data/venues.yml`      | badge colours, keyed by the BibTeX `abbr`       |
 
+Datasets are not approaches, so `datasets` entries have no page of their own: each links out to the
+dataset and to the paper that introduces it.
+
 The BibTeX loader also reads ARDoCo's own `html = {/c/<slug>}` field, which links a paper to its
 page, and fails the build if that page is missing.
+
+## Approaches
+
+Each approach is one `.md` in `src/content/approaches/`; the body is the page text. Front matter:
+
+- `title`, `description`, `importance`: `importance` is only a sort key, so renumber freely.
+- `group`: `tlr`, `consistency` or `tools`, required. It decides the section on `/approaches/`.
+- `artifacts`: the pairs of artifact the approach links, e.g. `[['SAD', 'SAM']]`; a generic approach lists several pairs.
+- `figure`: `{ src, alt, plate, thumb? }`. `thumb` is an optional different image for the overview card.
+- `gallery`: extra figures after the body, `[{ src, alt, caption?, plate? }]`. Use these, not Markdown images:
+  the audit requires width and height on every `img`.
+- `repositories`: `[{ name, url }]`.
+- `publications`: BibTeX keys of papers with no conference page of their own, e.g. a journal extension
+  whose page is only a redirect stub: `[fuchss_whos_2026]`. They join the papers found through
+  conference pages' `approaches:`.
 
 ## Page text — `src/content/pages/`
 
@@ -74,14 +93,14 @@ The `.astro` files hold layout and code. Every word a reader sees that is not co
 `<title>` and description, its lede, the labels on its chips and buttons, the nav and footer rows,
 the home page's introduction — is in `src/content/pages/`, one Markdown file per page:
 
-| File                                                                        | Holds                                                                                   |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `site/site.md`                                                              | the site `title`, the `tagline` and the default `description`                           |
-| `site/nav.md`                                                               | each section's nav item                                                                 |
-| `site/footer.md`                                                            | the copyright holder and link row; the body is the affiliation                          |
-| `site/publication.md`                                                       | words shared by a publication entry and a conference page, and `linkLabels`             |
-| `home.md`, `home/affiliation.md`, `home/poster.md`, `home/links.md`         | the home page: buttons and labels; the body is the introduction; one block per fragment |
-| `404.md`, `approaches.md`, `conferences.md`, `people.md`, `publications.md` | one page each; the body, where there is one, is the lede                                |
+| File                                                                | Holds                                                                                   |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `site/site.md`                                                      | the site `title`, the `tagline` and the default `description`                           |
+| `site/nav.md`                                                       | each section's nav item                                                                 |
+| `site/footer.md`                                                    | the copyright holder and link row; the body is the affiliation                          |
+| `site/publication.md`                                               | words shared by a publication entry and a conference page, and `linkLabels`             |
+| `home.md`, `home/affiliation.md`, `home/poster.md`, `home/links.md` | the home page: buttons and labels; the body is the introduction; one block per fragment |
+| `404.md`, `approaches.md`, `people.md`, `publications.md`           | one page each; the body, where there is one, is the lede                                |
 
 **Front matter holds short plain strings, the body holds anything with a link or emphasis in it.**
 `labels` are short words, `intros` the sentence under a section heading, `plurals` a
@@ -115,7 +134,8 @@ Two shapes, both inherited from the Jekyll site and both still served:
 | `/`                                    | `src/pages/index.astro`                              |
 | `/approaches/`                         | `src/pages/approaches/index.astro`                   |
 | `/approaches/<slug>/`                  | `src/pages/approaches/[slug]/`                       |
-| `/conferences/`                        | `src/pages/conferences/index.astro`                  |
+| `/approaches/tv/`                      | redirect stub to `/approaches/tools/`                |
+| `/conferences/`                        | redirect stub to `/publications/`                    |
 | **`/c/<slug>`**                        | `src/pages/c/[slug].astro` → `.html`                 |
 | `/publications/`                       | `src/pages/publications/index.astro`                 |
 | `/people/`                             | `src/pages/people/index.astro`                       |
@@ -133,6 +153,12 @@ is the _file_ path, so canonical links and sitemap entries go through `canonical
 (`se24`, `se25`, `se26-exarch`, `se26-lissa`, `taas26`) redirect to the page that superseded them and
 stay that way.
 
+**`/conferences/`** was published, so it stays as a redirect stub to `/publications/`: that page links every
+`/c/<slug>` page, so the list was a duplicate.
+
+**`/approaches/tv/`** was the page for ARDoCo-TV alone, which grew into the tools page, so it stays as a
+redirect stub to `/approaches/tools/`.
+
 **`public/assets/**`** — served byte-for-byte at URLs that have been live for years. Never rename,
 move, or run them through an optimiser. Pinned by SHA-256 in `verification/asset-sha256.txt`; if you
 genuinely add or replace one, rerun `node scripts/generate-asset-baseline.mjs`.
@@ -145,7 +171,8 @@ makes them easy to lose.
 **`public/CNAME`** — the deploy replaces the `gh-pages` branch wholesale, so if this file stops being
 emitted, `ardoco.de` stops resolving.
 
-`npm run verify` asserts all four, and the deploy workflow runs it before publishing. It also checks
+`npm run verify` asserts the redirect stubs (the five `/c/` ones, `/conferences/` and
+`/approaches/tv/`), the asset hashes, the two comments and `CNAME`, and the deploy workflow runs it before publishing. It also checks
 WCAG contrast, that every internal link and `#fragment` resolves, that images carry intrinsic
 dimensions, that no text runs into a link, that no email address appears in the served bytes, and
 that `www.youtube.com` (the two screencasts) is still the only third-party origin.
@@ -157,10 +184,10 @@ that `www.youtube.com` (the two screencasts) is still the only third-party origi
 | Add a publication          | append to `src/data/papers.bib`; `html = {/c/<slug>}` links it to its page        |
 | Add a venue badge          | add the abbreviation to `src/data/venues.yml` — an unknown `abbr` fails the build |
 | Add a paper page           | new `.md` in `src/content/conferences/`; the filename is the `/c/<slug>` URL      |
-| Add an approach            | new `.md` in `src/content/approaches/`; `importance` sets its place in the list   |
+| Add an approach            | new `.md` in `src/content/approaches/`; see "Approaches" above                    |
 | Link a paper to approaches | `approaches: [lissa, exarch]` in its front matter — bad slugs fail the build      |
 | Add a person               | new entry in `src/data/people.yml`; the key becomes the `/people/#anchor`         |
-| Reorder the nav            | `navOrder` on a conference entry; it drives the nav and the front-page list alike |
+| Reorder the home list      | `navOrder` on a conference entry; it orders the home-page list and the feed       |
 | Add an image               | drop it in `public/assets/img/`, then rerun `scripts/generate-asset-baseline.mjs` |
 | Change a page's words      | its file in `src/content/pages/`; the nav and footer rows are in `site/`          |
 | Check bib against Crossref | `python3 scripts/update_bib.py` (stdlib only; `--write` applies the safe fields)  |

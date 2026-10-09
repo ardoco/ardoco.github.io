@@ -1,0 +1,18 @@
+# Datasets ARDoCo publishes, shown in the strip at the foot of /approaches/.
+#
+# The key is the entry's id; nothing links to it, so it may change. File order
+# is page order. `publication` is the introducing paper's BibTeX key in
+# papers.bib (build-checked): the entry links to that paper's /c/ page when it
+# has one, otherwise to its DOI.
+
+benchmark:
+  name: Benchmark
+  description: Gold-standard trace links between software architecture documentation (SAD), architecture models (SAM) and code for MediaStore, TeaStore, TEAMMATES, BigBlueButton and JabRef.
+  url: https://github.com/ArDoCo/Benchmark
+  publication: fuchss_establishing_2023
+
+everest:
+  name: EVerest
+  description: Security requirements, documentation, architecture and code of the EVerest EV-charging stack, with labels and the trace links between them.
+  url: https://doi.org/10.5281/zenodo.21157836
+  publication: corallo_everest_2026

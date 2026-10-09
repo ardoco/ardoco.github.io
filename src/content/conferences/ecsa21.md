@@ -20,7 +20,7 @@ conferenceUrl: https://conf.researchr.org/home/ecsa-2021
 figure:
   src: /assets/img/approaches/ecsa21-swattr.svg
   alt: SWATTR Overview
-  plate: false
+  plate: true
 links:
   paper:
     springer: https://doi.org/10.1007/978-3-030-86044-8_7

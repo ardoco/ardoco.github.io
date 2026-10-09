@@ -1,10 +1,11 @@
 ---
-import { getCollection, getEntry, render } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Prose from '../../../components/Prose.astro';
 import Figure from '../../../components/Figure.astro';
+import Artifacts from '../../../components/Artifacts.astro';
 import VenueBadge from '../../../components/pub/VenueBadge.astro';
-import { conferencePath } from '../../../lib/urls';
+import { relatedPublications } from '../../../lib/approaches';
 
 export async function getStaticPaths() {
   const all = await getCollection('approaches');
@@ -15,24 +16,9 @@ const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
 
-/*
- * Reverse index: every conference page that names this approach.
- *
- * The Jekyll version compared `conf.approaches` against `page.title` as
- * strings, so a renamed approach quietly emptied this list. The collection
- * stores references, so the join is by id and the build fails instead.
- */
-const conferences = (await getCollection('conferences'))
-  .filter((c) => c.data.redirectTo === undefined)
-  .filter((c) => c.data.approaches.some((ref) => ref.id === entry.id))
-  .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
-
-const related = await Promise.all(
-  conferences.map(async (c) => ({
-    conference: c,
-    pub: c.data.publication ? await getEntry(c.data.publication) : undefined,
-  })),
-);
+/* Every conference page that names this approach, plus its own
+   `publications` — see relatedPublications(). */
+const related = await relatedPublications(entry);
 ---
 
 <Base title={d.title} description={d.description} section="approaches">
@@ -43,6 +29,7 @@ const related = await Promise.all(
       </p>
       <h1>{d.title}</h1>
       <p class="lede">{d.description}</p>
+      {d.artifacts.length > 0 && <Artifacts pairs={d.artifacts} />}
     </header>
 
     {d.figure && <Figure src={d.figure.src} alt={d.figure.alt} plate={d.figure.plate} />}
@@ -50,6 +37,16 @@ const related = await Promise.all(
     <Prose>
       <Content />
     </Prose>
+
+    {/* Extra figures from front matter (`gallery`), after the text they
+        illustrate; see the schema for why they are not Markdown images. */}
+    {d.gallery.length > 0 && (
+      <div class="gallery">
+        {d.gallery.map((g) => (
+          <Figure src={g.src} alt={g.alt} plate={g.plate} caption={g.caption} />
+        ))}
+      </div>
+    )}
 
     {d.repositories.length > 0 && (
       <section class="block">
@@ -70,12 +67,14 @@ const related = await Promise.all(
       <section class="block">
         <h2>{related.length === 1 ? 'Related publication' : 'Related publications'}</h2>
         <ul class="pubs">
-          {related.map(({ conference, pub }) => (
+          {related.map(({ href, title, venue, abbr }) => (
             <li>
-              {pub?.data.abbr && <VenueBadge abbr={pub.data.abbr} />}
+              {abbr && <VenueBadge abbr={abbr} />}
               <div>
-                <a href={conferencePath(conference.id)}>{conference.data.title}</a>
-                <p>{conference.data.pubShortName ?? conference.data.conferenceName}</p>
+                <a href={href} rel={href.startsWith('/') ? undefined : 'noopener'}>
+                  {title}
+                </a>
+                <p>{venue}</p>
               </div>
             </li>
           ))}
@@ -99,6 +98,13 @@ const related = await Promise.all(
     max-width: var(--measure);
     color: var(--text-muted);
     margin: 0;
+  }
+  header :global(.artifacts) {
+    margin-top: 0.9rem;
+  }
+
+  .gallery {
+    margin-top: 2.25rem;
   }
 
   .block {

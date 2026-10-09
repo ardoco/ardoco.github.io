@@ -40,15 +40,23 @@ const { label } = page;
           decoding="async"
         />
         <div>
-          <h2>{p.name}</h2>
-          <ul class="links">
+          <h2>
+            {p.name}
             {p.orcid && (
-              <li>
-                <a class="chip" href={`https://orcid.org/${p.orcid}`} rel="noopener">
-                  {label('orcid')} {p.orcid}
-                </a>
-              </li>
+              <a
+                class="orcid"
+                href={`https://orcid.org/${p.orcid}`}
+                rel="noopener"
+                title={`${label('orcid')} ${p.orcid}`}
+              >
+                <span class="sr-only">
+                  {label('orcid')} of {p.name}
+                </span>
+                iD
+              </a>
             )}
+          </h2>
+          <ul class="links">
             {p.kitUrl && (
               <li>
                 <a class="chip" href={p.kitUrl} rel="noopener">
@@ -105,6 +113,23 @@ const { label } = page;
   h2 {
     font-size: 1.0625rem;
     margin: 0 0 0.5rem;
+  }
+  /* The same iD mark as the bylines on the paper pages (c/[slug].astro). */
+  .orcid {
+    display: inline-block;
+    margin-left: 0.3em;
+    padding: 0.05em 0.35em;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--green-line);
+    border-radius: var(--radius-s);
+    color: var(--green);
+    vertical-align: 0.15em;
+  }
+  .orcid:hover {
+    background: var(--green-dim);
   }
   .links {
     display: flex;
