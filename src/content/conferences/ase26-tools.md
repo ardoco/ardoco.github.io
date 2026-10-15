@@ -28,6 +28,9 @@ links:
   replication:
     zenodo: https://doi.org/10.5281/zenodo.21533985
     repo: https://github.com/ardoco/Replication-Package-ASE26_Ardoco-Tool-Landscape
+  slides:
+    pptx: /assets/pdf/presentation_ase26-tools.pptx
+    pdf: /assets/pdf/presentation_ase26-tools.pdf
 ---
 
 ## Abstract
