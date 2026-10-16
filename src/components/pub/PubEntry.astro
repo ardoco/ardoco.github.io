@@ -2,6 +2,9 @@
 import type { CollectionEntry } from 'astro:content';
 import VenueBadge from './VenueBadge.astro';
 import CopyButton from './CopyButton.astro';
+import BibMark from '../BibMark.astro';
+import DoiMark from '../DoiMark.astro';
+import LinkMark from '../LinkMark.astro';
 import { conferencePath } from '../../lib/urls';
 import { getPage } from '../../lib/pages';
 
@@ -23,6 +26,9 @@ const venueLine = [
   d.location,
   d.year,
 ].filter(Boolean);
+
+const pagePath = d.infoSlug ? conferencePath(d.infoSlug) : undefined;
+const bibId = `bib-${pub.id}`;
 ---
 
 <article class="entry" id={pub.id}>
@@ -31,7 +37,54 @@ const venueLine = [
   </div>
 
   <div class="body">
-    <h3>{d.infoSlug ? <a href={conferencePath(d.infoSlug)}>{d.title}</a> : d.title}</h3>
+    <h3>
+      {pagePath ? (
+        <a class="title-link" href={pagePath}>
+          {d.title}
+          <span class="sr-only"> ({label('hasPage')})</span>
+        </a>
+      ) : (
+        d.title
+      )}
+      <span class="title-icons">
+        {d.doi && (
+          <a
+            class="title-icon"
+            href={`https://doi.org/${d.doi}`}
+            rel="noopener"
+            title={label('doi')}
+            aria-label={`${label('doi')}: ${d.title}`}
+          >
+            <DoiMark />
+          </a>
+        )}
+        {!d.doi && d.url && (
+          /* The DOI icon is the better permalink; this is the fallback. */
+          <a
+            class="title-icon link-icon"
+            href={d.url}
+            rel="noopener"
+            title={label('link')}
+            aria-label={`${label('link')}: ${d.title}`}
+          >
+            <LinkMark />
+          </a>
+        )}
+        {!compact && (
+          <button
+            class="title-icon bib-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls={bibId}
+            aria-label={`${label('bibtex')}: ${d.title}`}
+            title={label('bibtex')}
+            hidden
+          >
+            <BibMark />
+          </button>
+        )}
+      </span>
+    </h3>
 
     <p class="authors">
       {d.authors.map((a, i) => {
@@ -48,34 +101,29 @@ const venueLine = [
 
     {venueLine.length > 0 && <p class="venue-line">{venueLine.join(' · ')}</p>}
 
-    <div class="actions">
-      {d.infoSlug && (
-        <a class="chip" href={conferencePath(d.infoSlug)}>
-          {label('details')} &rarr;
-        </a>
-      )}
-      {d.doi && (
-        <a class="chip" href={`https://doi.org/${d.doi}`} rel="noopener">
-          {label('doi')}
-        </a>
-      )}
-      {d.url && !d.doi && (
-        <a class="chip" href={d.url} rel="noopener">
-          {label('link')}
-        </a>
-      )}
-      {!compact && (
-        <details class="bib">
-          <summary class="chip">{label('bibtex')}</summary>
-          <div class="bib-body">
-            <CopyButton target={`bib-${pub.id}`} />
-            <pre id={`bib-${pub.id}`}>{d.bibtex}</pre>
-          </div>
-        </details>
-      )}
-    </div>
+    {!compact && (
+      <div class="bib-body" id={bibId}>
+        <CopyButton target={`${bibId}-text`} />
+        <pre id={`${bibId}-text`}>{d.bibtex}</pre>
+      </div>
+    )}
   </div>
 </article>
+
+<script>
+  // Without JS the BibTeX stays open and the button stays hidden.
+  for (const btn of document.querySelectorAll<HTMLButtonElement>('button.bib-toggle')) {
+    const panel = document.getElementById(btn.getAttribute('aria-controls')!);
+    if (!panel) continue;
+    panel.hidden = true;
+    btn.hidden = false;
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+    });
+  }
+</script>
 
 <style>
   /* minmax(0, 1fr) rather than 1fr: a plain 1fr track refuses to shrink below
@@ -103,12 +151,59 @@ const venueLine = [
     line-height: 1.35;
     margin: 0 0 0.3rem;
   }
-  h3 a {
-    color: var(--text);
-    text-decoration: none;
+  /* Underlined at rest: the one cue that a title leads to a page of ours. */
+  .title-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-decoration-color: color-mix(in srgb, var(--sec) 70%, transparent);
+    text-decoration-skip-ink: auto;
+    text-underline-offset: 0.18em;
   }
-  h3 a:hover {
+  .title-link:hover {
     color: var(--sec-strong);
+    text-decoration-color: var(--sec-strong);
+    text-decoration-thickness: 2.5px;
+  }
+
+  /* Beside the title, not inside its link, so the underline stops at the text.
+     The group does not break, so the icons never split across lines. */
+  .title-icons {
+    white-space: nowrap;
+  }
+  .title-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-inline-start: 0.4em;
+    vertical-align: -0.1em;
+    transition:
+      translate var(--dur) var(--ease),
+      filter var(--dur) var(--ease);
+  }
+  a.title-icon:hover,
+  a.title-icon:focus-visible,
+  button.title-icon:hover,
+  button.title-icon:focus-visible {
+    translate: 0 -1px;
+    filter: brightness(1.12);
+  }
+  /* The BibTeX control is a button: strip the UA chrome. */
+  .bib-toggle {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+  .title-icon[hidden] {
+    display: none;
+  }
+  .bib-toggle[aria-expanded='true'] {
+    filter: brightness(1.25);
+  }
+  .link-icon {
+    color: var(--text-muted);
   }
 
   .authors {
@@ -123,35 +218,6 @@ const venueLine = [
     font-style: italic;
   }
 
-  /* One row for Details / DOI / BibTeX. The BibTeX toggle used to be a sibling
-     block below the others, so its pill sat on its own line and broke the row. */
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.4rem;
-    margin: 0.6rem 0 0;
-  }
-
-  .bib {
-    min-width: 0;
-  }
-  /* Open, it needs the whole width for the BibTeX block, so it claims its own
-     line rather than stretching the pill row. */
-  .bib[open] {
-    flex-basis: 100%;
-  }
-  .bib summary {
-    cursor: pointer;
-    list-style: none;
-  }
-  .bib summary::-webkit-details-marker {
-    display: none;
-  }
-  .bib[open] summary {
-    border-color: var(--sec-line);
-    color: var(--sec-strong);
-  }
   .bib-body {
     position: relative;
     margin-top: 0.6rem;

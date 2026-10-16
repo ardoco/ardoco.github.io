@@ -2,8 +2,9 @@
 # Words shared by a publication entry (/publications/, via PubEntry) and a
 # conference page (/c/<slug>). The home page does not load this file.
 labels:
-  # the chips on an entry; `details` is followed by an arrow
-  details: 'Details'
+  # screen-reader suffix on a title that links to its paper page
+  hasPage: 'has a paper page'
+  # the icons beside an entry's title
   doi: 'DOI'
   # the entry's `url`, shown when it has no DOI
   link: 'Link'
