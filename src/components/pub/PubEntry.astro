@@ -5,6 +5,8 @@ import CopyButton from './CopyButton.astro';
 import BibMark from '../BibMark.astro';
 import DoiMark from '../DoiMark.astro';
 import LinkMark from '../LinkMark.astro';
+import ScholarMark from '../ScholarMark.astro';
+import { citationsFor, scholarKey, scholarPaperUrl } from '../../lib/citations';
 import { conferencePath } from '../../lib/urls';
 import { getPage } from '../../lib/pages';
 
@@ -19,7 +21,7 @@ interface Props {
 const { pub, links, compact = false } = Astro.props;
 const d = pub.data;
 /* The words on every entry: src/content/pages/site/publication.md. */
-const { label } = await getPage('site/publication');
+const { label, plural } = await getPage('site/publication');
 
 const venueLine = [
   d.booktitle ?? d.journal ?? d.school ?? d.institution,
@@ -29,6 +31,11 @@ const venueLine = [
 
 const pagePath = d.infoSlug ? conferencePath(d.infoSlug) : undefined;
 const bibId = `bib-${pub.id}`;
+
+const key = await scholarKey(pub);
+const citationCount = await citationsFor(key);
+const scholarUrl = scholarPaperUrl(key);
+const Cites = scholarUrl ? 'a' : 'span';
 ---
 
 <article class="entry" id={pub.id}>
@@ -82,6 +89,19 @@ const bibId = `bib-${pub.id}`;
           >
             <BibMark />
           </button>
+        )}
+        {citationCount > 0 && (
+          <Cites
+            class="title-icon cites"
+            title="Citations according to Google Scholar"
+            {...(scholarUrl ? { href: scholarUrl, rel: 'noopener' } : {})}
+          >
+            <ScholarMark />
+            <span class="count mono" aria-hidden="true">
+              {citationCount}
+            </span>
+            <span class="sr-only">{plural('citations', citationCount)} on Google Scholar</span>
+          </Cites>
         )}
       </span>
     </h3>
@@ -174,6 +194,7 @@ const bibId = `bib-${pub.id}`;
   .title-icon {
     display: inline-flex;
     align-items: center;
+    gap: 0.25em;
     margin-inline-start: 0.4em;
     vertical-align: -0.1em;
     transition:
@@ -204,6 +225,15 @@ const bibId = `bib-${pub.id}`;
   }
   .link-icon {
     color: var(--text-muted);
+  }
+  .cites {
+    color: #5b9bff;
+    text-decoration: none;
+  }
+  .count {
+    font-size: 0.78rem;
+    line-height: 1;
+    color: #a9c7ff;
   }
 
   .authors {

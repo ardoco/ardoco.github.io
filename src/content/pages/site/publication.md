@@ -15,6 +15,9 @@ labels:
   alsoPresented: 'Also presented at'
   # above the chips of the approaches a conference page names
   related: 'This publication is related to:'
+plurals:
+  # screen-reader text on an entry's Google Scholar count
+  citations: { one: '{count} citation', other: '{count} citations' }
 # A conference page's link keys → their names. A key with no row renders as
 # typed; a slides key `<venue>_<pdf|pptx>` is derived — see slideLabel() in
 # src/lib/conferences.ts.

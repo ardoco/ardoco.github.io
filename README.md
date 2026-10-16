@@ -179,21 +179,29 @@ that `www.youtube.com` (the two screencasts) is still the only third-party origi
 
 ## Content tasks
 
-| Task                       | How                                                                               |
-| -------------------------- | --------------------------------------------------------------------------------- |
-| Add a publication          | append to `src/data/papers.bib`; `html = {/c/<slug>}` links it to its page        |
-| Add a venue badge          | add the abbreviation to `src/data/venues.yml` — an unknown `abbr` fails the build |
-| Add a paper page           | new `.md` in `src/content/conferences/`; the filename is the `/c/<slug>` URL      |
-| Add an approach            | new `.md` in `src/content/approaches/`; see "Approaches" above                    |
-| Link a paper to approaches | `approaches: [lissa, exarch]` in its front matter — bad slugs fail the build      |
-| Add a person               | new entry in `src/data/people.yml`; the key becomes the `/people/#anchor`         |
-| Reorder the home list      | `navOrder` on a conference entry; it orders the home-page list and the feed       |
-| Add an image               | drop it in `public/assets/img/`, then rerun `scripts/generate-asset-baseline.mjs` |
-| Change a page's words      | its file in `src/content/pages/`; the nav and footer rows are in `site/`          |
-| Check bib against Crossref | `python3 scripts/update_bib.py` (stdlib only; `--write` applies the safe fields)  |
+| Task                           | How                                                                                            |
+| ------------------------------ | ---------------------------------------------------------------------------------------------- |
+| Add a publication              | append to `src/data/papers.bib`; `html = {/c/<slug>}` links it to its page                     |
+| Add a venue badge              | add the abbreviation to `src/data/venues.yml` — an unknown `abbr` fails the build              |
+| Add a paper page               | new `.md` in `src/content/conferences/`; the filename is the `/c/<slug>` URL                   |
+| Add an approach                | new `.md` in `src/content/approaches/`; see "Approaches" above                                 |
+| Link a paper to approaches     | `approaches: [lissa, exarch]` in its front matter — bad slugs fail the build                   |
+| Add a person                   | new entry in `src/data/people.yml`; the key becomes the `/people/#anchor`                      |
+| Reorder the home list          | `navOrder` on a conference entry; it orders the home-page list and the feed                    |
+| Add an image                   | drop it in `public/assets/img/`, then rerun `scripts/generate-asset-baseline.mjs`              |
+| Change a page's words          | its file in `src/content/pages/`; the nav and footer rows are in `site/`                       |
+| Check bib against Crossref     | `python3 scripts/update_bib.py` (stdlib only; `--write` applies the safe fields)               |
+| Give a paper its Scholar count | `python3 scripts/update_scholar_citations.py --discover` prints the `google_scholar_id` to add |
+| Refresh Scholar counts         | `python3 scripts/update_scholar_citations.py` (`pip install -r requirements.txt` first)        |
+| Add a Scholar profile          | `scholar: <user id>` on the person in `src/data/authors.yml`, then rerun `--discover`          |
 
 ## Deployment
 
 `.github/workflows/deploy.yml` runs `prettier --check`, `astro check`, `build` and `verify` on every
 push and pull request to `main`, then publishes `dist/` to the `gh-pages` branch, which GitHub Pages
 serves as `ardoco.de`.
+
+`.github/workflows/update-citations.yml` refreshes `src/data/citations.yml` weekly (or on demand),
+commits it only when a count changed, and then dispatches `deploy.yml`. A paper's count and link
+come from its first author's Scholar profile, or the first co-author's with a `scholar` id in
+`authors.yml`; its `google_scholar_id` is the article id on that profile.

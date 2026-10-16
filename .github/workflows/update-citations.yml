@@ -1,0 +1,71 @@
+# Refresh src/data/citations.yml from Google Scholar and redeploy when it changed.
+#
+# No secret: it pushes with GITHUB_TOKEN, and because that push triggers no
+# other workflow it starts deploy.yml itself. Scholar rate-limits hard and has
+# no API, so a run that times out is treated as success and the counts simply
+# stay as they are.
+name: Update Scholar citations
+
+on:
+  schedule:
+    - cron: '0 3 * * 1' # weekly: five profiles per run, so gentler than daily
+  workflow_dispatch:
+
+# actions: write lets the job start deploy.yml itself.
+permissions:
+  contents: write
+  actions: write
+
+# Queued, never cancelled: a cancelled run could leave a commit that never deploys.
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.15'
+          cache: pip
+
+      - run: python -m pip install -r requirements.txt
+
+      - name: Fetch citations
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=30 300 python -u scripts/update_scholar_citations.py
+          code=$?
+          # 124/137/143 are the timeout and its signals: Scholar rate-limited
+          # us. Expected, not a failure — leave the data as it is.
+          if [ $code -eq 124 ] || [ $code -eq 137 ] || [ $code -eq 143 ]; then
+            echo "Scholar did not answer in time; leaving citations.yml unchanged."
+            exit 0
+          fi
+          exit $code
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          if git diff --quiet -- src/data/citations.yml; then
+            echo "No change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/citations.yml
+          git commit -m "Update Google Scholar citations"
+          git pull --rebase
+          git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      # A push made with GITHUB_TOKEN triggers no other workflow, but a dispatch does.
+      - name: Rebuild the site
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref "$GITHUB_REF_NAME"

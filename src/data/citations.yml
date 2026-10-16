@@ -1,0 +1,59 @@
+metadata:
+  last_updated: '2026-10-16'
+papers:
+  0qk6IeYAAAAJ:kNdYIx-mwKoC:
+    citations: 43
+    title: Requirements traceability link recovery via retrieval-augmented generation
+    year: '2025'
+  X4rai7cAAAAJ:W7OEmFMy1HYC:
+    citations: 1
+    title: 'Architecture in the Cradle: Early Warning of Architectural Decay with ArchGuard'
+    year: '2026'
+  bVvFp4oAAAAJ:7PzlFSSx8tAC:
+    citations: 31
+    title: Enabling Architecture Traceability by LLM-based Architecture Component Name Extraction
+    year: '2025'
+  bVvFp4oAAAAJ:8k81kl-MbHgC:
+    citations: 70
+    title: 'LiSSA: Toward Generic Traceability Link Recovery Through Retrieval-Augmented Generation'
+    year: '2025'
+  bVvFp4oAAAAJ:R3hNpaxXUhUC:
+    citations: 0
+    title: 'ExArch: Enabling Architecture Traceability by LLM-based Architecture Component Name Extraction'
+    year: '2026'
+  bVvFp4oAAAAJ:TQgYirikUcIC:
+    citations: 0
+    title: 'Linking Software System Artifacts: Toward Generic Traceability Link Recovery through Retrieval-Augmented Generation'
+    year: '2026'
+  bVvFp4oAAAAJ:ZeXyd9-uunAC:
+    citations: 9
+    title: 'Beyond Retrieval: A Study of Using LLM Ensembles for Candidate Filtering in Requirements Traceability'
+    year: '2025'
+  bVvFp4oAAAAJ:eQOLeE2rZwMC:
+    citations: 22
+    title: Establishing a benchmark dataset for traceability link recovery between software architecture documentation and models
+    year: '2022'
+  bVvFp4oAAAAJ:mB3voiENLucC:
+    citations: 8
+    title: Who’s Who? LLM-assisted Software Traceability with Architecture Entity Recognition
+    year: '2026'
+  fC9DrioAAAAJ:GnPB-g6toBAC:
+    citations: 0
+    title: 'The ARDoCo Tool Landscape: REST API, TraceView, and TraceViz for Architecture Traceability'
+    year: '2026'
+  fC9DrioAAAAJ:LkGwnXOMwfcC:
+    citations: 38
+    title: Trace Link Recovery for Software Architecture Documentation
+    year: '2021'
+  fC9DrioAAAAJ:Zph67rFs4hoC:
+    citations: 25
+    title: Detecting inconsistencies in software architecture documentation using traceability link recovery
+    year: '2023'
+  fC9DrioAAAAJ:qxL8FJ1GzNcC:
+    citations: 35
+    title: Recovering trace links between software documentation and code
+    year: '2024'
+  i8yIy5MAAAAJ:YOwf2qJgpHMC:
+    citations: 1
+    title: The EVerest Dataset for Secure Software Engineering
+    year: '2026'

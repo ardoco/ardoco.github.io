@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PubEntry from '../../components/pub/PubEntry.astro';
+import ScholarMark from '../../components/ScholarMark.astro';
+import { formatUpdated, totalCitations } from '../../lib/citations';
 import { byNewest, byYear } from '../../lib/publications';
 import { peopleLinks } from '../../lib/people';
 import { fill, getPage, need } from '../../lib/pages';
@@ -9,6 +11,7 @@ import { fill, getPage, need } from '../../lib/pages';
 const pubs = (await getCollection('publications')).sort(byNewest);
 const groups = byYear(pubs);
 const links = await peopleLinks();
+const scholar = await totalCitations(pubs);
 
 /* The words: src/content/pages/publications.md. */
 const page = await getPage('publications');
@@ -25,6 +28,23 @@ const page = await getPage('publications');
     <div class="lede">
       {fill(need(page.data.count, 'publications.count'), { count: pubs.length })} <page.Content />
     </div>
+
+    {scholar.total > 0 && (
+      <p class="scholar-total">
+        <span class="scholar-mark">
+          <ScholarMark />
+        </span>
+        <span>
+          <strong>{new Intl.NumberFormat('en-US').format(scholar.total)}</strong>{' '}
+          {page.label('citations')}
+        </span>
+        {scholar.lastUpdated && (
+          <span class="as-of mono">
+            {fill(page.label('asOf'), { date: formatUpdated(scholar.lastUpdated) })}
+          </span>
+        )}
+      </p>
+    )}
 
     <div class="filter">
       <label class="sr-only" for="pubsearch">
@@ -114,6 +134,28 @@ const page = await getPage('publications');
   }
   .lede :global(p) {
     display: inline;
+  }
+  /* Blue like the per-entry Scholar counts. */
+  .scholar-total {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem 0.6rem;
+    margin: 0;
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+  }
+  .scholar-mark {
+    display: inline-flex;
+    color: #5b9bff;
+  }
+  .scholar-total strong {
+    margin-inline-end: 0.15em;
+    color: #a9c7ff;
+    font-weight: 600;
+  }
+  .as-of {
+    color: var(--text-faint);
   }
   .filter {
     margin-top: 1.5rem;

@@ -20,7 +20,32 @@ const authors = defineCollection({
   schema: z.object({
     name: z.string(),
     orcid: z.string().nullable().default(null),
+    /** Google Scholar user id; a paper's count is read from its first author's profile. */
+    scholar: z
+      .string()
+      .regex(/^[\w-]{12}$/, 'scholar must be a Scholar user id like bVvFp4oAAAAJ')
+      .nullable()
+      .default(null),
   }),
+});
+
+/**
+ * Google Scholar counts, written by scripts/update_scholar_citations.py: one
+ * `metadata` entry and one `papers` entry keyed `USER:ARTICLE`.
+ */
+const citations = defineCollection({
+  loader: file('src/data/citations.yml'),
+  schema: z.union([
+    z.object({ last_updated: z.string().regex(/^\d{4}-\d{2}-\d{2}$/) }).strict(),
+    z.record(
+      z.string().regex(/^[\w-]+:[\w-]+$/),
+      z.object({
+        citations: z.number().int().min(0),
+        title: z.string().optional(),
+        year: z.string().optional(),
+      }),
+    ),
+  ]),
 });
 
 /**
@@ -67,7 +92,11 @@ const publications = defineCollection({
     doi: z.string().optional(),
     url: z.url().optional(),
     keywords: z.array(z.string()).default([]),
-    googleScholarId: z.string().optional(),
+    /** The article id on the profile lib/citations.ts reads it from, not `USER:ARTICLE`. */
+    googleScholarId: z
+      .string()
+      .regex(/^[\w-]+$/, 'google_scholar_id is the bare article id')
+      .optional(),
     /** Slug of this paper's own page under /c/, from the BibTeX `html` field. */
     infoSlug: z.string().optional(),
     bibtex: z.string(),
@@ -317,6 +346,7 @@ const standalone = defineCollection({
 export const collections = {
   venues,
   authors,
+  citations,
   people,
   publications,
   approaches,
