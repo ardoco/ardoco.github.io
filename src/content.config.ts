@@ -30,7 +30,7 @@ const authors = defineCollection({
 });
 
 /**
- * Google Scholar counts, written by scripts/update_scholar_citations.py: one
+ * Google Scholar counts, written by scripts/update-scholar-citations.mjs: one
  * `metadata` entry and one `papers` entry keyed `USER:ARTICLE`.
  */
 const citations = defineCollection({
