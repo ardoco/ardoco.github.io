@@ -1,11 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { members } from '../../lib/people';
-import { intrinsic } from '../../lib/images';
+import { Image } from 'astro:assets';
 import Email from '../../components/Email.astro';
 import { getPage } from '../../lib/pages';
 
-const people = (await members()).map((p) => ({ ...p, size: intrinsic(p.image) }));
+const people = await members();
+
+/* The portrait's rendered width (5.5rem, below), at 1x and 2x. Width only: a
+   non-square photo keeps its ratio and is cropped by `object-fit: cover`. */
+const PORTRAIT = 88;
 
 /* The words: src/content/pages/people.md. */
 const page = await getPage('people');
@@ -31,11 +35,11 @@ const { label } = page;
        * "## Dominik Fuchß" headings. It has to keep resolving.
        */
       <li class="card reveal" id={p.id}>
-        <img
+        <Image
           src={p.image}
           alt=""
-          width={p.size.width}
-          height={p.size.height}
+          width={PORTRAIT}
+          densities={[1, 2]}
           loading="lazy"
           decoding="async"
         />

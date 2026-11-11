@@ -1,8 +1,11 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { intrinsic } from '../lib/images';
 
 interface Props {
-  src: string;
+  /** An SVG under public/ by its path, or a raster from src/assets/ (see content.config.ts). */
+  src: string | ImageMetadata;
   alt: string;
   plate?: boolean;
   /** Plain text under the image. The approach figure has none; a gallery image may. */
@@ -10,7 +13,8 @@ interface Props {
 }
 const { src, alt, plate = true, caption } = Astro.props;
 
-const { width, height } = intrinsic(src);
+const isVector = typeof src === 'string';
+const { width, height } = isVector ? intrinsic(src) : src;
 
 /*
  * How wide the figure is allowed to get.
@@ -23,12 +27,17 @@ const { width, height } = intrinsic(src);
  * Raster images are capped at their own pixel width instead: the 2019 poster is
  * 1010px across, and scaling it past that is what made it look soft.
  */
-const isVector = src.endsWith('.svg');
 const maxWidth = isVector ? 'var(--measure)' : `${width}px`;
 ---
 
 <figure class:list={['figure', plate && 'has-plate']} style={`--fig-max: ${maxWidth}`}>
-  <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" />
+  {/* A raster goes through the image pipeline at its own size (WebP, hashed
+       URL); an SVG is served as it is. */}
+  {isVector ? (
+    <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" />
+  ) : (
+    <Image src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" />
+  )}
   {caption && <figcaption>{caption}</figcaption>}
 </figure>
 

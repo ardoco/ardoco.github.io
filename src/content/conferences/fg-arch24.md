@@ -11,7 +11,7 @@ pubEmoji: 🇩🇪
 pubPrefixText: Präsentation auf der Jahrestagung der GI-FG Architekturen 2024
 pubBylineConnector: von
 figure:
-  src: /assets/img/approaches/fgarch24-titleslide.png
+  src: ../../assets/approaches/fgarch24-titleslide.png
   alt: FGARCH24 Titleslide
   plate: true
 ---

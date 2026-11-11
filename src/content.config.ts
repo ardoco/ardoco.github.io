@@ -1,4 +1,6 @@
-import { defineCollection, reference } from 'astro:content';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { defineCollection, reference, type SchemaContext } from 'astro:content';
 import { z } from 'zod';
 import { file, glob } from 'astro/loaders';
 import { bibtexLoader } from './loaders/bibtex';
@@ -54,14 +56,17 @@ const citations = defineCollection({
  */
 const people = defineCollection({
   loader: file('src/data/people.yml'),
-  schema: z.object({
-    author: reference('authors'),
-    order: z.number().int(),
-    image: z.string(),
-    kitUrl: z.url().optional(),
-    email: z.string().optional(),
-    surnames: z.array(z.string()).min(1),
-  }),
+  /* A function so it can take `image()`. Under a file() loader the path is
+     relative to src/data/people.yml, so a portrait is `../assets/people/…`. */
+  schema: ({ image }) =>
+    z.object({
+      author: reference('authors'),
+      order: z.number().int(),
+      image: image(),
+      kitUrl: z.url().optional(),
+      email: z.string().optional(),
+      surnames: z.array(z.string()).min(1),
+    }),
 });
 
 const publications = defineCollection({
@@ -105,8 +110,38 @@ const publications = defineCollection({
 });
 
 /**
- * An image under public/, as every figure and gallery picture is given.
+ * The file of a figure, a thumb or a gallery image — one of two kinds, told
+ * apart by extension:
  *
+ *  - An SVG stays in public/ and is named by its path on the site,
+ *    `/assets/img/approaches/….svg`. It is served verbatim, at the URL it has
+ *    had for years; a vector gains nothing from the raster pipeline, and
+ *    Astro cannot even read the size of a draw.io export (see lib/images.ts).
+ *    A missing file fails the content sync, naming the entry.
+ *  - A raster lives in src/assets/ and is named relative to the Markdown file,
+ *    `../../assets/approaches/….png`. `image()` hands it to Astro's image
+ *    pipeline, which converts it to WebP under a hashed /_astro/ URL and
+ *    supplies its dimensions; a wrong path fails the build (ImageNotFound).
+ *
+ * A factory, because `image()` is handed to a schema and cannot be imported.
+ */
+const fileFor = ({ image }: SchemaContext) =>
+  z.preprocess(
+    // Before the union, because image() takes any string: a missing SVG would
+    // otherwise fall through to it and fail only when a page renders.
+    (path, ctx) => {
+      if (
+        typeof path === 'string' &&
+        path.endsWith('.svg') &&
+        !existsSync(join(process.cwd(), 'public', path))
+      )
+        ctx.addIssue({ code: 'custom', message: `${path} not found under public/` });
+      return path;
+    },
+    z.union([z.string().regex(/^\/assets\/img\/.+\.svg$/), image()]),
+  );
+
+/**
  * The approach diagrams are dark-on-transparent SVGs drawn for a white page.
  * On a near-black background they need a light plate behind them. Only
  * screenshots, which bring their own background, turn it off.
@@ -116,69 +151,73 @@ const publications = defineCollection({
  * they drew black boxes onto the white plate. Their root style is pinned
  * to `color-scheme: light`; a fresh export needs the same edit.
  */
-const image = z.object({
-  src: z.string(),
-  alt: z.string(),
-  plate: z.boolean().default(true),
-});
+const imageFor = (ctx: SchemaContext) =>
+  z.object({
+    src: fileFor(ctx),
+    alt: z.string(),
+    plate: z.boolean().default(true),
+  });
 
-const figure = image
-  .extend({
-    /**
-     * A different image for the approach's card on /approaches/, where the
-     * figure itself would not read at thumbnail size — a screenshot of a tool
-     * says more there than its architecture diagram. The card shows
-     * `thumb ?? src`, on no plate (a thumb is a screenshot with a background
-     * of its own). Only approaches use it; a conference page ignores it.
-     */
-    thumb: z.string().optional(),
-  })
-  .strict();
+const figureFor = (ctx: SchemaContext) =>
+  imageFor(ctx)
+    .extend({
+      /**
+       * A different image for the approach's card on /approaches/, where the
+       * figure itself would not read at thumbnail size — a screenshot of a tool
+       * says more there than its architecture diagram. The card shows
+       * `thumb ?? src`, on no plate (a thumb is a screenshot with a background
+       * of its own). Only approaches use it; a conference page ignores it.
+       */
+      thumb: fileFor(ctx).optional(),
+    })
+    .strict();
 
 /**
  * One extra image on an approach page, after its text. Front matter rather
  * than a Markdown image in the body: Markdown cannot carry width and height,
  * and scripts/audit-site.mjs fails any <img> without them.
  */
-const galleryImage = image
-  .extend({
-    /** Shown under the image; plain text. */
-    caption: z.string().optional(),
-  })
-  .strict();
+const galleryImageFor = (ctx: SchemaContext) =>
+  imageFor(ctx)
+    .extend({
+      /** Shown under the image; plain text. */
+      caption: z.string().optional(),
+    })
+    .strict();
 
 const approaches = defineCollection({
   loader: glob({ base: 'src/content/approaches', pattern: '**/*.md' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    /** The section of /approaches/ the card sits in; see APPROACH_GROUPS. */
-    group: z.enum(APPROACH_GROUPS),
-    /** Order within the group, lowest first: roughly the order the work was published. */
-    importance: z.number().int(),
-    /**
-     * The pairs of artifact the approach links, each as two short tags: `SAD`
-     * (architecture documentation), `SAM` (architecture model), `Code`,
-     * `Requirements`. A list of pairs rather than one list of tags, because a
-     * generic approach like LiSSA links several pairs, and a flat list would
-     * read as one chain (Requirements ↔ SAD ↔ Code ↔ …). Shown as tags on the
-     * card and under the page's lede.
-     */
-    artifacts: z.array(z.tuple([z.enum(ARTIFACTS), z.enum(ARTIFACTS)])).default([]),
-    repositories: z.array(z.object({ name: z.string(), url: z.url() })).default([]),
-    /**
-     * Papers about the approach that have no conference page of their own, as
-     * references to BibTeX entries (the id is the BibTeX key). Most papers
-     * reach an approach the other way round, through a conference page's
-     * `approaches:`; this is for the ones that only exist as a redirect stub,
-     * like a journal extension, whose stub would otherwise attach the
-     * approach to the paper it redirects to. Merged with the conference
-     * pages by relatedPublications() in lib/approaches.ts.
-     */
-    publications: z.array(reference('publications')).default([]),
-    figure: figure.optional(),
-    gallery: z.array(galleryImage).default([]),
-  }),
+  schema: (ctx) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      /** The section of /approaches/ the card sits in; see APPROACH_GROUPS. */
+      group: z.enum(APPROACH_GROUPS),
+      /** Order within the group, lowest first: roughly the order the work was published. */
+      importance: z.number().int(),
+      /**
+       * The pairs of artifact the approach links, each as two short tags: `SAD`
+       * (architecture documentation), `SAM` (architecture model), `Code`,
+       * `Requirements`. A list of pairs rather than one list of tags, because a
+       * generic approach like LiSSA links several pairs, and a flat list would
+       * read as one chain (Requirements ↔ SAD ↔ Code ↔ …). Shown as tags on the
+       * card and under the page's lede.
+       */
+      artifacts: z.array(z.tuple([z.enum(ARTIFACTS), z.enum(ARTIFACTS)])).default([]),
+      repositories: z.array(z.object({ name: z.string(), url: z.url() })).default([]),
+      /**
+       * Papers about the approach that have no conference page of their own, as
+       * references to BibTeX entries (the id is the BibTeX key). Most papers
+       * reach an approach the other way round, through a conference page's
+       * `approaches:`; this is for the ones that only exist as a redirect stub,
+       * like a journal extension, whose stub would otherwise attach the
+       * approach to the paper it redirects to. Merged with the conference
+       * pages by relatedPublications() in lib/approaches.ts.
+       */
+      publications: z.array(reference('publications')).default([]),
+      figure: figureFor(ctx).optional(),
+      gallery: z.array(galleryImageFor(ctx)).default([]),
+    }),
 });
 
 /**
@@ -213,50 +252,51 @@ const linkMap = z.record(z.string(), linkTarget).optional();
 
 const conferences = defineCollection({
   loader: glob({ base: 'src/content/conferences', pattern: '**/*.md' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
+  schema: (ctx) =>
+    z.object({
+      title: z.string(),
+      description: z.string().optional(),
 
-    /**
-     * Five entries are pure redirects kept alive because their URLs were
-     * published: /c/se24 and friends point at the paper page that superseded
-     * them. They carry nothing but a title and this field.
-     */
-    redirectTo: z.string().optional(),
+      /**
+       * Five entries are pure redirects kept alive because their URLs were
+       * published: /c/se24 and friends point at the paper page that superseded
+       * them. They carry nothing but a title and this field.
+       */
+      redirectTo: z.string().optional(),
 
-    publication: reference('publications').optional(),
-    authors: z.array(reference('authors')).default([]),
-    approaches: z.array(reference('approaches')).default([]),
+      publication: reference('publications').optional(),
+      authors: z.array(reference('authors')).default([]),
+      approaches: z.array(reference('approaches')).default([]),
 
-    year: z.number().int().optional(),
-    featured: z.boolean().default(false),
-    inPress: z.boolean().default(false),
+      year: z.number().int().optional(),
+      featured: z.boolean().default(false),
+      inPress: z.boolean().default(false),
 
-    /**
-     * Label and ordering of the home page's publication list (and the feed),
-     * previously the `children:` array in _pages/conferences.md, which also
-     * drove a navbar dropdown. Each entry now carries its own position.
-     */
-    navLabel: z.string().optional(),
-    navOrder: z.number().int().optional(),
+      /**
+       * Label and ordering of the home page's publication list (and the feed),
+       * previously the `children:` array in _pages/conferences.md, which also
+       * drove a navbar dropdown. Each entry now carries its own position.
+       */
+      navLabel: z.string().optional(),
+      navOrder: z.number().int().optional(),
 
-    pubShortName: z.string().optional(),
-    conferenceName: z.string().optional(),
-    conferenceUrl: z.url().optional(),
+      pubShortName: z.string().optional(),
+      conferenceName: z.string().optional(),
+      conferenceUrl: z.url().optional(),
 
-    /** Overrides for the one German-language entry (fg-arch24). */
-    pubEmoji: z.string().default(''),
-    pubPrefixText: z.string().default('Paper at'),
-    pubBylineConnector: z.string().default('by'),
+      /** Overrides for the one German-language entry (fg-arch24). */
+      pubEmoji: z.string().default(''),
+      pubPrefixText: z.string().default('Paper at'),
+      pubBylineConnector: z.string().default('by'),
 
-    links: z.object({ paper: linkMap, replication: linkMap, slides: linkMap }).default({}),
+      links: z.object({ paper: linkMap, replication: linkMap, slides: linkMap }).default({}),
 
-    additionalPresentations: z
-      .array(z.object({ name: z.string(), shortName: z.string().optional(), url: z.url() }))
-      .default([]),
+      additionalPresentations: z
+        .array(z.object({ name: z.string(), shortName: z.string().optional(), url: z.url() }))
+        .default([]),
 
-    figure: figure.optional(),
-  }),
+      figure: figureFor(ctx).optional(),
+    }),
 });
 
 /* ── page text ─────────────────────────────────────────────────────────── */
@@ -330,17 +370,18 @@ const pages = defineCollection({
  */
 const standalone = defineCollection({
   loader: glob({ base: 'src/content/standalone', pattern: '**/*.md' }),
-  schema: z
-    .object({
-      title: z.string(),
-      description: z.string(),
-      /** The `## kicker` above the heading. */
-      kicker: z.string(),
-      heading: z.string(),
-      /** A file under public/, shown below the text. */
-      image: z.object({ src: z.string(), alt: z.string() }).strict().optional(),
-    })
-    .strict(),
+  schema: ({ image }) =>
+    z
+      .object({
+        title: z.string(),
+        description: z.string(),
+        /** The `## kicker` above the heading. */
+        kicker: z.string(),
+        heading: z.string(),
+        /** A file under src/assets/, relative to this file, shown below the text. */
+        image: z.object({ src: image(), alt: z.string() }).strict().optional(),
+      })
+      .strict(),
 });
 
 export const collections = {

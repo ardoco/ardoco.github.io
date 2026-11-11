@@ -13,7 +13,7 @@
 anne-koziolek:
   author: anne_koziolek
   order: 1
-  image: /assets/img/people/koziolek_anne.jpg
+  image: ../assets/people/koziolek_anne.jpg
   kitUrl: https://mcse.kastel.kit.edu/staff_Koziolek_Anne.php
   email: koziolek@kit.edu
   surnames: [Koziolek]
@@ -21,7 +21,7 @@ anne-koziolek:
 sophie-corallo:
   author: sophie_corallo
   order: 2
-  image: /assets/img/people/corallo_sophie.jpg
+  image: ../assets/people/corallo_sophie.jpg
   kitUrl: https://mcse.kastel.kit.edu/staff_sophie_corallo.php
   email: sophie.corallo@kit.edu
   surnames: [Corallo, Schulz]
@@ -29,7 +29,7 @@ sophie-corallo:
 dominik-fuchß:
   author: dominik_fuchss
   order: 3
-  image: /assets/img/people/fuchss_dominik.jpg
+  image: ../assets/people/fuchss_dominik.jpg
   kitUrl: https://mcse.kastel.kit.edu/staff_dominik_fuchss.php
   email: dominik.fuchss@kit.edu
   surnames: [Fuchß]
@@ -37,7 +37,7 @@ dominik-fuchß:
 jan-keim:
   author: jan_keim
   order: 4
-  image: /assets/img/people/keim_jan.jpg
+  image: ../assets/people/keim_jan.jpg
   kitUrl: https://mcse.kastel.kit.edu/staff_Keim_Jan.php
   email: jan.keim@kit.edu
   surnames: [Keim]
@@ -45,7 +45,7 @@ jan-keim:
 tobias-hey:
   author: tobias_hey
   order: 5
-  image: /assets/img/people/hey_tobias.jpg
+  image: ../assets/people/hey_tobias.jpg
   kitUrl: https://mcse.kastel.kit.edu/staff_tobias_hey.php
   email: hey@kit.edu
   surnames: [Hey]
@@ -53,7 +53,7 @@ tobias-hey:
 haoyu-liu:
   author: haoyu_liu
   order: 6
-  image: /assets/img/people/liu_haoyu.jpg
+  image: ../assets/people/liu_haoyu.jpg
   kitUrl: https://mcse.kastel.kit.edu/staff_haoyu_liu.php
   email: haoyu.liu@kit.edu
   surnames: [Liu]

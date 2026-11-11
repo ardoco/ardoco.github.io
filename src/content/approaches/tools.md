@@ -7,13 +7,13 @@ figure:
   src: /assets/img/approaches/ase26-landscape.svg
   alt: ARDoCo tool landscape
   plate: true
-  thumb: /assets/img/approaches/ase26-traceview.png
+  thumb: ../../assets/approaches/ase26-traceview.png
 gallery:
-  - src: /assets/img/approaches/ase26-traceview.png
+  - src: ../../assets/approaches/ase26-traceview.png
     alt: TraceView screenshot
     caption: TraceView in the browser
     plate: false
-  - src: /assets/img/approaches/ase26-traceviz.png
+  - src: ../../assets/approaches/ase26-traceviz.png
     alt: TraceViz screenshot
     caption: TraceViz in VS Code
     plate: false

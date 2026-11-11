@@ -1,15 +1,15 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { intrinsic } from '../../lib/images';
+import { Image } from 'astro:assets';
 
 /*
  * A page that is nothing but its own words: one file in src/content/standalone/
  * each, whose name is its URL — initial-poster-2019.md is /initial-poster-2019/.
  * A rest route ranks below every other route, so it can never shadow one.
  *
- * The image is front matter rather than `![]()` in the body: a Markdown image
- * would lose its intrinsic width and height, which the audit requires.
+ * The image is front matter rather than `![]()` in the body, so the template
+ * decides how it is rendered: at its own size, through Astro's image pipeline.
  */
 export async function getStaticPaths() {
   const all = await getCollection('standalone');
@@ -19,7 +19,6 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
-const size = d.image && intrinsic(d.image.src);
 ---
 
 <Base title={d.title} description={d.description}>
@@ -32,9 +31,14 @@ const size = d.image && intrinsic(d.image.src);
       <Content />
     </div>
 
-    {d.image && size && (
+    {d.image && (
       <figure>
-        <img src={d.image.src} alt={d.image.alt} width={size.width} height={size.height} />
+        <Image
+          src={d.image.src}
+          alt={d.image.alt}
+          width={d.image.src.width}
+          height={d.image.src.height}
+        />
       </figure>
     )}
   </article>

@@ -6,7 +6,7 @@ description: 'The poster presenting the initial ARDoCo idea, from the ICSA 2019 
 kicker: '2019'
 heading: 'The initial idea'
 image:
-  src: '/assets/img/approaches/icsa2019-poster.png'
+  src: '../../assets/approaches/icsa2019-poster.png'
   alt: 'ARDoCo poster from the ICSA 2019 NEMI track'
 ---
 

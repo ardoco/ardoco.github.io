@@ -1,5 +1,6 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import ApproachMap from '../../components/ApproachMap.astro';
 import Artifacts from '../../components/Artifacts.astro';
@@ -32,14 +33,14 @@ const GROUPS: Record<ApproachGroup, { heading: string }> = {
 const cards = await Promise.all(
   ordered(await getCollection('approaches')).map(async (a) => {
     const f = a.data.figure;
-    const thumb = f && {
-      src: f.thumb ?? f.src,
-      plate: f.thumb ? false : f.plate,
-      ...intrinsic(f.thumb ?? f.src),
-    };
+    const thumb = f && { src: f.thumb ?? f.src, plate: f.thumb ? false : f.plate };
     return { a, thumb, venues: await relatedVenues(a) };
   }),
 );
+
+/* A raster thumb is resized to the card, at 1x and 2x: a column is at most
+   about 360px wide. An SVG is served as it is, from public/. */
+const THUMB = 360;
 
 /* Groups with nothing in them are left out, heading and all. */
 const sections = APPROACH_GROUPS.map((group) => ({
@@ -99,14 +100,24 @@ const datasets = await Promise.all(
                       size the diagram is decoration. Its description is
                       the figure's alt on the approach page, where it can be
                       read. */}
-                  <img
-                    src={thumb.src}
-                    alt=""
-                    width={thumb.width}
-                    height={thumb.height}
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  {typeof thumb.src === 'string' ? (
+                    <img
+                      src={thumb.src}
+                      alt=""
+                      {...intrinsic(thumb.src)}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <Image
+                      src={thumb.src}
+                      alt=""
+                      width={THUMB}
+                      densities={[1, 2]}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
                 </div>
               )}
               <h3>
