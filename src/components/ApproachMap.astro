@@ -36,7 +36,7 @@ const sub = (n: Node) => page.label(`node${NODE_KEY[n]}Sub`);
 
 /* Box centres. Documentation and model share the top row, requirements and
    code the bottom one, so the two trace-link families read left to right. */
-const W = 180;
+const W = 196;
 const H = 64;
 const NODES: Record<Node, { cx: number; cy: number }> = {
   sad: { cx: 140, cy: 100 },
@@ -131,7 +131,7 @@ const glyph = (e: (typeof EDGES)[number]) => (e.via ? '→' : '↔');
 const parts = (e: (typeof EDGES)[number]) =>
   (e.via ? [e.from, e.via, e.to] : [e.from, e.to]).map(name);
 
-/* Label size, estimated: the labels are set in IBM Plex Mono, whose every
+/* Label size, estimated: the labels are set in JetBrains Mono, whose every
    glyph is 0.6 em wide, so the text width is known without measuring it.
    FONT must equal the font-size of `.label text` in the style block below. */
 const FONT = 14;
